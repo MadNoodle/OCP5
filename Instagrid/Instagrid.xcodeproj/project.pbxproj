@@ -14,6 +14,9 @@
 		B9E30F431FBF3B4200E8F51B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9E30F411FBF3B4200E8F51B /* LaunchScreen.storyboard */; };
 		B9E30F4B1FBF3DBD00E8F51B /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B9E30F4A1FBF3DBD00E8F51B /* Delm-Medium.otf */; };
 		B9E30F4D1FBF3DC400E8F51B /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B9E30F4C1FBF3DC400E8F51B /* ThirstySoftRegular.otf */; };
+		B9E30F531FC0531500E8F51B /* LayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E30F521FC0531500E8F51B /* LayoutView.swift */; };
+		B9E30F571FC07BA600E8F51B /* SquareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E30F561FC07BA600E8F51B /* SquareView.swift */; };
+		B9E30F591FC07BB800E8F51B /* RectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E30F581FC07BB800E8F51B /* RectView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		B9E30F441FBF3B4200E8F51B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9E30F4A1FBF3DBD00E8F51B /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Delm-Medium.otf"; sourceTree = "<group>"; };
 		B9E30F4C1FBF3DC400E8F51B /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ThirstySoftRegular.otf; sourceTree = "<group>"; };
+		B9E30F521FC0531500E8F51B /* LayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutView.swift; sourceTree = "<group>"; };
+		B9E30F561FC07BA600E8F51B /* SquareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareView.swift; sourceTree = "<group>"; };
+		B9E30F581FC07BB800E8F51B /* RectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,9 @@
 		B9E30F511FBF40CC00E8F51B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B9E30F521FC0531500E8F51B /* LayoutView.swift */,
+				B9E30F561FC07BA600E8F51B /* SquareView.swift */,
+				B9E30F581FC07BB800E8F51B /* RectView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -177,7 +186,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9E30F3B1FBF3B4200E8F51B /* ViewController.swift in Sources */,
+				B9E30F571FC07BA600E8F51B /* SquareView.swift in Sources */,
 				B9E30F391FBF3B4200E8F51B /* AppDelegate.swift in Sources */,
+				B9E30F531FC0531500E8F51B /* LayoutView.swift in Sources */,
+				B9E30F591FC07BB800E8F51B /* RectView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

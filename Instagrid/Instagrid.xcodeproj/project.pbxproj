@@ -58,7 +58,7 @@
 		B9E30F371FBF3B4200E8F51B /* Instagrid */ = {
 			isa = PBXGroup;
 			children = (
-				B9E30F511FBF40CC00E8F51B /* Models */,
+				B9E30F511FBF40CC00E8F51B /* v */,
 				B9E30F4E1FBF409800E8F51B /* Supporting_files */,
 				B9E30F4F1FBF40B900E8F51B /* Controllers */,
 				B9E30F501FBF40C400E8F51B /* Views */,
@@ -95,11 +95,11 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		B9E30F511FBF40CC00E8F51B /* Models */ = {
+		B9E30F511FBF40CC00E8F51B /* v */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Models;
+			path = v;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

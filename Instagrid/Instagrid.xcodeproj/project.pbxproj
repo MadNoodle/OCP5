@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B93260951FC20BC400439530 /* LayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93260941FC20BC400439530 /* LayoutView.swift */; };
 		B9E30F391FBF3B4200E8F51B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E30F381FBF3B4200E8F51B /* AppDelegate.swift */; };
 		B9E30F3B1FBF3B4200E8F51B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E30F3A1FBF3B4200E8F51B /* ViewController.swift */; };
 		B9E30F3E1FBF3B4200E8F51B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9E30F3C1FBF3B4200E8F51B /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B93260941FC20BC400439530 /* LayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutView.swift; sourceTree = "<group>"; };
 		B9E30F351FBF3B4200E8F51B /* Instagrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9E30F381FBF3B4200E8F51B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9E30F3A1FBF3B4200E8F51B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +41,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B93260931FC20BB100439530 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B93260941FC20BC400439530 /* LayoutView.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		B9E30F2C1FBF3B4200E8F51B = {
 			isa = PBXGroup;
 			children = (
@@ -58,7 +68,7 @@
 		B9E30F371FBF3B4200E8F51B /* Instagrid */ = {
 			isa = PBXGroup;
 			children = (
-				B9E30F511FBF40CC00E8F51B /* v */,
+				B93260931FC20BB100439530 /* Models */,
 				B9E30F4E1FBF409800E8F51B /* Supporting_files */,
 				B9E30F4F1FBF40B900E8F51B /* Controllers */,
 				B9E30F501FBF40C400E8F51B /* Views */,
@@ -93,13 +103,6 @@
 				B9E30F411FBF3B4200E8F51B /* LaunchScreen.storyboard */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		B9E30F511FBF40CC00E8F51B /* v */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = v;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +181,7 @@
 			files = (
 				B9E30F3B1FBF3B4200E8F51B /* ViewController.swift in Sources */,
 				B9E30F391FBF3B4200E8F51B /* AppDelegate.swift in Sources */,
+				B93260951FC20BC400439530 /* LayoutView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

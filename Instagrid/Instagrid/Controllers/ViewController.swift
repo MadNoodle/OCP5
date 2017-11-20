@@ -14,7 +14,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   // ///////////////////////////// //
   /// Logic initialisation for the collage view
   let collageView = CollageView()
-
+  let logic = Logic()
   let image = UIImagePickerController()
   var imagePicked = 0
   
@@ -61,8 +61,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     if UIDevice.current.orientation.isLandscape {
        swipe.direction = UISwipeGestureRecognizerDirection.left
       //Rotate UIActivityViewController in landscape
-      let value = UIInterfaceOrientation.landscapeLeft.rawValue
-      UIDevice.current.setValue(value, forKey: "orientation")
+      let landscapeRawValue = UIInterfaceOrientation.landscapeLeft.rawValue
+      UIDevice.current.setValue(landscapeRawValue, forKey: "orientation")
       print("Landscape")
     } else {
       swipe.direction = UISwipeGestureRecognizerDirection.up
@@ -120,7 +120,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   @IBAction func importImage(_ sender: UIButton) {
     imagePicked = 1
-    ImportImageFromAlbum(image)
+    logic.ImportImageFromAlbum(image)
     self.present(image, animated:true){
       self.image1.isHidden = false
     }
@@ -129,7 +129,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   @IBAction func importimage2(_ sender: UIButton) {
     imagePicked = 2
-    ImportImageFromAlbum(image)
+    logic.ImportImageFromAlbum(image)
     self.present(image, animated:true){
      self.image2.isHidden = false
     }
@@ -138,7 +138,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   @IBAction func importImage3(_ sender: UIButton) {
     imagePicked = 3
-    ImportImageFromAlbum(image)
+    logic.ImportImageFromAlbum(image)
     self.present(image, animated:true){
       self.image3.isHidden = false
     }
@@ -146,32 +146,27 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   @IBAction func importImage4(_ sender: UIButton) {
     imagePicked = 4
-    ImportImageFromAlbum(image)
+    logic.ImportImageFromAlbum(image)
     self.present(image, animated:true){
       self.image4.isHidden = false
     }
   }
   @IBAction func importImage5(_ sender: UIButton) {
     imagePicked = 5
-    ImportImageFromAlbum(image)
+    logic.ImportImageFromAlbum(image)
     self.present(image, animated:true){
       self.image5.isHidden = false
     }
   }
   @IBAction func importImage6(_ sender: UIButton) {
     imagePicked = 6
-    ImportImageFromAlbum(image)
+    logic.ImportImageFromAlbum(image)
     self.present(image, animated:true){
       self.image6.isHidden = false
     }
   }
   
-  /// This function authorize the user to import images from the library
-  func ImportImageFromAlbum(_ image: UIImagePickerController){
-    image.delegate = self
-    image.sourceType = UIImagePickerControllerSourceType.photoLibrary
-    image.allowsEditing = false
-  }
+ 
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
     if let image = info[UIImagePickerControllerOriginalImage] as? UIImage
@@ -208,7 +203,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   /// Convert The collageView in UIImage and invoke the UIActivityViewController
   func share(){
-    let imageToSave = collageView.convertUiviewToImage(from:collage)
+    if self.image1.image != nil {print("il y a une image")}
+    let imageToSave = logic.convertUiviewToImage(from:collage)
     let activityController = UIActivityViewController(activityItems: [imageToSave!], applicationActivities: nil)
     present(activityController, animated: true){
     }

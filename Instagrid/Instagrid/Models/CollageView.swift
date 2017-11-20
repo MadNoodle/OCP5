@@ -18,6 +18,8 @@ class CollageView: UIView  {
   case two = 2
   case three = 3
   }
+
+  
   
   /** This function return an array of Bool that say which suare/rect view is hidden or not for each kind of view
   - parameters:

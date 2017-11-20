@@ -9,9 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
-
+  // ///////////////////////////// //
   // MARK: VARIABLE DECLARATIONS
-  
+  // ///////////////////////////// //
   /// Logic initialisation for the collage view
   let collageView = CollageView()
 
@@ -53,6 +53,18 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     buttonOneHover.isHidden = false
     buttonTwoHover.isHidden = true
     buttonThreeHover.isHidden = true
+    
+    let swipe = UISwipeGestureRecognizer(target:self, action:#selector(DragCollage(swipe :)))
+    if UIDevice.current.orientation.isLandscape {
+       swipe.direction = UISwipeGestureRecognizerDirection.left
+      print("Landscape")
+    } else {
+      swipe.direction = UISwipeGestureRecognizerDirection.up
+      print("Portrait")
+    }
+    //ToDo:  je dois redraw pour activer le swipe left
+    //ToDo: verifier que la vue est full
+    self.view.addGestureRecognizer(swipe)
   }
   
   
@@ -95,7 +107,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     squareFour.isHidden = displays[5]
     
   }
-  
+  // ////////////////////// //
+  // MARK: IMPORTING IMAGES //
+  // ////////////////////// //
   @IBAction func importImage(_ sender: UIButton) {
     imagePicked = 1
     ImportImageFromAlbum(image)
@@ -173,12 +187,49 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
       self.dismiss(animated: true, completion: nil)
     }
   }
+  // ///////////////////////////// //
+  // MARK: EXPORTING //
+  // ///////////////////////////// //
   
   @IBOutlet weak var collage: CollageView!
-  @IBAction func save(_ sender: UIButton) {
+  
+  @objc private func DragCollage(swipe:UISwipeGestureRecognizer){
+   transformCollage(gesture: swipe)
+    share()
+    
+    
+    
+    }
+  
+  func share(){
     let imageToSave = collageView.convertUiviewToImage(from:collage)
     let activityController = UIActivityViewController(activityItems: [imageToSave!], applicationActivities: nil)
-    present(activityController,animated:true, completion:nil)
+    present(activityController, animated: true) {
+      self.image1.isHidden = true
+      self.image2.isHidden = true
+      self.image3.isHidden = true
+      self.image4.isHidden = true
+      self.image5.isHidden = true
+      self.image6.isHidden = true
+    }
+  }
+  
+
+//  private func transformCollage(gesture: UISwipeGestureRecognizer){
+//    let translationDirection = gesture.direction
+//    let screenWidth = UIScreen.main.bounds.width
+//    let screenHeight = UIScreen.main.bounds.height
+//    let translationAmount:CGFloat
+//    if translationDirection == .up {
+//      translationAmount = screenHeight
+//      let translationTransform = CGAffineTransform(translationX: 0, y: translationAmount)
+//      collageView.transform = translationTransform
+//    }
+//    else if translationDirection == .left {
+//      translationAmount = screenWidth
+//      let translationTransform = CGAffineTransform(translationX: 0, y: translationAmount)
+//      collageView.transform = translationTransform
+//    }
     
   }
   

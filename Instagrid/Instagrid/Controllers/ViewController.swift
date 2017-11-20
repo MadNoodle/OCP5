@@ -8,10 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
   // MARK: VARIABLE DECLARATIONS
   
+  /// Logic initialisation for the collage view
+  let collageView = CollageView()
   // Buttons declarations
   @IBOutlet weak var layoutTwoButton: UIButton!
   @IBOutlet weak var layoutThreeButton: UIButton!
@@ -20,66 +22,86 @@ class ViewController: UIViewController {
   @IBOutlet weak var buttonTwoHover: UIImageView!
   @IBOutlet weak var buttonOneHover: UIImageView!
   @IBOutlet weak var buttonThreeHover: UIImageView!
+  // Collage squares
+  @IBOutlet private var squareOne:UIView!
+  @IBOutlet private var squareTwo:UIView!
+  @IBOutlet private var squareThree:UIView!
+  @IBOutlet private var squareFour:UIView!
+  @IBOutlet private var rectTop:UIView!
+  @IBOutlet private var rectBot:UIView!
   
-  // Layout Elements Delcarations
-  @IBOutlet weak var squareOne: UIView!
-  @IBOutlet weak var squareTwo: UIView!
-  @IBOutlet weak var squareThree: UIView!
-  @IBOutlet weak var squareFour: UIView!
-  @IBOutlet weak var rectBot: UIView!
-  @IBOutlet weak var rectTop: UIView!
-  
-  // MARK: CORE UI VIEW FUNCTIONS
+  // ///////////////////////////// //
+  // MARK: CORE UI VIEW FUNCTIONS //
+  // ///////////////////////////// //
   override func viewDidLoad() {
     super.viewDidLoad()
-    showLayoutOne()
-  }
-
-  // MARK: BUTTONS INTERACTIONS
-  @IBAction func selectlayoutOne() {
-    showLayoutOne()
+    showLayout(id:1)
     buttonOneHover.isHidden = false
     buttonTwoHover.isHidden = true
     buttonThreeHover.isHidden = true
   }
   
+  // ///////////////////////// //
+  // MARK: BUTTON INTERACTIONS //
+  // ///////////////////////// //
+  
+  /// Shows layout One and highligth button One
+  @IBAction func selectLayoutOne() {
+    showLayout(id:1)
+    buttonOneHover.isHidden = false
+    buttonTwoHover.isHidden = true
+    buttonThreeHover.isHidden = true
+  }
+  
+  /// Shows layout Two and highligth button Two
   @IBAction func selectLayoutTwo() {
-    showLayoutTwo()
+    showLayout(id:2)
     buttonOneHover.isHidden = true
     buttonTwoHover.isHidden = false
     buttonThreeHover.isHidden = true
   }
   
-  @IBAction func selectLayoutThree() {
-    showLayoutThree()
+  /// Shows layout Three and highligth button Three
+  @IBAction func selectLayoutthree() {
+    showLayout(id:3)
     buttonOneHover.isHidden = true
     buttonTwoHover.isHidden = true
     buttonThreeHover.isHidden = false
   }
-  private func showLayoutOne(){
-    rectTop.isHidden = false
-    rectBot.isHidden = true
-    squareOne.isHidden = true
-    squareTwo.isHidden = true
-    squareThree.isHidden = false
-    squareFour.isHidden = false
+  
+  /// Populates Layout View with views of the selected type of collage layout
+  func showLayout(id:Int){
+    let displays = collageView.getLayoutInfo(name: CollageView.Layouts(rawValue: id)!)
+    rectTop.isHidden = displays[0]
+    rectBot.isHidden = displays[1]
+    squareOne.isHidden = displays[2]
+    squareTwo.isHidden = displays[3]
+    squareThree.isHidden = displays[4]
+    squareFour.isHidden = displays[5]
+    
   }
+ 
 
-  private func showLayoutTwo(){
-    rectTop.isHidden = true
-    rectBot.isHidden = false
-    squareOne.isHidden = false
-    squareTwo.isHidden = false
-    squareThree.isHidden = true
-    squareFour.isHidden = true
+  @IBOutlet weak var image1: UIImageView!
+  @IBAction func importImage(_ sender: UIButton) {
+    let image = UIImagePickerController()
+    image.delegate = self
+    image.sourceType = UIImagePickerControllerSourceType.photoLibrary
+    image.allowsEditing = false
+    self.present(image, animated:true){
+      self.image1.isHidden = false
+    }
   }
-  private func showLayoutThree(){
-    rectTop.isHidden = true
-    rectBot.isHidden = true
-    squareOne.isHidden = false
-    squareTwo.isHidden = false
-    squareThree.isHidden = false
-    squareFour.isHidden = false
+  
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    if let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+    {
+      image1.image = image
+    }
+    else{
+      print("Erreur de chargement d'image")
+    }
+    self.dismiss(animated: true, completion: nil)
   }
 }
 

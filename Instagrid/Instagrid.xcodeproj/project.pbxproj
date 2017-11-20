@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B93260951FC20BC400439530 /* LayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93260941FC20BC400439530 /* LayoutView.swift */; };
+		B93260951FC20BC400439530 /* CollageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93260941FC20BC400439530 /* CollageView.swift */; };
 		B9E30F391FBF3B4200E8F51B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E30F381FBF3B4200E8F51B /* AppDelegate.swift */; };
 		B9E30F3B1FBF3B4200E8F51B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E30F3A1FBF3B4200E8F51B /* ViewController.swift */; };
 		B9E30F3E1FBF3B4200E8F51B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9E30F3C1FBF3B4200E8F51B /* Main.storyboard */; };
@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B93260941FC20BC400439530 /* LayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutView.swift; sourceTree = "<group>"; };
+		B93260941FC20BC400439530 /* CollageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageView.swift; sourceTree = "<group>"; };
 		B9E30F351FBF3B4200E8F51B /* Instagrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9E30F381FBF3B4200E8F51B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9E30F3A1FBF3B4200E8F51B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -44,7 +44,7 @@
 		B93260931FC20BB100439530 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B93260941FC20BC400439530 /* LayoutView.swift */,
+				B93260941FC20BC400439530 /* CollageView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -181,7 +181,7 @@
 			files = (
 				B9E30F3B1FBF3B4200E8F51B /* ViewController.swift in Sources */,
 				B9E30F391FBF3B4200E8F51B /* AppDelegate.swift in Sources */,
-				B93260951FC20BC400439530 /* LayoutView.swift in Sources */,
+				B93260951FC20BC400439530 /* CollageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

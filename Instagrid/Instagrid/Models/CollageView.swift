@@ -35,5 +35,14 @@ class CollageView: UIView  {
     }
   }
   
- 
+  func convertUiviewToImage(from view:CollageView) -> UIImage?{
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.isOpaque, 0.0)
+    view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+    let img = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return img
+  }
+  
+  
+  
 }

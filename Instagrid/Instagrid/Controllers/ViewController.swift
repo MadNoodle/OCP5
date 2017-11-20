@@ -27,6 +27,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   @IBOutlet weak var buttonTwoHover: UIImageView!
   @IBOutlet weak var buttonOneHover: UIImageView!
   @IBOutlet weak var buttonThreeHover: UIImageView!
+  // Collage View
+  @IBOutlet weak var collage: CollageView!
   // Collage squares
   @IBOutlet private var squareOne:UIView!
   @IBOutlet private var squareTwo:UIView!
@@ -54,9 +56,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     buttonTwoHover.isHidden = true
     buttonThreeHover.isHidden = true
     
+    
     let swipe = UISwipeGestureRecognizer(target:self, action:#selector(DragCollage(swipe :)))
     if UIDevice.current.orientation.isLandscape {
        swipe.direction = UISwipeGestureRecognizerDirection.left
+      //Rotate UIActivityViewController in landscape
+      let value = UIInterfaceOrientation.landscapeLeft.rawValue
+      UIDevice.current.setValue(value, forKey: "orientation")
       print("Landscape")
     } else {
       swipe.direction = UISwipeGestureRecognizerDirection.up
@@ -110,6 +116,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   // ////////////////////// //
   // MARK: IMPORTING IMAGES //
   // ////////////////////// //
+  
+  
   @IBAction func importImage(_ sender: UIButton) {
     imagePicked = 1
     ImportImageFromAlbum(image)
@@ -158,7 +166,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
   }
   
-  
+  /// This function authorize the user to import images from the library
   func ImportImageFromAlbum(_ image: UIImagePickerController){
     image.delegate = self
     image.sourceType = UIImagePickerControllerSourceType.photoLibrary
@@ -188,28 +196,30 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
   }
   // ///////////////////////////// //
-  // MARK: EXPORTING //
+  // MARK: EXPORTING              //
   // ///////////////////////////// //
   
-  @IBOutlet weak var collage: CollageView!
-  
+
+  /// Callback Function for Swipe
   @objc private func DragCollage(swipe:UISwipeGestureRecognizer){
    transformCollage(gesture: swipe)
     share()
     }
   
+  /// Convert The collageView in UIImage and invoke the UIActivityViewController
   func share(){
     let imageToSave = collageView.convertUiviewToImage(from:collage)
     let activityController = UIActivityViewController(activityItems: [imageToSave!], applicationActivities: nil)
     present(activityController, animated: true){
     }
   }
-  
+  ///Animating the collageView
 private func transformCollage(gesture: UISwipeGestureRecognizer){
   let transform = CGAffineTransform(translationX: 0, y: -600)
   UIView.animate(withDuration: 0.3, animations: { self.collage.transform = transform }) { (success) in if success { self.resetCollage()}}
   }
  
+  /// Reset the collage to empty outside of the screen and animate the return in screen
   private func resetCollage(){
     self.image1.isHidden = true
     self.image2.isHidden = true

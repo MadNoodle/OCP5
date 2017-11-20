@@ -374,10 +374,6 @@
                                 <variation key="heightClass=compact-widthClass=compact" hidden="YES"/>
                                 <variation key="heightClass=compact-widthClass=regular" hidden="YES"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gDi-vq-Zfp">
-                                <rect key="frame" x="203" y="20" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ij-3b-ebM">
                                 <rect key="frame" x="29" y="69" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -629,7 +625,6 @@
                         <outlet property="image4" destination="feX-UX-f7X" id="t88-DM-3b0"/>
                         <outlet property="image5" destination="8VI-9R-jSG" id="0uU-yN-zUF"/>
                         <outlet property="image6" destination="4B3-9o-edK" id="BcQ-4f-zsd"/>
-                        <outlet property="imageSaved" destination="gDi-vq-Zfp" id="8a2-KD-deJ"/>
                         <outlet property="layoutOneButton" destination="HeH-cC-nxa" id="7te-sn-nX1"/>
                         <outlet property="layoutThreeButton" destination="2cv-Oq-gxM" id="gqT-se-bg8"/>
                         <outlet property="layoutTwoButton" destination="ICa-an-zMk" id="e8v-DF-F6F"/>

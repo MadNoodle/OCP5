@@ -175,10 +175,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   }
   
   @IBOutlet weak var collage: CollageView!
-  @IBOutlet weak var imageSaved: UIImageView!
   @IBAction func save(_ sender: UIButton) {
-    let imagetoSave = collageView.convertUiviewToImage(from:collage)
-    imageSaved.image = imagetoSave
+    let imageToSave = collageView.convertUiviewToImage(from:collage)
+    let activityController = UIActivityViewController(activityItems: [imageToSave!], applicationActivities: nil)
+    present(activityController,animated:true, completion:nil)
+    
   }
   
 }

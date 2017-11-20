@@ -196,43 +196,29 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   @objc private func DragCollage(swipe:UISwipeGestureRecognizer){
    transformCollage(gesture: swipe)
     share()
-    
-    
-    
     }
   
   func share(){
     let imageToSave = collageView.convertUiviewToImage(from:collage)
     let activityController = UIActivityViewController(activityItems: [imageToSave!], applicationActivities: nil)
-    present(activityController, animated: true) {
-      self.image1.isHidden = true
-      self.image2.isHidden = true
-      self.image3.isHidden = true
-      self.image4.isHidden = true
-      self.image5.isHidden = true
-      self.image6.isHidden = true
+    present(activityController, animated: true){
     }
   }
   
-
-//  private func transformCollage(gesture: UISwipeGestureRecognizer){
-//    let translationDirection = gesture.direction
-//    let screenWidth = UIScreen.main.bounds.width
-//    let screenHeight = UIScreen.main.bounds.height
-//    let translationAmount:CGFloat
-//    if translationDirection == .up {
-//      translationAmount = screenHeight
-//      let translationTransform = CGAffineTransform(translationX: 0, y: translationAmount)
-//      collageView.transform = translationTransform
-//    }
-//    else if translationDirection == .left {
-//      translationAmount = screenWidth
-//      let translationTransform = CGAffineTransform(translationX: 0, y: translationAmount)
-//      collageView.transform = translationTransform
-//    }
-    
+private func transformCollage(gesture: UISwipeGestureRecognizer){
+  let transform = CGAffineTransform(translationX: 0, y: -600)
+  UIView.animate(withDuration: 0.3, animations: { self.collage.transform = transform }) { (success) in if success { self.resetCollage()}}
   }
-  
+ 
+  private func resetCollage(){
+    self.image1.isHidden = true
+    self.image2.isHidden = true
+    self.image3.isHidden = true
+    self.image4.isHidden = true
+    self.image5.isHidden = true
+    self.image6.isHidden = true
+    UIView.animate(withDuration: 0.7,delay: 0.5,options: [], animations: { self.collage.transform = .identity})
+  }
 }
 
 

@@ -33,9 +33,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NS8-qd-fkk" userLabel="RectBot">
                                         <rect key="frame" x="8" y="152" width="278" height="135"/>
                                         <subviews>
-                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4B3-9o-edK">
-                                                <rect key="frame" x="0.0" y="0.0" width="278" height="135"/>
-                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n62-MB-D3G">
                                                 <rect key="frame" x="115" y="43" width="48" height="48"/>
                                                 <constraints>
@@ -43,7 +40,13 @@
                                                     <constraint firstAttribute="width" secondItem="n62-MB-D3G" secondAttribute="height" multiplier="1:1" id="oem-CJ-Iqj"/>
                                                 </constraints>
                                                 <state key="normal" image="plus"/>
+                                                <connections>
+                                                    <action selector="importImage6:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tN2-uU-1I9"/>
+                                                </connections>
                                             </button>
+                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4B3-9o-edK">
+                                                <rect key="frame" x="0.0" y="0.0" width="278" height="135"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -67,6 +70,9 @@
                                                     <constraint firstAttribute="width" constant="48" id="zhR-eR-XR7"/>
                                                 </constraints>
                                                 <state key="normal" image="plus"/>
+                                                <connections>
+                                                    <action selector="importImage5:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pXt-dP-Kab"/>
+                                                </connections>
                                             </button>
                                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8VI-9R-jSG">
                                                 <rect key="frame" x="0.0" y="0.0" width="278" height="135"/>
@@ -123,6 +129,9 @@
                                                     <constraint firstAttribute="width" constant="48" id="U7e-wY-Ayl"/>
                                                 </constraints>
                                                 <state key="normal" image="plus"/>
+                                                <connections>
+                                                    <action selector="importimage2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bDj-iO-wvC"/>
+                                                </connections>
                                             </button>
                                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WvP-iA-QUh">
                                                 <rect key="frame" x="0.0" y="0.0" width="135" height="135"/>
@@ -152,6 +161,9 @@
                                                     <constraint firstAttribute="height" constant="48" id="gKi-wx-Upb"/>
                                                 </constraints>
                                                 <state key="normal" image="plus"/>
+                                                <connections>
+                                                    <action selector="importImage3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uSv-XX-Mel"/>
+                                                </connections>
                                             </button>
                                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Psp-cP-JUs">
                                                 <rect key="frame" x="0.0" y="0.0" width="135" height="135"/>
@@ -181,6 +193,9 @@
                                                     <constraint firstAttribute="height" constant="48" id="oWy-cZ-gGZ"/>
                                                 </constraints>
                                                 <state key="normal" image="plus"/>
+                                                <connections>
+                                                    <action selector="importImage4:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wlC-b1-hme"/>
+                                                </connections>
                                             </button>
                                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="feX-UX-f7X">
                                                 <rect key="frame" x="0.0" y="0.0" width="135" height="135"/>
@@ -595,7 +610,12 @@
                         <outlet property="buttonOneHover" destination="mwH-1N-9Gk" id="Bjl-5I-AWh"/>
                         <outlet property="buttonThreeHover" destination="3vc-K7-Eoi" id="t0G-vU-7jV"/>
                         <outlet property="buttonTwoHover" destination="fWM-mk-5M7" id="uNT-8z-m82"/>
-                        <outlet property="image1" destination="2TR-sP-PBy" id="Exz-s0-ukQ"/>
+                        <outlet property="image1" destination="2TR-sP-PBy" id="7xQ-bA-uQX"/>
+                        <outlet property="image2" destination="WvP-iA-QUh" id="oMa-R3-W2t"/>
+                        <outlet property="image3" destination="Psp-cP-JUs" id="rp0-ZY-7xf"/>
+                        <outlet property="image4" destination="feX-UX-f7X" id="t88-DM-3b0"/>
+                        <outlet property="image5" destination="8VI-9R-jSG" id="0uU-yN-zUF"/>
+                        <outlet property="image6" destination="4B3-9o-edK" id="BcQ-4f-zsd"/>
                         <outlet property="layoutOneButton" destination="HeH-cC-nxa" id="7te-sn-nX1"/>
                         <outlet property="layoutThreeButton" destination="2cv-Oq-gxM" id="gqT-se-bg8"/>
                         <outlet property="layoutTwoButton" destination="ICa-an-zMk" id="e8v-DF-F6F"/>

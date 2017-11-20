@@ -8,12 +8,17 @@
 
 import UIKit
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
 
   // MARK: VARIABLE DECLARATIONS
   
   /// Logic initialisation for the collage view
   let collageView = CollageView()
+
+  let image = UIImagePickerController()
+  var imagePicked = 0
+  
+  
   // Buttons declarations
   @IBOutlet weak var layoutTwoButton: UIButton!
   @IBOutlet weak var layoutThreeButton: UIButton!
@@ -29,6 +34,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   @IBOutlet private var squareFour:UIView!
   @IBOutlet private var rectTop:UIView!
   @IBOutlet private var rectBot:UIView!
+  // Images
+  @IBOutlet weak var image1: UIImageView!
+  @IBOutlet weak var image2: UIImageView!
+  @IBOutlet weak var image3: UIImageView!
+  @IBOutlet weak var image4: UIImageView!
+  @IBOutlet weak var image5: UIImageView!
+  @IBOutlet weak var image6: UIImageView!
+  
+  
   
   // ///////////////////////////// //
   // MARK: CORE UI VIEW FUNCTIONS //
@@ -40,6 +54,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     buttonTwoHover.isHidden = true
     buttonThreeHover.isHidden = true
   }
+  
   
   // ///////////////////////// //
   // MARK: BUTTON INTERACTIONS //
@@ -80,28 +95,86 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     squareFour.isHidden = displays[5]
     
   }
- 
-
-  @IBOutlet weak var image1: UIImageView!
+  
   @IBAction func importImage(_ sender: UIButton) {
-    let image = UIImagePickerController()
-    image.delegate = self
-    image.sourceType = UIImagePickerControllerSourceType.photoLibrary
-    image.allowsEditing = false
+    imagePicked = 1
+    ImportImageFromAlbum(image)
     self.present(image, animated:true){
       self.image1.isHidden = false
     }
+    
+  }
+  
+  @IBAction func importimage2(_ sender: UIButton) {
+    imagePicked = 2
+    ImportImageFromAlbum(image)
+    self.present(image, animated:true){
+     self.image2.isHidden = false
+    }
+  
+  }
+  
+  @IBAction func importImage3(_ sender: UIButton) {
+    imagePicked = 3
+    ImportImageFromAlbum(image)
+    self.present(image, animated:true){
+      self.image3.isHidden = false
+    }
+  }
+  
+  @IBAction func importImage4(_ sender: UIButton) {
+    imagePicked = 4
+    ImportImageFromAlbum(image)
+    self.present(image, animated:true){
+      self.image4.isHidden = false
+    }
+  }
+  @IBAction func importImage5(_ sender: UIButton) {
+    imagePicked = 5
+    ImportImageFromAlbum(image)
+    self.present(image, animated:true){
+      self.image5.isHidden = false
+    }
+  }
+  @IBAction func importImage6(_ sender: UIButton) {
+    imagePicked = 6
+    ImportImageFromAlbum(image)
+    self.present(image, animated:true){
+      self.image6.isHidden = false
+    }
+  }
+  
+  
+  func ImportImageFromAlbum(_ image: UIImagePickerController){
+    image.delegate = self
+    image.sourceType = UIImagePickerControllerSourceType.photoLibrary
+    image.allowsEditing = false
   }
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
     if let image = info[UIImagePickerControllerOriginalImage] as? UIImage
     {
-      image1.image = image
+      switch imagePicked {
+      case 1:
+        image1.image = image
+      case 2:
+        image2.image = image
+      case 3:
+        image3.image = image
+      case 4:
+        image4.image = image
+      case 5:
+        image5.image = image
+      case 6:
+        image6.image = image
+      default:
+        print("Erreur de chargement d'image")
+      }
+      self.dismiss(animated: true, completion: nil)
     }
-    else{
-      print("Erreur de chargement d'image")
-    }
-    self.dismiss(animated: true, completion: nil)
   }
+  
+
 }
+
 

@@ -9,8 +9,9 @@
 import UIKit
 
 /// this class contains the informations on different layouts for collage
-class CollageView: UIView {
+class CollageView: UIView  {
   
+ 
   /// Enum for the 3 initial Layouts
   enum Layouts:Int{
   case one = 1
@@ -33,5 +34,6 @@ class CollageView: UIView {
       
     }
   }
+  
  
 }

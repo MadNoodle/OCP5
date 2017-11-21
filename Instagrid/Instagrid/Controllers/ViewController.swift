@@ -47,7 +47,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   let logic = Logic()
   let image = UIImagePickerController()
   var imagePicked = 0
-  
+  var orientation = false
   
   // ///////////////////////////// //
   // MARK: CORE UI VIEW FUNCTIONS //
@@ -63,21 +63,22 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     buttonThreeHover.isHidden = true
     
     // InitSwipe Gesture as soon as the app launches
-    let swipe = UISwipeGestureRecognizer(target:self, action:#selector(DragCollage(swipe :)))
+    let upSwipe = UISwipeGestureRecognizer(target:self, action:#selector(DragCollage(swipe :)))
+     upSwipe.direction = UISwipeGestureRecognizerDirection.up
+    let leftSwipe = UISwipeGestureRecognizer(target:self, action:#selector(DragCollage(swipe :)))
+     leftSwipe.direction = UISwipeGestureRecognizerDirection.left
+     self.view.addGestureRecognizer(leftSwipe)
+    self.view.addGestureRecognizer(upSwipe)
     
+     orientation = logic.checkOrientation()
     // Check orientation to make the UI react according to it
-    if UIDevice.current.orientation.isLandscape {
-      
+    if  orientation {
       //Rotate UIActivityViewController in landscape
       let landscapeRawValue = UIInterfaceOrientation.landscapeLeft.rawValue
       UIDevice.current.setValue(landscapeRawValue, forKey: "orientation")
-      swipe.direction = UISwipeGestureRecognizerDirection.down
-      print("Landscape")
-      self.view.addGestureRecognizer(swipe)
+      
     } else {
-      swipe.direction = UISwipeGestureRecognizerDirection.up
-      print("Portrait")
-      self.view.addGestureRecognizer(swipe)
+      
     }
   }
   
@@ -218,16 +219,30 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   // ///////////////////////////// //
   
 
-  /// Callback Function for Swipe gesture
+  /** Callback Function for Swipe gesture
+   - important: Double check of Device orientation and swipe direction to allow one swipe direction per orientation
+ */
   @objc private func DragCollage(swipe:UISwipeGestureRecognizer){
-    if collage.isFull(){
-        transformCollage()
-        share()
+    orientation = logic.checkOrientation()
+    if orientation == false && swipe.direction == .up {
+      share()
+    } else if orientation == true && swipe.direction == .left {
+      share()
     } else {
-        popAlert(title: "Attention", message:"tous les espaces ne sont pas remplis")
-      }
+      print("this swipe is not allowed in this orientation")
     }
-  
+  }
+  /**
+   Check if collage is full and then process all the event for sharing
+   */
+  private func share(){
+    if collage.isFull(){
+      transformCollage()
+      saveAndShare()
+    } else {
+      popAlert(title: "Attention", message:"tous les espaces ne sont pas remplis")
+    }
+  }
 /**
    Function to create an alert
    - Important: action added to dismiss the alert popup
@@ -247,7 +262,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
    Convert The collageView in UIImage and invoke the UIActivityViewController
    - Important: orientation of the UIActivityViewController is handle in viewDidLoad()
    */
-  private func share(){
+  private func saveAndShare(){
     let imageToSave = logic.convertUiviewToImage(from:collage)
     let activityController = UIActivityViewController(activityItems: [imageToSave!], applicationActivities: nil)
     present(activityController, animated: true){

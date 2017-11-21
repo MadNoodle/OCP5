@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 /**
- This struct handles all the logic and calculations.
+ This class handles all the logic and calculations.
  Methods:
  ## convertUiviewToImage()
  convert collageView to image
@@ -20,7 +20,7 @@ import UIKit
  ## checkIfFullFourViewsLayout()
  check if a 4 images layout has images in all ImageViews
  */
-struct Logic {
+class Logic {
   /// This function authorize the user to import images from the library
   
   func convertUiviewToImage(from view:CollageView) -> UIImage?{
@@ -80,5 +80,15 @@ struct Logic {
     return checkSuccess
   }
 
+  func checkOrientation() -> Bool {
+    var landscapeOrientation = false
+    if UIDevice.current.orientation.isLandscape {
+      landscapeOrientation = true
+      print("Landscape")
+    } else{
+      print("Portrait")
+      landscapeOrientation = false
+    }
+     return landscapeOrientation
 }
-
+}

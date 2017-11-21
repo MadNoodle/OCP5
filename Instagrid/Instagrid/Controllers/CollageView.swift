@@ -10,9 +10,10 @@ import UIKit
 
 /// this class contains the informations on different layouts for collage
 class CollageView: UIView  {
+  var type:Layouts = .one
   
- 
-  /// Enum for the 3 initial Layouts
+  let logic = Logic()
+ /// Enum for the 3 initial Layouts
   enum Layouts:Int{
   case one = 1
   case two = 2
@@ -37,8 +38,50 @@ class CollageView: UIView  {
     }
   }
   
- 
+  
+  func isFull() -> Bool{
+    let view1 = self.viewWithTag(1) as! UIImageView
+    let view2 = self.viewWithTag(2) as! UIImageView
+    let view3 = self.viewWithTag(3) as! UIImageView
+    let view4 = self.viewWithTag(4) as! UIImageView
+    let view5 = self.viewWithTag(5) as! UIImageView
+    let view6 = self.viewWithTag(6) as! UIImageView
+    var checkSuccess = false
+    switch self.type{
+    case .one:
+      if view3.image != nil && view4.image != nil && view5.image != nil{
+        print("BOOM")
+        checkSuccess = true
+      }else{
+        print("PAS BOOM")
+        checkSuccess = false
+      }
+    case .two:
+      if view1.image != nil && view2.image != nil && view6.image != nil{
+        print("BOOM")
+        checkSuccess = true
+      } else{
+        print("PAS BOOM")
+        checkSuccess = false
+      }
+      
+    case .three:
+      if view1.image != nil && view2.image != nil && view3.image != nil && view4.image != nil  {
+        print("BOOM")
+        checkSuccess = true
+      } else {
+        print("PAS BOOM")
+        checkSuccess = false
+      }
+    }
+    return checkSuccess
+  }
+  
+  }
+
+
+
   
   
   
-}
+

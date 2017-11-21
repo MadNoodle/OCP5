@@ -24,6 +24,40 @@ class Logic {
     return img
   }
   
-
+  ///Function to check if an UIImageView has an Image Inside
+  func checkIfImageLoaded(view:UIImageView) -> Bool{
+     var imageLoaded = false
+      if view.image != nil{
+        print("il y a une image")
+        imageLoaded = true
+      } else {
+        imageLoaded = false
+    }
+    return imageLoaded
+  }
   
-}
+  /// iterates throught an array of UIImageView ( such as a collageLayout) and return true if all UIImages contain an image
+  func checkIfLayoutFullOneAndTwo(view:UIImageView, view2: UIImageView, view3:UIImageView ) -> Bool {
+    var answer = false
+    if checkIfImageLoaded(view: view) && checkIfImageLoaded(view: view2) && checkIfImageLoaded(view: view3){
+      answer = true
+      
+      }
+    else {answer = false}
+    print(answer)
+     return answer
+ }
+  
+  func checkIfLayoutFullThree(view:UIImageView, view2: UIImageView, view3:UIImageView, view4:UIImageView) -> Bool {
+    var answer = false
+    if checkIfImageLoaded(view: view) && checkIfImageLoaded(view: view2) && checkIfImageLoaded(view: view3) && checkIfImageLoaded(view: view4){
+      answer = true
+    }
+    else {answer = false}
+    print(answer)
+    return answer
+  }
+  
+
+  }
+

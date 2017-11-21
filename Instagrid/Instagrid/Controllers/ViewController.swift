@@ -52,6 +52,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   override func viewDidLoad() {
     super.viewDidLoad()
     showLayout(id:1)
+    collage.type = .one
     buttonOneHover.isHidden = false
     buttonTwoHover.isHidden = true
     buttonThreeHover.isHidden = true
@@ -81,6 +82,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   /// Shows layout One and highligth button One
   @IBAction func selectLayoutOne() {
     showLayout(id:1)
+    collage.type = .one
     buttonOneHover.isHidden = false
     buttonTwoHover.isHidden = true
     buttonThreeHover.isHidden = true
@@ -89,6 +91,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   /// Shows layout Two and highligth button Two
   @IBAction func selectLayoutTwo() {
     showLayout(id:2)
+    collage.type = .two
     buttonOneHover.isHidden = true
     buttonTwoHover.isHidden = false
     buttonThreeHover.isHidden = true
@@ -97,6 +100,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   /// Shows layout Three and highligth button Three
   @IBAction func selectLayoutthree() {
     showLayout(id:3)
+    collage.type = .three
     buttonOneHover.isHidden = true
     buttonTwoHover.isHidden = true
     buttonThreeHover.isHidden = false
@@ -202,13 +206,31 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
   /// Callback Function for Swipe
   @objc private func DragCollage(swipe:UISwipeGestureRecognizer){
-   transformCollage(gesture: swipe)
-    share()
+    if collage.isFull(){
+      transformCollage(gesture: swipe)
+      share()
+      print("C'est plein")
+      
+    } else {
+      
+      popAlert(title: "Attention", message:"tous les espaces ne sont pas remplis")
+      
+    }
+   
+   
     }
   
+  
+  func popAlert(title:String, message:String){
+    let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+    alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { (action) in
+      alert.dismiss(animated: true, completion: nil)
+    }))
+    
+    self.present(alert, animated: true)
+  }
   /// Convert The collageView in UIImage and invoke the UIActivityViewController
   func share(){
-    if self.image1.image != nil {print("il y a une image")}
     let imageToSave = logic.convertUiviewToImage(from:collage)
     let activityController = UIActivityViewController(activityItems: [imageToSave!], applicationActivities: nil)
     present(activityController, animated: true){
@@ -228,8 +250,16 @@ private func transformCollage(gesture: UISwipeGestureRecognizer){
     self.image4.isHidden = true
     self.image5.isHidden = true
     self.image6.isHidden = true
+    self.image1.image = nil
+    self.image2.image = nil
+    self.image3.image = nil
+    self.image4.image = nil
+    self.image5.image = nil
+    self.image6.image = nil
     UIView.animate(withDuration: 0.7,delay: 0.5,options: [], animations: { self.collage.transform = .identity})
   }
+  
+
 }
 
 

@@ -11,12 +11,7 @@ import UIKit
 
 class Logic {
   /// This function authorize the user to import images from the library
-  func ImportImageFromAlbum(_ image: UIImagePickerController){
-    image.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
-    image.sourceType = UIImagePickerControllerSourceType.photoLibrary
-    image.allowsEditing = false
-    
-  }
+  
   func convertUiviewToImage(from view:CollageView) -> UIImage?{
     
     // if images of the layout all contains an UIImage

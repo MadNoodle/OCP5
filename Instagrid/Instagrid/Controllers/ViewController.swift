@@ -120,7 +120,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   @IBAction func importImage(_ sender: UIButton) {
     imagePicked = 1
-    logic.ImportImageFromAlbum(image)
+    ImportImageFromAlbum(image)
     self.present(image, animated:true){
       self.image1.isHidden = false
     }
@@ -129,7 +129,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   @IBAction func importimage2(_ sender: UIButton) {
     imagePicked = 2
-    logic.ImportImageFromAlbum(image)
+    ImportImageFromAlbum(image)
     self.present(image, animated:true){
      self.image2.isHidden = false
     }
@@ -138,7 +138,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   @IBAction func importImage3(_ sender: UIButton) {
     imagePicked = 3
-    logic.ImportImageFromAlbum(image)
+    ImportImageFromAlbum(image)
     self.present(image, animated:true){
       self.image3.isHidden = false
     }
@@ -146,27 +146,32 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   @IBAction func importImage4(_ sender: UIButton) {
     imagePicked = 4
-    logic.ImportImageFromAlbum(image)
+    ImportImageFromAlbum(image)
     self.present(image, animated:true){
       self.image4.isHidden = false
     }
   }
   @IBAction func importImage5(_ sender: UIButton) {
     imagePicked = 5
-    logic.ImportImageFromAlbum(image)
+    ImportImageFromAlbum(image)
     self.present(image, animated:true){
       self.image5.isHidden = false
     }
   }
   @IBAction func importImage6(_ sender: UIButton) {
     imagePicked = 6
-    logic.ImportImageFromAlbum(image)
+    ImportImageFromAlbum(image)
     self.present(image, animated:true){
       self.image6.isHidden = false
     }
   }
   
- 
+  func ImportImageFromAlbum(_ image: UIImagePickerController){
+    image.delegate = self
+    image.sourceType = UIImagePickerControllerSourceType.photoLibrary
+    image.allowsEditing = false
+    
+  }
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
     if let image = info[UIImagePickerControllerOriginalImage] as? UIImage

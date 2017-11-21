@@ -8,8 +8,19 @@
 
 import Foundation
 import UIKit
-
-class Logic {
+/**
+ This struct handles all the logic and calculations.
+ Methods:
+ ## convertUiviewToImage()
+ convert collageView to image
+ ## checkIfImageLoaded()
+ check if an UIimageView has an image
+ ## checkIfFullThreeViewsLayout()
+ check if a 3 images layout has images in all ImageViews
+ ## checkIfFullFourViewsLayout()
+ check if a 4 images layout has images in all ImageViews
+ */
+struct Logic {
   /// This function authorize the user to import images from the library
   
   func convertUiviewToImage(from view:CollageView) -> UIImage?{
@@ -24,8 +35,11 @@ class Logic {
     return img
   }
   
-  ///Function to check if an UIImageView has an Image Inside
-  func checkIfImageLoaded(view:UIImageView) -> Bool{
+  /**
+   Function to check if an UIImageView has an Image Inside
+   - returns: Bool
+ */
+ func checkIfImageLoaded(view:UIImageView) -> Bool{
      var imageLoaded = false
       if view.image != nil{
         print("il y a une image")
@@ -36,28 +50,35 @@ class Logic {
     return imageLoaded
   }
   
-  /// iterates throught an array of UIImageView ( such as a collageLayout) and return true if all UIImages contain an image
-  func checkIfLayoutFullOneAndTwo(view:UIImageView, view2: UIImageView, view3:UIImageView ) -> Bool {
-    var answer = false
-    if checkIfImageLoaded(view: view) && checkIfImageLoaded(view: view2) && checkIfImageLoaded(view: view3){
-      answer = true
-      
-      }
-    else {answer = false}
-    print(answer)
-     return answer
- }
-  
-  func checkIfLayoutFullThree(view:UIImageView, view2: UIImageView, view3:UIImageView, view4:UIImageView) -> Bool {
-    var answer = false
-    if checkIfImageLoaded(view: view) && checkIfImageLoaded(view: view2) && checkIfImageLoaded(view: view3) && checkIfImageLoaded(view: view4){
-      answer = true
+  /**
+   Function to check if a 3 images lcollage is full
+   - important: the 3 parameters are UIImageViews not UIImages nor UIViews
+   - returns: Bool
+   */
+  func checkIfFullThreeViewsLayout(_ view1: UIImageView, _ view2: UIImageView, _ view3: UIImageView) -> Bool {
+    var checkSuccess = false
+    if view1.image != nil && view2.image != nil && view3.image != nil{
+      checkSuccess = true
+    }else{
+      checkSuccess = false
     }
-    else {answer = false}
-    print(answer)
-    return answer
+    return checkSuccess
   }
   
-
+  /**
+   Function to check if a 4 images lcollage is full
+   - important: the 4 parameters are UIImageViews not UIImages nor UIViews
+   - returns: Bool
+   */
+  func checkIfFullFourViewsLayout(_ view1: UIImageView, _ view2: UIImageView, _ view3: UIImageView, _ view4: UIImageView) -> Bool {
+    var checkSuccess = false
+    if view1.image != nil && view2.image != nil && view3.image != nil && view4.image != nil {
+      checkSuccess = true
+    }else{
+      checkSuccess = false
+    }
+    return checkSuccess
   }
+
+}
 

@@ -9,16 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
+  
+  
   // ///////////////////////////// //
   // MARK: VARIABLE DECLARATIONS
   // ///////////////////////////// //
-  /// Logic initialisation for the collage view
-  let collageView = CollageView()
-  let logic = Logic()
-  let image = UIImagePickerController()
-  var imagePicked = 0
-  
-  
   // Buttons declarations
   @IBOutlet weak var layoutTwoButton: UIButton!
   @IBOutlet weak var layoutThreeButton: UIButton!
@@ -36,7 +31,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   @IBOutlet private var squareFour:UIView!
   @IBOutlet private var rectTop:UIView!
   @IBOutlet private var rectBot:UIView!
-  // Images
+  // Image Containers
   @IBOutlet weak var image1: UIImageView!
   @IBOutlet weak var image2: UIImageView!
   @IBOutlet weak var image3: UIImageView!
@@ -45,33 +40,45 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   @IBOutlet weak var image6: UIImageView!
   
   
+  // ///////////////////////////// //
+  // MARK: LOGIC INITIALIZATION //
+  // ///////////////////////////// //
+  let collageView = CollageView()
+  let logic = Logic()
+  let image = UIImagePickerController()
+  var imagePicked = 0
+  
   
   // ///////////////////////////// //
   // MARK: CORE UI VIEW FUNCTIONS //
   // ///////////////////////////// //
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    // Init UI with layout one & button one higlighted
     showLayout(id:1)
     collage.type = .one
     buttonOneHover.isHidden = false
     buttonTwoHover.isHidden = true
     buttonThreeHover.isHidden = true
     
-    
+    // InitSwipe Gesture as soon as the app launches
     let swipe = UISwipeGestureRecognizer(target:self, action:#selector(DragCollage(swipe :)))
+    
+    // Check orientation to make the UI react according to it
     if UIDevice.current.orientation.isLandscape {
-       swipe.direction = UISwipeGestureRecognizerDirection.left
+      
       //Rotate UIActivityViewController in landscape
       let landscapeRawValue = UIInterfaceOrientation.landscapeLeft.rawValue
       UIDevice.current.setValue(landscapeRawValue, forKey: "orientation")
+      swipe.direction = UISwipeGestureRecognizerDirection.down
       print("Landscape")
+      self.view.addGestureRecognizer(swipe)
     } else {
       swipe.direction = UISwipeGestureRecognizerDirection.up
       print("Portrait")
+      self.view.addGestureRecognizer(swipe)
     }
-    //ToDo:  je dois redraw pour activer le swipe left
-    //ToDo: verifier que la vue est full
-    self.view.addGestureRecognizer(swipe)
   }
   
   
@@ -117,18 +124,17 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     squareFour.isHidden = displays[5]
     
   }
+  
   // ////////////////////// //
   // MARK: IMPORTING IMAGES //
   // ////////////////////// //
-  
-  
+
   @IBAction func importImage(_ sender: UIButton) {
     imagePicked = 1
     ImportImageFromAlbum(image)
     self.present(image, animated:true){
       self.image1.isHidden = false
     }
-    
   }
   
   @IBAction func importimage2(_ sender: UIButton) {
@@ -137,7 +143,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     self.present(image, animated:true){
      self.image2.isHidden = false
     }
-  
   }
   
   @IBAction func importImage3(_ sender: UIButton) {
@@ -155,6 +160,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
       self.image4.isHidden = false
     }
   }
+  
   @IBAction func importImage5(_ sender: UIButton) {
     imagePicked = 5
     ImportImageFromAlbum(image)
@@ -162,6 +168,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
       self.image5.isHidden = false
     }
   }
+  
   @IBAction func importImage6(_ sender: UIButton) {
     imagePicked = 6
     ImportImageFromAlbum(image)
@@ -170,14 +177,21 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
   }
   
-  func ImportImageFromAlbum(_ image: UIImagePickerController){
+/**
+   Method to instantiate the UIImagePickerController
+   You can allow editing by switching it to @true
+ */
+ private func ImportImageFromAlbum(_ image: UIImagePickerController){
     image.delegate = self
     image.sourceType = UIImagePickerControllerSourceType.photoLibrary
     image.allowsEditing = false
     
   }
   
-  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+/**
+   Method to show the UIImagePickerController and handle the completion
+  */
+  internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
     if let image = info[UIImagePickerControllerOriginalImage] as? UIImage
     {
       switch imagePicked {
@@ -204,40 +218,48 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   // ///////////////////////////// //
   
 
-  /// Callback Function for Swipe
+  /// Callback Function for Swipe gesture
   @objc private func DragCollage(swipe:UISwipeGestureRecognizer){
     if collage.isFull(){
-      transformCollage(gesture: swipe)
-      share()
-      print("C'est plein")
-      
+        transformCollage()
+        share()
     } else {
-      
-      popAlert(title: "Attention", message:"tous les espaces ne sont pas remplis")
-      
-    }
-   
-   
+        popAlert(title: "Attention", message:"tous les espaces ne sont pas remplis")
+      }
     }
   
-  
-  func popAlert(title:String, message:String){
+/**
+   Function to create an alert
+   - Important: action added to dismiss the alert popup
+   - parameters:
+      - title: title of the alert appears in bold
+      - message: Message prompted
+ */
+  private func popAlert(title:String, message:String){
     let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { (action) in
       alert.dismiss(animated: true, completion: nil)
     }))
-    
     self.present(alert, animated: true)
   }
-  /// Convert The collageView in UIImage and invoke the UIActivityViewController
-  func share(){
+  
+  /**
+   Convert The collageView in UIImage and invoke the UIActivityViewController
+   - Important: orientation of the UIActivityViewController is handle in viewDidLoad()
+   */
+  private func share(){
     let imageToSave = logic.convertUiviewToImage(from:collage)
     let activityController = UIActivityViewController(activityItems: [imageToSave!], applicationActivities: nil)
     present(activityController, animated: true){
     }
   }
-  ///Animating the collageView
-private func transformCollage(gesture: UISwipeGestureRecognizer){
+  
+  
+  /**
+   Animate the Collage View
+   - duration : 0.3
+   */
+private func transformCollage(){
   let transform = CGAffineTransform(translationX: 0, y: -600)
   UIView.animate(withDuration: 0.3, animations: { self.collage.transform = transform }) { (success) in if success { self.resetCollage()}}
   }

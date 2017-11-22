@@ -8,25 +8,6 @@
 
 import UIKit
 
-<<<<<<< HEAD
-class ViewController: UIViewController {
-  // Selected button hover declarations
-  @IBOutlet weak var layoutOneSelected: UIImageView!
-  @IBOutlet weak var layoutTwoSelected: UIImageView!
-  @IBOutlet weak var layoutThreeSelected: UIImageView!
-  
-  //Main Layout display declarations
-  @IBOutlet weak var mainLayout: LayoutView!
-  @IBOutlet weak var squareOne: SquareView!
-  @IBOutlet weak var squareTwo: SquareView!
-  @IBOutlet weak var squareThree: SquareView!
-  @IBOutlet weak var squareFour: SquareView!
-  @IBOutlet weak var rectTop: RectView!
-  @IBOutlet weak var rectBottom: RectView!
-  
-  
-  
-=======
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
   
   
@@ -71,7 +52,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   // ///////////////////////////// //
   // MARK: CORE UI VIEW FUNCTIONS //
   // ///////////////////////////// //
->>>>>>> temp
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -146,53 +126,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
   }
   
-<<<<<<< HEAD
-  
-  // //////////////////// //
-  // MARK: LAYOUT CHOICE  //
-  // //////////////////// //
-  
-  
-  // press layout button 1 actions
-  @IBAction func goTolayout1() {
-    layoutOneSelected.isHidden = false
-    layoutTwoSelected.isHidden = true
-    layoutThreeSelected.isHidden = true
-    rectTop.isHidden = false
-    rectBottom.isHidden = true
-    squareOne.isHidden = true
-    squareTwo.isHidden = true
-    squareThree.isHidden = false
-    squareFour.isHidden = false
-  }
-  
-  // press layout button 2 actions
-  @IBAction func goToLayout2() {
-    layoutOneSelected.isHidden = true
-    layoutTwoSelected.isHidden = false
-    layoutThreeSelected.isHidden = true
-    rectTop.isHidden = true
-    rectBottom.isHidden = false
-    squareOne.isHidden = false
-    squareTwo.isHidden = false
-    squareThree.isHidden = true
-    squareFour.isHidden = true
-  }
-  
-  // press layout button 3 actions
-  @IBAction func goToLayout3() {
-    layoutOneSelected.isHidden = true
-    layoutTwoSelected.isHidden = true
-    layoutThreeSelected.isHidden = false
-    rectTop.isHidden = true
-    rectBottom.isHidden = true
-    squareOne.isHidden = false
-    squareTwo.isHidden = false
-    squareThree.isHidden = false
-    squareFour.isHidden = false
-  }
-  
-=======
   // ////////////////////// //
   // MARK: IMPORTING IMAGES //
   // ////////////////////// //
@@ -223,7 +156,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   @IBAction func importImage4(_ sender: UIButton) {
     imagePicked = 4
-    ImportImageFromAlbum(image)
+    popImageSource(title:"Choose an image", message:"")
+    //ImportImageFromAlbum(image)
     self.present(image, animated:true){
       self.image4.isHidden = false
     }
@@ -245,6 +179,36 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
   }
   
+  
+  // MARK: UIACTIVITY CONTROLLER
+  
+  
+  /**
+   Function to create an alert
+   - Important: action added to dismiss the alert popup
+   - parameters:
+   - title: title of the alert appears in bold
+   - message: Message prompted
+   */
+  private func popImageSource(title:String, message:String){
+    let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+    alert.addAction(UIAlertAction(title: "Pick from Library", style: UIAlertActionStyle.cancel, handler: { (action) in
+      alert.dismiss(animated: true, completion: nil)
+      self.ImportImageFromAlbum(self.image)
+    }))
+    
+    alert.addAction(UIAlertAction(title: "Take a photo", style: UIAlertActionStyle.cancel, handler: { (action) in
+      alert.dismiss(animated: true, completion: nil)
+      self.takePicture()
+    }))
+    self.present(alert, animated: true)
+  }
+  private func takePicture(){
+    image.delegate = self
+    image.sourceType = .camera
+    image.allowsEditing = false
+    
+  }
 /**
    Method to instantiate the UIImagePickerController
    You can allow editing by switching it to @true
@@ -253,7 +217,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     image.delegate = self
     image.sourceType = UIImagePickerControllerSourceType.photoLibrary
     image.allowsEditing = false
-    
   }
   
 /**
@@ -285,7 +248,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   // MARK: EXPORTING              //
   // ///////////////////////////// //
   
->>>>>>> temp
 
   /** Callback Function for Swipe gesture
    - important: Double check of Device orientation and swipe direction to allow one swipe direction per orientation

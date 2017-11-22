@@ -92,15 +92,29 @@ class Logic {
     }
      return landscapeOrientation
 }
+  /** Liste des filtres
+  CIPhotoEffectNoir
+   CIPhotoEffectChrome
+   CIPhotoEffectInstant
+   CIPhotoEffectTransfer
+   CIPhotoEffectProcess
+   CIPhotoEffectTonal
+   */
   
-  func applyFilter(on visual:UIImageView ){
+  func applyFilter(_ filter:String, on visual:UIImageView ){
+    if checkIfImageLoaded(view: visual){
     let context = CIContext(options: nil)
-    let filter = CIFilter(name: "CIPhotoEffectNoir")
+    let filter = CIFilter(name: filter)
     let ciImage = CIImage(image:visual.image!)
     filter?.setValue(ciImage, forKey: kCIInputImageKey)
     let result = filter?.outputImage!
     let cgImage = context.createCGImage(result!, from: (result?.extent)!)
     let render:UIImage = UIImage.init(cgImage: cgImage!)
     visual.image = render
+    
+  } else {
+  print("désolé il n y a pas d images")
+  }
   }
 }
+

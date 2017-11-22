@@ -11,8 +11,9 @@ import UIKit
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
   
+// To deploy
   @IBAction func test() {
-    logic.applyFilter(on: image1)
+logic.applyFilter("CIPhotoEffectInstant",on: image1)
   }
   
  

@@ -46,8 +46,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   let collageView = CollageView()
   let logic = Logic()
   let image = UIImagePickerController()
-  var imagePicked = 0
   var orientation = false
+  var imagePicked = 0
   
   // ///////////////////////////// //
   // MARK: CORE UI VIEW FUNCTIONS //
@@ -132,7 +132,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
   @IBAction func importImage(_ sender: UIButton) {
     imagePicked = 1
-    ImportImageFromAlbum(image)
+    popImageSource()
     self.present(image, animated:true){
       self.image1.isHidden = false
     }
@@ -140,7 +140,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   @IBAction func importimage2(_ sender: UIButton) {
     imagePicked = 2
-    ImportImageFromAlbum(image)
+    popImageSource()
     self.present(image, animated:true){
      self.image2.isHidden = false
     }
@@ -148,7 +148,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   @IBAction func importImage3(_ sender: UIButton) {
     imagePicked = 3
-    ImportImageFromAlbum(image)
+    popImageSource()
     self.present(image, animated:true){
       self.image3.isHidden = false
     }
@@ -156,8 +156,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   @IBAction func importImage4(_ sender: UIButton) {
     imagePicked = 4
-    popImageSource(title:"Choose an image", message:"")
-    //ImportImageFromAlbum(image)
+   
+   popImageSource()
     self.present(image, animated:true){
       self.image4.isHidden = false
     }
@@ -165,7 +165,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   @IBAction func importImage5(_ sender: UIButton) {
     imagePicked = 5
-    ImportImageFromAlbum(image)
+    popImageSource()
     self.present(image, animated:true){
       self.image5.isHidden = false
     }
@@ -173,15 +173,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   @IBAction func importImage6(_ sender: UIButton) {
     imagePicked = 6
-    ImportImageFromAlbum(image)
+    popImageSource()
     self.present(image, animated:true){
       self.image6.isHidden = false
     }
   }
   
-  
+  // /////////////////////////// //
   // MARK: UIACTIVITY CONTROLLER
-  
+  // /////////////////////////// //
   
   /**
    Function to create an alert
@@ -190,35 +190,51 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
    - title: title of the alert appears in bold
    - message: Message prompted
    */
-  private func popImageSource(title:String, message:String){
-    let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-    alert.addAction(UIAlertAction(title: "Pick from Library", style: UIAlertActionStyle.cancel, handler: { (action) in
-      alert.dismiss(animated: true, completion: nil)
+  @IBAction func button() {popImageSource()
+  }
+  private func popImageSource(){
+    image.delegate = self
+    image.allowsEditing = false
+    let alert = UIAlertController(title: "Choose an image", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
+    alert.addAction(UIAlertAction(title: "Pick from Library", style: .default, handler: { _ in
       self.ImportImageFromAlbum(self.image)
     }))
     
-    alert.addAction(UIAlertAction(title: "Take a photo", style: UIAlertActionStyle.cancel, handler: { (action) in
-      alert.dismiss(animated: true, completion: nil)
-      self.takePicture()
+    alert.addAction(UIAlertAction(title: "Take a photo", style: .default, handler: { _ in
+      self.takePicture(self.image)
     }))
-    self.present(alert, animated: true)
-  }
-  private func takePicture(){
-    image.delegate = self
-    image.sourceType = .camera
-    image.allowsEditing = false
     
+    alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+    self.present(alert, animated: true, completion: nil)
   }
+
 /**
    Method to instantiate the UIImagePickerController
    You can allow editing by switching it to @true
  */
  private func ImportImageFromAlbum(_ image: UIImagePickerController){
-    image.delegate = self
-    image.sourceType = UIImagePickerControllerSourceType.photoLibrary
-    image.allowsEditing = false
+  self.image.sourceType = UIImagePickerControllerSourceType.photoLibrary
   }
-  
+
+  /**
+   Method to instantiate the UIImagePickerController
+   You can allow editing by switching it to @true
+   */
+  private func takePicture(_ image: UIImagePickerController){
+    if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera))
+    {
+      image.sourceType = UIImagePickerControllerSourceType.camera
+      
+      self.present(image, animated: true, completion: nil)
+    }
+    else
+    {
+      let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+      self.present(alert, animated: true, completion: nil)
+    }
+  }
+
 /**
    Method to show the UIImagePickerController and handle the completion
   */

@@ -1,0 +1,316 @@
+From 0327215f6978ccd0d7d8a36f58605c45b7408e4a Mon Sep 17 00:00:00 2001
+From: MadNoodle <mjanneau@gmail.com>
+Date: Tue, 21 Nov 2017 22:52:07 +0100
+Subject: [PATCH] ajout de la verification orientation et direction du swipe
+ dans la fonction callback du swipe -> DragCollage()
+
+---
+ .../Instagrid/Controllers/ViewController.swift     | 49 ++++++++++++++--------
+ Instagrid/Instagrid/Models/Logic.swift             | 16 +++++--
+ 2 files changed, 45 insertions(+), 20 deletions(-)
+
+diff --git a/Instagrid/Instagrid/Controllers/ViewController.swift b/Instagrid/Instagrid/Controllers/ViewController.swift
+index 007b9f2..ffdf2dd 100644
+--- a/Instagrid/Instagrid/Controllers/ViewController.swift
++++ b/Instagrid/Instagrid/Controllers/ViewController.swift
+@@ -47,7 +47,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
+   let logic = Logic()
+   let image = UIImagePickerController()
+   var imagePicked = 0
+-  
++  var orientation = false
+   
+   // ///////////////////////////// //
+   // MARK: CORE UI VIEW FUNCTIONS //
+@@ -63,21 +63,22 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
+     buttonThreeHover.isHidden = true
+     
+     // InitSwipe Gesture as soon as the app launches
+-    let swipe = UISwipeGestureRecognizer(target:self, action:#selector(DragCollage(swipe :)))
++    let upSwipe = UISwipeGestureRecognizer(target:self, action:#selector(DragCollage(swipe :)))
++     upSwipe.direction = UISwipeGestureRecognizerDirection.up
++    let leftSwipe = UISwipeGestureRecognizer(target:self, action:#selector(DragCollage(swipe :)))
++     leftSwipe.direction = UISwipeGestureRecognizerDirection.left
++     self.view.addGestureRecognizer(leftSwipe)
++    self.view.addGestureRecognizer(upSwipe)
+     
++     orientation = logic.checkOrientation()
+     // Check orientation to make the UI react according to it
+-    if UIDevice.current.orientation.isLandscape {
+-      
++    if  orientation {
+       //Rotate UIActivityViewController in landscape
+       let landscapeRawValue = UIInterfaceOrientation.landscapeLeft.rawValue
+       UIDevice.current.setValue(landscapeRawValue, forKey: "orientation")
+-      swipe.direction = UISwipeGestureRecognizerDirection.down
+-      print("Landscape")
+-      self.view.addGestureRecognizer(swipe)
++      
+     } else {
+-      swipe.direction = UISwipeGestureRecognizerDirection.up
+-      print("Portrait")
+-      self.view.addGestureRecognizer(swipe)
++      
+     }
+   }
+   
+@@ -218,16 +219,30 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
+   // ///////////////////////////// //
+   
+ 
+-  /// Callback Function for Swipe gesture
++  /** Callback Function for Swipe gesture
++   - important: Double check of Device orientation and swipe direction to allow one swipe direction per orientation
++ */
+   @objc private func DragCollage(swipe:UISwipeGestureRecognizer){
++    orientation = logic.checkOrientation()
++    if orientation == false && swipe.direction == .up {
++      share()
++    } else if orientation == true && swipe.direction == .left {
++      share()
++    } else {
++      print("this swipe is not allowed in this orientation")
++    }
++  }
++  /**
++   Check if collage is full and then process all the event for sharing
++   */
++  private func share(){
+     if collage.isFull(){
+-        transformCollage()
+-        share()
++      transformCollage()
++      saveAndShare()
+     } else {
+-        popAlert(title: "Attention", message:"tous les espaces ne sont pas remplis")
+-      }
++      popAlert(title: "Attention", message:"tous les espaces ne sont pas remplis")
+     }
+-  
++  }
+ /**
+    Function to create an alert
+    - Important: action added to dismiss the alert popup
+@@ -247,7 +262,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
+    Convert The collageView in UIImage and invoke the UIActivityViewController
+    - Important: orientation of the UIActivityViewController is handle in viewDidLoad()
+    */
+-  private func share(){
++  private func saveAndShare(){
+     let imageToSave = logic.convertUiviewToImage(from:collage)
+     let activityController = UIActivityViewController(activityItems: [imageToSave!], applicationActivities: nil)
+     present(activityController, animated: true){
+diff --git a/Instagrid/Instagrid/Models/Logic.swift b/Instagrid/Instagrid/Models/Logic.swift
+index cbe40a8..10aefa4 100644
+--- a/Instagrid/Instagrid/Models/Logic.swift
++++ b/Instagrid/Instagrid/Models/Logic.swift
+@@ -9,7 +9,7 @@
+ import Foundation
+ import UIKit
+ /**
+- This struct handles all the logic and calculations.
++ This class handles all the logic and calculations.
+  Methods:
+  ## convertUiviewToImage()
+  convert collageView to image
+@@ -20,7 +20,7 @@ import UIKit
+  ## checkIfFullFourViewsLayout()
+  check if a 4 images layout has images in all ImageViews
+  */
+-struct Logic {
++class Logic {
+   /// This function authorize the user to import images from the library
+   
+   func convertUiviewToImage(from view:CollageView) -> UIImage?{
+@@ -80,5 +80,15 @@ struct Logic {
+     return checkSuccess
+   }
+ 
++  func checkOrientation() -> Bool {
++    var landscapeOrientation = false
++    if UIDevice.current.orientation.isLandscape {
++      landscapeOrientation = true
++      print("Landscape")
++    } else{
++      print("Portrait")
++      landscapeOrientation = false
++    }
++     return landscapeOrientation
++}
+ }
+-
+-- 
+2.10.1
+
+From e4136d001f635c2a5d8a45a79321fe7471757462 Mon Sep 17 00:00:00 2001
+From: MadNoodle <mjanneau@gmail.com>
+Date: Wed, 22 Nov 2017 10:45:26 +0100
+Subject: [PATCH] reconciliation step 2
+
+---
+ Instagrid/Instagrid/Models/LayoutView.swift | 13 -------------
+ Instagrid/Instagrid/Models/RectView.swift   | 21 ---------------------
+ Instagrid/Instagrid/Models/SquareView.swift | 21 ---------------------
+ 3 files changed, 55 deletions(-)
+ delete mode 100644 Instagrid/Instagrid/Models/LayoutView.swift
+ delete mode 100644 Instagrid/Instagrid/Models/RectView.swift
+ delete mode 100644 Instagrid/Instagrid/Models/SquareView.swift
+
+diff --git a/Instagrid/Instagrid/Models/LayoutView.swift b/Instagrid/Instagrid/Models/LayoutView.swift
+deleted file mode 100644
+index 91944ad..0000000
+--- a/Instagrid/Instagrid/Models/LayoutView.swift
++++ /dev/null
+@@ -1,13 +0,0 @@
+-//
+-//  LayoutView.swift
+-//  Instagrid
+-//
+-//  Created by Mathieu Janneau on 18/11/2017.
+-//  Copyright © 2017 Mathieu Janneau. All rights reserved.
+-//
+-
+-import UIKit
+-
+-class LayoutView: UIView {
+-  var name = ""
+-}
+diff --git a/Instagrid/Instagrid/Models/RectView.swift b/Instagrid/Instagrid/Models/RectView.swift
+deleted file mode 100644
+index 4639436..0000000
+--- a/Instagrid/Instagrid/Models/RectView.swift
++++ /dev/null
+@@ -1,21 +0,0 @@
+-//
+-//  RectView.swift
+-//  Instagrid
+-//
+-//  Created by Mathieu Janneau on 18/11/2017.
+-//  Copyright © 2017 Mathieu Janneau. All rights reserved.
+-//
+-
+-import UIKit
+-
+-class RectView: UIView {
+-
+-    /*
+-    // Only override draw() if you perform custom drawing.
+-    // An empty implementation adversely affects performance during animation.
+-    override func draw(_ rect: CGRect) {
+-        // Drawing code
+-    }
+-    */
+-
+-}
+diff --git a/Instagrid/Instagrid/Models/SquareView.swift b/Instagrid/Instagrid/Models/SquareView.swift
+deleted file mode 100644
+index efaa641..0000000
+--- a/Instagrid/Instagrid/Models/SquareView.swift
++++ /dev/null
+@@ -1,21 +0,0 @@
+-//
+-//  SquareView.swift
+-//  Instagrid
+-//
+-//  Created by Mathieu Janneau on 18/11/2017.
+-//  Copyright © 2017 Mathieu Janneau. All rights reserved.
+-//
+-
+-import UIKit
+-
+-class SquareView: UIView {
+-
+-    /*
+-    // Only override draw() if you perform custom drawing.
+-    // An empty implementation adversely affects performance during animation.
+-    override func draw(_ rect: CGRect) {
+-        // Drawing code
+-    }
+-    */
+-
+-}
+-- 
+2.10.1
+
+From 53be6dcfabc0e6358f4ef2e716d2053fb5d754b1 Mon Sep 17 00:00:00 2001
+From: MadNoodle <mjanneau@gmail.com>
+Date: Wed, 22 Nov 2017 10:49:21 +0100
+Subject: [PATCH] reconciliation step 4
+
+---
+ README.md | 1 -
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 README.md
+
+diff --git a/README.md b/README.md
+deleted file mode 100644
+index 46c5cab..0000000
+--- a/README.md
++++ /dev/null
+@@ -1 +0,0 @@
+-# OCP5
+\ No newline at end of file
+-- 
+2.10.1
+
+From 53be6dcfabc0e6358f4ef2e716d2053fb5d754b1 Mon Sep 17 00:00:00 2001
+From: MadNoodle <mjanneau@gmail.com>
+Date: Wed, 22 Nov 2017 10:49:21 +0100
+Subject: [PATCH] reconciliation step 4
+
+---
+ README.md | 1 -
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 README.md
+
+diff --git a/README.md b/README.md
+deleted file mode 100644
+index 46c5cab..0000000
+--- a/README.md
++++ /dev/null
+@@ -1 +0,0 @@
+-# OCP5
+\ No newline at end of file
+-- 
+2.10.1
+
+From 8873dc00960bf14167b6bf140590c09b3b9c59df Mon Sep 17 00:00:00 2001
+From: MadNoodle <mjanneau@gmail.com>
+Date: Wed, 22 Nov 2017 12:23:35 +0100
+Subject: [PATCH] ajout d'un read me pour reconciliation step5
+
+---
+ readMe.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 readMe.txt
+
+diff --git a/readMe.txt b/readMe.txt
+new file mode 100644
+index 0000000..eee5b0c
+--- /dev/null
++++ b/readMe.txt
+@@ -0,0 +1 @@
++this project is for Open Classrooms course Dev Ios
+-- 
+2.10.1
+
+From 8873dc00960bf14167b6bf140590c09b3b9c59df Mon Sep 17 00:00:00 2001
+From: MadNoodle <mjanneau@gmail.com>
+Date: Wed, 22 Nov 2017 12:23:35 +0100
+Subject: [PATCH] ajout d'un read me pour reconciliation step5
+
+---
+ readMe.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 readMe.txt
+
+diff --git a/readMe.txt b/readMe.txt
+new file mode 100644
+index 0000000..eee5b0c
+--- /dev/null
++++ b/readMe.txt
+@@ -0,0 +1 @@
++this project is for Open Classrooms course Dev Ios
+-- 
+2.10.1
+

@@ -133,50 +133,38 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   @IBAction func importImage(_ sender: UIButton) {
     imagePicked = 1
     popImageSource()
-    self.present(image, animated:true){
-      self.image1.isHidden = false
-    }
+ 
   }
   
   @IBAction func importimage2(_ sender: UIButton) {
     imagePicked = 2
     popImageSource()
-    self.present(image, animated:true){
-     self.image2.isHidden = false
-    }
+
   }
   
   @IBAction func importImage3(_ sender: UIButton) {
     imagePicked = 3
     popImageSource()
-    self.present(image, animated:true){
-      self.image3.isHidden = false
-    }
+ 
   }
   
   @IBAction func importImage4(_ sender: UIButton) {
     imagePicked = 4
    
    popImageSource()
-    self.present(image, animated:true){
-      self.image4.isHidden = false
-    }
+
   }
   
   @IBAction func importImage5(_ sender: UIButton) {
     imagePicked = 5
     popImageSource()
-    self.present(image, animated:true){
-      self.image5.isHidden = false
-    }
+   
   }
   
   @IBAction func importImage6(_ sender: UIButton) {
     imagePicked = 6
     popImageSource()
-    self.present(image, animated:true){
-      self.image6.isHidden = false
-    }
+   
   }
   
   // /////////////////////////// //
@@ -190,18 +178,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
    - title: title of the alert appears in bold
    - message: Message prompted
    */
-  @IBAction func button() {popImageSource()
-  }
+
   private func popImageSource(){
     image.delegate = self
     image.allowsEditing = false
     let alert = UIAlertController(title: "Choose an image", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
     alert.addAction(UIAlertAction(title: "Pick from Library", style: .default, handler: { _ in
       self.ImportImageFromAlbum(self.image)
+      self.present(self.image, animated: true)
     }))
     
     alert.addAction(UIAlertAction(title: "Take a photo", style: .default, handler: { _ in
       self.takePicture(self.image)
+      self.present(self.image, animated: true)
     }))
     
     alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
@@ -245,16 +234,22 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
       switch imagePicked {
       case 1:
         image1.image = image
+        self.image1.isHidden = false
       case 2:
         image2.image = image
+        self.image2.isHidden = false
       case 3:
         image3.image = image
+        self.image3.isHidden = false
       case 4:
         image4.image = image
+        self.image4.isHidden = false
       case 5:
         image5.image = image
+        self.image5.isHidden = false
       case 6:
         image6.image = image
+        self.image6.isHidden = false
       default:
         print("Erreur de chargement d'image")
       }

@@ -214,6 +214,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
  */
  private func ImportImageFromAlbum(_ image: UIImagePickerController){
   self.image.sourceType = UIImagePickerControllerSourceType.photoLibrary
+   self.present(image, animated: true, completion: nil)
   }
 
   /**

@@ -8,9 +8,14 @@
 
 import UIKit
 
+
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
   
+  @IBAction func test() {
+    logic.applyFilter(on: image1)
+  }
   
+ 
   // ///////////////////////////// //
   // MARK: VARIABLE DECLARATIONS
   // ///////////////////////////// //
@@ -48,6 +53,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   let image = UIImagePickerController()
   var orientation = false
   var imagePicked = 0
+  
+  
+
   
   // ///////////////////////////// //
   // MARK: CORE UI VIEW FUNCTIONS //

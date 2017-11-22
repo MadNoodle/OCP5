@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreImage
 /**
  This class handles all the logic and calculations.
  Methods:
@@ -91,4 +92,15 @@ class Logic {
     }
      return landscapeOrientation
 }
+  
+  func applyFilter(on visual:UIImageView ){
+    let context = CIContext(options: nil)
+    let filter = CIFilter(name: "CIPhotoEffectNoir")
+    let ciImage = CIImage(image:visual.image!)
+    filter?.setValue(ciImage, forKey: kCIInputImageKey)
+    let result = filter?.outputImage!
+    let cgImage = context.createCGImage(result!, from: (result?.extent)!)
+    let render:UIImage = UIImage.init(cgImage: cgImage!)
+    visual.image = render
+  }
 }

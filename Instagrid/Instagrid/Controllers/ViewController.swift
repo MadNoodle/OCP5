@@ -412,27 +412,27 @@ private func transformCollage(){
   // MARK: APPLYING FILTERS       //
   // ///////////////////////////// //
   
-  @IBOutlet weak var noirButton: UIButton!
-  @IBOutlet weak var transferButton: UIButton!
-  @IBOutlet weak var tonalButton: UIButton!
-  @IBOutlet weak var processButton: UIButton!
-  @IBOutlet weak var chromeButton: UIButton!
-  
+
   @IBAction func ApplyInstantFilter() {
     logic.applyFilter("CIPhotoEffectInstant",on: collage.imageToEdit(id:imageToEdit)!)
+    fxContainer.isHidden = true
   }
   @IBAction func applyNoirFilter(_ sender: Any) {
     logic.applyFilter("CIPhotoEffectNoir",on: collage.imageToEdit(id:imageToEdit)!)
+    fxContainer.isHidden = true
   }
   @IBAction func applyProcessFilter(_ sender: Any) {
     logic.applyFilter("CIPhotoEffectProcess",on: collage.imageToEdit(id:imageToEdit)!)
+    fxContainer.isHidden = true
   }
   @IBAction func applyTonalFilter(_ sender: Any) {
     logic.applyFilter("CIPhotoEffectTonal",on: collage.imageToEdit(id:imageToEdit)!)
+    fxContainer.isHidden = true
   }
   
   @IBAction func applyTransferFilter(_ sender: Any) {
     logic.applyFilter("CIPhotoEffectTransfer",on: collage.imageToEdit(id:imageToEdit)!)
+    fxContainer.isHidden = true
   }
 }
 

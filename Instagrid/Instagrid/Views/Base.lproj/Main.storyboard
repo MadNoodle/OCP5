@@ -31,10 +31,10 @@
                                 <rect key="frame" x="183.5" y="55" width="300" height="300"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NS8-qd-fkk" userLabel="RectBot">
-                                        <rect key="frame" x="9" y="154.5" width="283" height="137.5"/>
+                                        <rect key="frame" x="8" y="154.5" width="283" height="137.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n62-MB-D3G">
-                                                <rect key="frame" x="117.5" y="45" width="48" height="48"/>
+                                                <rect key="frame" x="118" y="45.5" width="48" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="48" id="kMq-JN-ora"/>
                                                     <constraint firstAttribute="width" secondItem="n62-MB-D3G" secondAttribute="height" multiplier="1:1" id="oem-CJ-Iqj"/>
@@ -75,7 +75,7 @@
                                         <rect key="frame" x="8" y="8" width="283" height="137.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gn5-3V-cwO">
-                                                <rect key="frame" x="117.5" y="45" width="48" height="48"/>
+                                                <rect key="frame" x="117" y="45" width="48" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Gn5-3V-cwO" secondAttribute="height" multiplier="1:1" id="N1m-B3-DYm"/>
                                                     <constraint firstAttribute="width" constant="48" id="zhR-eR-XR7"/>
@@ -162,7 +162,7 @@
                                         <rect key="frame" x="154.5" y="8" width="137.5" height="137.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ai-HW-dgX">
-                                                <rect key="frame" x="45" y="45" width="48" height="48"/>
+                                                <rect key="frame" x="45.5" y="45" width="48" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="2ai-HW-dgX" secondAttribute="height" multiplier="1:1" id="THG-PJ-BqU"/>
                                                     <constraint firstAttribute="width" constant="48" id="U7e-wY-Ayl"/>
@@ -207,7 +207,7 @@
                                         <rect key="frame" x="8" y="154.5" width="137.5" height="137.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvz-d6-Yod">
-                                                <rect key="frame" x="44.5" y="44" width="48" height="48"/>
+                                                <rect key="frame" x="44" y="44" width="48" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="48" id="3V6-gN-B2D"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="48" id="Oad-lN-9eQ"/>
@@ -255,7 +255,7 @@
                                         <rect key="frame" x="154.5" y="154.5" width="137.5" height="137.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Teo-Zo-rVB">
-                                                <rect key="frame" x="45.5" y="45.5" width="48" height="48"/>
+                                                <rect key="frame" x="44" y="45" width="48" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Teo-Zo-rVB" secondAttribute="height" multiplier="1:1" id="2ky-Wr-B2V"/>
                                                     <constraint firstAttribute="width" constant="48" id="PSj-tx-jKW"/>
@@ -310,6 +310,7 @@
                                     <constraint firstItem="1Fx-Mj-WTe" firstAttribute="leading" secondItem="7Gn-DF-It7" secondAttribute="leading" constant="8" id="5xW-Xv-rKA"/>
                                     <constraint firstAttribute="bottom" secondItem="Vqc-21-tXM" secondAttribute="bottom" constant="8" id="7ie-pc-Ewh"/>
                                     <constraint firstItem="4oz-iD-tCL" firstAttribute="leading" secondItem="7Gn-DF-It7" secondAttribute="leading" constant="8" id="7ot-6D-lQH"/>
+                                    <constraint firstAttribute="width" secondItem="7Gn-DF-It7" secondAttribute="height" multiplier="1:1" id="G9N-3f-Tzw"/>
                                     <constraint firstItem="4oz-iD-tCL" firstAttribute="top" secondItem="h4B-VF-u9f" secondAttribute="bottom" constant="9" id="JBY-KC-cal"/>
                                     <constraint firstItem="Vqc-21-tXM" firstAttribute="leading" secondItem="4oz-iD-tCL" secondAttribute="trailing" constant="9" id="Mce-Sp-beT"/>
                                     <constraint firstItem="mSE-Kn-Ozi" firstAttribute="height" secondItem="1Fx-Mj-WTe" secondAttribute="height" id="Q02-eY-0eV"/>
@@ -328,6 +329,7 @@
                                     <constraint firstItem="Vqc-21-tXM" firstAttribute="leading" secondItem="4oz-iD-tCL" secondAttribute="trailing" constant="9" id="sTN-3f-hRm"/>
                                     <constraint firstAttribute="width" secondItem="7Gn-DF-It7" secondAttribute="height" multiplier="1:1" id="tC0-4l-I5f"/>
                                     <constraint firstItem="mSE-Kn-Ozi" firstAttribute="width" secondItem="1Fx-Mj-WTe" secondAttribute="width" id="yIm-Is-daj"/>
+                                    <constraint firstAttribute="width" constant="250" id="z0d-pA-vZQ"/>
                                     <constraint firstItem="NS8-qd-fkk" firstAttribute="top" secondItem="1Fx-Mj-WTe" secondAttribute="bottom" constant="9" id="zQV-Fi-zaI"/>
                                 </constraints>
                                 <variation key="default">
@@ -338,6 +340,7 @@
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="tC0-4l-I5f"/>
+                                        <exclude reference="z0d-pA-vZQ"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -423,66 +426,77 @@
                                 <variation key="heightClass=compact-widthClass=regular" hidden="NO"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagrid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9K-bs-1m5">
-                                <rect key="frame" x="274" y="8" width="119" height="39"/>
+                                <rect key="frame" x="275.5" y="8" width="117" height="39"/>
                                 <fontDescription key="fontDescription" name="ThirstySoftRegular" family="Thirsty Soft" pointSize="30"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6nJ-b3-8g1" userLabel="fx_container">
-                                <rect key="frame" x="40" y="489" width="295" height="60"/>
+                                <rect key="frame" x="62.5" y="466.5" width="251" height="82.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MeM-DF-r0r">
-                                        <rect key="frame" x="123" y="6" width="48" height="48"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="Process_icon">
-                                            <attributedString key="attributedTitle"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="applyProcessFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D5g-e0-nvU"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XS2-5N-dZA">
-                                        <rect key="frame" x="185" y="6" width="48" height="48"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="tonal_icon">
-                                            <attributedString key="attributedTitle"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="applyTonalFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H5x-oB-Ex0"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vgk-1S-wlP">
-                                        <rect key="frame" x="247" y="4" width="48" height="48"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="transfer_icon">
-                                            <attributedString key="attributedTitle"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="applyTransferFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="db9-gh-sq1"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ty0-PZ-3iu">
-                                        <rect key="frame" x="56" y="6" width="48" height="48"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="Noir_icon">
-                                            <attributedString key="attributedTitle"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="applyNoirFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g3X-3U-Wb2"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dK0-pI-wAC">
-                                        <rect key="frame" x="0.0" y="4" width="48" height="51"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="icon_fx_instant">
-                                            <attributedString key="attributedTitle"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="ApplyInstantFilter" destination="BYZ-38-t0r" eventType="touchUpInside" id="gXF-nY-u0s"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Exm-n8-PI1">
+                                        <rect key="frame" x="1.5" y="17.5" width="248" height="48"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dK0-pI-wAC">
+                                                <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                                <state key="normal" image="icon_fx_instant">
+                                                    <attributedString key="attributedTitle"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="ApplyInstantFilter" destination="BYZ-38-t0r" eventType="touchUpInside" id="gXF-nY-u0s"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ty0-PZ-3iu">
+                                                <rect key="frame" x="50" y="0.0" width="48" height="48"/>
+                                                <state key="normal" image="Noir_icon">
+                                                    <attributedString key="attributedTitle"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="applyNoirFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g3X-3U-Wb2"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MeM-DF-r0r">
+                                                <rect key="frame" x="100" y="0.0" width="48" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="9FX-Iv-LTo"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="I0S-N2-usT"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="48" id="MpG-0H-aCm"/>
+                                                    <constraint firstAttribute="width" constant="48" id="mB2-B1-ZqU"/>
+                                                    <constraint firstAttribute="width" secondItem="MeM-DF-r0r" secondAttribute="height" multiplier="1:1" id="t1B-Ib-pm0"/>
+                                                </constraints>
+                                                <state key="normal" image="Process_icon">
+                                                    <attributedString key="attributedTitle"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="applyProcessFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D5g-e0-nvU"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XS2-5N-dZA">
+                                                <rect key="frame" x="150" y="0.0" width="48" height="48"/>
+                                                <state key="normal" image="tonal_icon">
+                                                    <attributedString key="attributedTitle"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="applyTonalFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H5x-oB-Ex0"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vgk-1S-wlP">
+                                                <rect key="frame" x="200" y="0.0" width="48" height="48"/>
+                                                <state key="normal" image="transfer_icon">
+                                                    <attributedString key="attributedTitle"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="applyTransferFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="db9-gh-sq1"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Exm-n8-PI1" firstAttribute="centerY" secondItem="6nJ-b3-8g1" secondAttribute="centerY" id="Gmr-kA-l9a"/>
+                                    <constraint firstItem="Exm-n8-PI1" firstAttribute="centerX" secondItem="6nJ-b3-8g1" secondAttribute="centerX" id="ejb-B1-qPr"/>
+                                </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe up to share" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wG-Ot-qSq">
                                 <rect key="frame" x="20" y="173" width="160.5" height="29"/>
@@ -536,7 +550,6 @@
                             <constraint firstItem="ICa-an-zMk" firstAttribute="centerX" secondItem="HeH-cC-nxa" secondAttribute="centerX" id="HHO-SE-ive"/>
                             <constraint firstItem="2cv-Oq-gxM" firstAttribute="width" secondItem="3vc-K7-Eoi" secondAttribute="width" id="Ha4-YW-tjQ"/>
                             <constraint firstItem="2cv-Oq-gxM" firstAttribute="centerX" secondItem="ICa-an-zMk" secondAttribute="centerX" id="IzJ-kH-rjG"/>
-                            <constraint firstItem="7Gn-DF-It7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Js9-uD-qTp"/>
                             <constraint firstItem="2cv-Oq-gxM" firstAttribute="width" secondItem="ICa-an-zMk" secondAttribute="width" id="Kae-Hv-JJG"/>
                             <constraint firstItem="ICa-an-zMk" firstAttribute="width" secondItem="fWM-mk-5M7" secondAttribute="width" id="NLO-zU-Soy"/>
                             <constraint firstItem="6nJ-b3-8g1" firstAttribute="leading" secondItem="HeH-cC-nxa" secondAttribute="leading" id="NdK-N7-lQJ"/>
@@ -600,6 +613,8 @@
                                 <exclude reference="abU-G7-8ha"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Fue-bH-Xzj"/>
+                                <exclude reference="kPg-2y-7qC"/>
                                 <exclude reference="1Ow-LR-bxL"/>
                                 <exclude reference="6P9-kT-lru"/>
                                 <exclude reference="ERr-jg-q7W"/>
@@ -622,8 +637,6 @@
                                 <exclude reference="sjD-yC-Hqw"/>
                                 <exclude reference="uH1-IZ-bZM"/>
                                 <exclude reference="zeA-RK-dV2"/>
-                                <exclude reference="Fue-bH-Xzj"/>
-                                <exclude reference="kPg-2y-7qC"/>
                                 <exclude reference="DMw-ea-U1O"/>
                                 <exclude reference="UWf-WG-6qA"/>
                                 <exclude reference="Wzb-eu-2qH"/>
@@ -656,6 +669,8 @@
                                 <exclude reference="6nJ-b3-8g1"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Fue-bH-Xzj"/>
+                                <exclude reference="kPg-2y-7qC"/>
                                 <include reference="1Ow-LR-bxL"/>
                                 <include reference="6P9-kT-lru"/>
                                 <include reference="ERr-jg-q7W"/>
@@ -676,7 +691,6 @@
                                 <include reference="89B-Hw-IYh"/>
                                 <exclude reference="E9U-Kx-tf4"/>
                                 <include reference="Fq3-6p-gnx"/>
-                                <exclude reference="Js9-uD-qTp"/>
                                 <include reference="OA8-cY-ZWZ"/>
                                 <include reference="YbJ-5c-NLi"/>
                                 <exclude reference="i2b-mJ-kgN"/>
@@ -687,13 +701,14 @@
                                 <exclude reference="u6e-mB-Wl1"/>
                                 <exclude reference="uH1-IZ-bZM"/>
                                 <exclude reference="zeA-RK-dV2"/>
-                                <include reference="Fue-bH-Xzj"/>
-                                <exclude reference="kPg-2y-7qC"/>
                                 <exclude reference="2bv-1d-M1G"/>
                                 <include reference="DMw-ea-U1O"/>
                                 <include reference="UWf-WG-6qA"/>
                                 <include reference="Wzb-eu-2qH"/>
                                 <exclude reference="ewc-9e-7K2"/>
+                                <exclude reference="NdK-N7-lQJ"/>
+                                <exclude reference="hQp-jR-sdD"/>
+                                <exclude reference="pJ6-wh-FSD"/>
                                 <include reference="HAd-6f-6k6"/>
                                 <include reference="OMc-Ls-Y6O"/>
                                 <include reference="bne-yp-Y6V"/>
@@ -719,9 +734,6 @@
                                 <exclude reference="TrE-l4-HKx"/>
                                 <exclude reference="i6P-8i-QbM"/>
                                 <exclude reference="uug-oy-NWC"/>
-                                <exclude reference="NdK-N7-lQJ"/>
-                                <exclude reference="hQp-jR-sdD"/>
-                                <exclude reference="pJ6-wh-FSD"/>
                                 <exclude reference="8iZ-k7-gUl"/>
                                 <include reference="CMb-lN-W5n"/>
                                 <include reference="F3E-5D-rZo"/>

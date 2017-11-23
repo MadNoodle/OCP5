@@ -80,20 +80,22 @@ class Logic {
     }
     return checkSuccess
   }
-
-  func checkOrientation() -> Bool {
-    var landscapeOrientation = false
-    if UIDevice.current.orientation.isLandscape {
-      landscapeOrientation = true
-      print("Landscape")
-    } else{
-      print("Portrait")
-      landscapeOrientation = false
+    /// ToDo: Documenter et verifier settings auto completion
+    
+    func checkOrientation() -> Bool {
+        var landscapeOrientation = false
+        if UIDevice.current.orientation.isLandscape {
+            landscapeOrientation = true
+            print("Landscape")
+        } else{
+            print("Portrait")
+            landscapeOrientation = false
+        }
+        return landscapeOrientation
     }
-     return landscapeOrientation
-}
+    
   /** Liste des filtres
-  CIPhotoEffectNoir
+    CIPhotoEffectNoir
    CIPhotoEffectChrome
    CIPhotoEffectInstant
    CIPhotoEffectTransfer

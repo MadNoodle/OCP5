@@ -37,7 +37,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   // ///////////////////////////// //
   // MARK: CORE UI VIEW FUNCTIONS //
   // ///////////////////////////// //
-  override func viewDidLoad() {
+    
+    
+    override func viewDidLoad() {
     super.viewDidLoad()
     
     // Init UI with layout one & button one higlighted
@@ -46,7 +48,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     buttonOneHover.isHidden = false
     buttonTwoHover.isHidden = true
     buttonThreeHover.isHidden = true
-    
+   
     // InitSwipe Gesture as soon as the app launches
     
     let upSwipe = UISwipeGestureRecognizer(target:self, action:#selector(DragCollage(swipe :)))
@@ -58,17 +60,20 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     self.view.addGestureRecognizer(leftSwipe)
     self.view.addGestureRecognizer(upSwipe)
     
-     orientation = logic.checkOrientation()
-    // Check orientation to make the UI react according to it
-    if  orientation {
-      //Rotate UIActivityViewController in landscape
-      let landscapeRawValue = UIInterfaceOrientation.landscapeLeft.rawValue
-      UIDevice.current.setValue(landscapeRawValue, forKey: "orientation")
-    } else {
-      print("portrait")
-    }
+    forceLandscape()
   }
-  
+
+    private func forceLandscape() {
+        orientation = logic.checkOrientation()
+        // Check orientation to make the UI react according to it
+        if  orientation {
+            //Rotate UIActivityViewController in landscape
+            let landscapeRawValue = UIInterfaceOrientation.landscapeLeft.rawValue
+            UIDevice.current.setValue(landscapeRawValue, forKey: "orientation")
+        } else {
+            print("portrait")
+        }
+    }
   
   // ///////////////////////// //
   // MARK: SHOW LAYOUTS //
@@ -266,7 +271,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
       default:
         print("Erreur de chargement d'image")
       }
-      self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: {self.forceLandscape()})
     }
   }
   
@@ -436,4 +441,13 @@ private func transformCollage(){
   }
 }
 
-
+/// This extension force the UIPicker to be displayed in landscape mode
+extension UIImagePickerController
+{
+    override open var shouldAutorotate: Bool {
+        return true
+    }
+    override open var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        return .all
+    }
+}

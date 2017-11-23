@@ -98,6 +98,10 @@ class CollageView: UIView  {
     return checkSuccess
   }
   
+  func imageToEdit(id:Int) -> UIImageView?{
+    let view = self.viewWithTag(id) as! UIImageView
+    return view
+  }
 }
 
 

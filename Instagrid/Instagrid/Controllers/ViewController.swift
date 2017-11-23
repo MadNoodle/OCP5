@@ -11,41 +11,18 @@ import UIKit
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
   
-// To deploy
-  @IBAction func test() {
-logic.applyFilter("CIPhotoEffectInstant",on: image1)
-  }
   
  
   // ///////////////////////////// //
   // MARK: VARIABLE DECLARATIONS
   // ///////////////////////////// //
-  // Buttons declarations
-  @IBOutlet weak var layoutTwoButton: UIButton!
-  @IBOutlet weak var layoutThreeButton: UIButton!
-  @IBOutlet weak var layoutOneButton: UIButton!
-  // Buttons Hover Déclarations
-  @IBOutlet weak var buttonTwoHover: UIImageView!
-  @IBOutlet weak var buttonOneHover: UIImageView!
-  @IBOutlet weak var buttonThreeHover: UIImageView!
+
   // Collage View
   @IBOutlet weak var collage: CollageView!
-  // Collage squares
-  @IBOutlet private var squareOne:UIView!
-  @IBOutlet private var squareTwo:UIView!
-  @IBOutlet private var squareThree:UIView!
-  @IBOutlet private var squareFour:UIView!
-  @IBOutlet private var rectTop:UIView!
-  @IBOutlet private var rectBot:UIView!
-  // Image Containers
-  @IBOutlet weak var image1: UIImageView!
-  @IBOutlet weak var image2: UIImageView!
-  @IBOutlet weak var image3: UIImageView!
-  @IBOutlet weak var image4: UIImageView!
-  @IBOutlet weak var image5: UIImageView!
-  @IBOutlet weak var image6: UIImageView!
   
-  
+
+
+
   // ///////////////////////////// //
   // MARK: LOGIC INITIALIZATION //
   // ///////////////////////////// //
@@ -54,9 +31,8 @@ logic.applyFilter("CIPhotoEffectInstant",on: image1)
   let image = UIImagePickerController()
   var orientation = false
   var imagePicked = 0
+  var imageToEdit = 0
   
-  
-
   
   // ///////////////////////////// //
   // MARK: CORE UI VIEW FUNCTIONS //
@@ -72,11 +48,14 @@ logic.applyFilter("CIPhotoEffectInstant",on: image1)
     buttonThreeHover.isHidden = true
     
     // InitSwipe Gesture as soon as the app launches
+    
     let upSwipe = UISwipeGestureRecognizer(target:self, action:#selector(DragCollage(swipe :)))
-     upSwipe.direction = UISwipeGestureRecognizerDirection.up
+    upSwipe.direction = UISwipeGestureRecognizerDirection.up
+    
     let leftSwipe = UISwipeGestureRecognizer(target:self, action:#selector(DragCollage(swipe :)))
-     leftSwipe.direction = UISwipeGestureRecognizerDirection.left
-     self.view.addGestureRecognizer(leftSwipe)
+    leftSwipe.direction = UISwipeGestureRecognizerDirection.left
+    
+    self.view.addGestureRecognizer(leftSwipe)
     self.view.addGestureRecognizer(upSwipe)
     
      orientation = logic.checkOrientation()
@@ -85,16 +64,32 @@ logic.applyFilter("CIPhotoEffectInstant",on: image1)
       //Rotate UIActivityViewController in landscape
       let landscapeRawValue = UIInterfaceOrientation.landscapeLeft.rawValue
       UIDevice.current.setValue(landscapeRawValue, forKey: "orientation")
-      
     } else {
-      
+      print("portrait")
     }
   }
   
   
   // ///////////////////////// //
-  // MARK: BUTTON INTERACTIONS //
+  // MARK: SHOW LAYOUTS //
   // ///////////////////////// //
+  
+  // Collage squares
+  @IBOutlet private var squareOne:UIView!
+  @IBOutlet private var squareTwo:UIView!
+  @IBOutlet private var squareThree:UIView!
+  @IBOutlet private var squareFour:UIView!
+  @IBOutlet private var rectTop:UIView!
+  @IBOutlet private var rectBot:UIView!
+  // Buttons declarations
+  @IBOutlet weak var layoutTwoButton: UIButton!
+  @IBOutlet weak var layoutThreeButton: UIButton!
+  @IBOutlet weak var layoutOneButton: UIButton!
+  // Buttons Hover Déclarations
+  @IBOutlet weak var buttonTwoHover: UIImageView!
+  @IBOutlet weak var buttonOneHover: UIImageView!
+  @IBOutlet weak var buttonThreeHover: UIImageView!
+  
   
   /// Shows layout One and highligth button One
   @IBAction func selectLayoutOne() {
@@ -138,17 +133,23 @@ logic.applyFilter("CIPhotoEffectInstant",on: image1)
   // ////////////////////// //
   // MARK: IMPORTING IMAGES //
   // ////////////////////// //
-
+  
+  // Image Containers
+  @IBOutlet weak var image1: UIImageView!
+  @IBOutlet weak var image2: UIImageView!
+  @IBOutlet weak var image3: UIImageView!
+  @IBOutlet weak var image4: UIImageView!
+  @IBOutlet weak var image5: UIImageView!
+  @IBOutlet weak var image6: UIImageView!
+  
   @IBAction func importImage(_ sender: UIButton) {
     imagePicked = 1
     popImageSource()
- 
   }
   
   @IBAction func importimage2(_ sender: UIButton) {
     imagePicked = 2
     popImageSource()
-
   }
   
   @IBAction func importImage3(_ sender: UIButton) {
@@ -159,7 +160,6 @@ logic.applyFilter("CIPhotoEffectInstant",on: image1)
   
   @IBAction func importImage4(_ sender: UIButton) {
     imagePicked = 4
-   
    popImageSource()
 
   }
@@ -167,17 +167,15 @@ logic.applyFilter("CIPhotoEffectInstant",on: image1)
   @IBAction func importImage5(_ sender: UIButton) {
     imagePicked = 5
     popImageSource()
-   
   }
   
   @IBAction func importImage6(_ sender: UIButton) {
     imagePicked = 6
     popImageSource()
-   
   }
   
   // /////////////////////////// //
-  // MARK: UIACTIVITY CONTROLLER
+  // MARK: IMPORTING IMAGES      //
   // /////////////////////////// //
   
   /**
@@ -244,29 +242,37 @@ logic.applyFilter("CIPhotoEffectInstant",on: image1)
       case 1:
         image1.image = image
         self.image1.isHidden = false
+        fxButton1.isHidden = false
       case 2:
         image2.image = image
         self.image2.isHidden = false
+        fxButton2.isHidden = false
       case 3:
         image3.image = image
         self.image3.isHidden = false
+        fxButton3.isHidden = false
       case 4:
         image4.image = image
         self.image4.isHidden = false
+        fxButton4.isHidden = false
       case 5:
         image5.image = image
         self.image5.isHidden = false
+        fxButton5.isHidden = false
       case 6:
         image6.image = image
         self.image6.isHidden = false
+        fxButton6.isHidden = false
       default:
         print("Erreur de chargement d'image")
       }
       self.dismiss(animated: true, completion: nil)
     }
   }
+  
+  
   // ///////////////////////////// //
-  // MARK: EXPORTING              //
+  // MARK: EXPORTING COLLAGE       //
   // ///////////////////////////// //
   
 
@@ -314,6 +320,12 @@ logic.applyFilter("CIPhotoEffectInstant",on: image1)
    - Important: orientation of the UIActivityViewController is handle in viewDidLoad()
    */
   private func saveAndShare(){
+    fxButton1.isHidden = true
+    fxButton2.isHidden = true
+    fxButton3.isHidden = true
+    fxButton4.isHidden = true
+    fxButton5.isHidden = true
+    fxButton6.isHidden = true
     let imageToSave = logic.convertUiviewToImage(from:collage)
     let activityController = UIActivityViewController(activityItems: [imageToSave!], applicationActivities: nil)
     present(activityController, animated: true){
@@ -347,7 +359,59 @@ private func transformCollage(){
     UIView.animate(withDuration: 0.7,delay: 0.5,options: [], animations: { self.collage.transform = .identity})
   }
   
-
+  
+  // ///////////////////////////// //
+  // MARK: EDITING IMAGES          //
+  // ///////////////////////////// //
+  
+  
+  //FX buttons
+  @IBOutlet weak var fxButton1: UIButton!
+  @IBOutlet weak var fxButton2: UIButton!
+  @IBOutlet weak var fxButton3: UIButton!
+  @IBOutlet weak var fxButton4: UIButton!
+  @IBOutlet weak var fxButton5: UIButton!
+  @IBOutlet weak var fxButton6: UIButton!
+  
+  //Filter Buttons
+  @IBOutlet weak var fxInstantButton: UIButton!
+  
+  // ///////////////////////////// //
+  // MARK: EDITING IMAGES BUTTONS  //
+  // ///////////////////////////// //
+  @IBAction func editImageOne(_ sender: UIButton) {
+    fxInstantButton.isHidden = false
+    imageToEdit = 1
+  }
+  @IBAction func editImageTwo(_ sender: Any) {
+    fxInstantButton.isHidden = false
+    imageToEdit = 2
+  }
+  
+  @IBAction func editImageThree(_ sender: Any) {
+    fxInstantButton.isHidden = false
+    imageToEdit = 3
+  }
+  
+  @IBAction func editImageFour(_ sender: Any) {
+    fxInstantButton.isHidden = false
+    imageToEdit = 4
+  }
+  
+  @IBAction func editImageFive(_ sender: Any) {
+    fxInstantButton.isHidden = false
+    imageToEdit = 5
+  }
+  
+  @IBAction func editImageSix(_ sender: Any) {
+    fxInstantButton.isHidden = false
+    imageToEdit = 6
+  }
+  
+  // APPLY FILTER
+  @IBAction func applyFilter() {
+    logic.applyFilter("CIPhotoEffectInstant",on: collage.imageToEdit(id:imageToEdit)!)
+  }
 }
 
 

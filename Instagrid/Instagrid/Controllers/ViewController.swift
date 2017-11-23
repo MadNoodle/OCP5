@@ -20,7 +20,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   // Collage View
   @IBOutlet weak var collage: CollageView!
   
-
+  @IBOutlet weak var fxContainer: UIView!
 
 
   // ///////////////////////////// //
@@ -373,44 +373,66 @@ private func transformCollage(){
   @IBOutlet weak var fxButton5: UIButton!
   @IBOutlet weak var fxButton6: UIButton!
   
-  //Filter Buttons
-  @IBOutlet weak var fxInstantButton: UIButton!
-  
+
+ 
   // ///////////////////////////// //
   // MARK: EDITING IMAGES BUTTONS  //
   // ///////////////////////////// //
+  
   @IBAction func editImageOne(_ sender: UIButton) {
-    fxInstantButton.isHidden = false
+    fxContainer.isHidden = false
     imageToEdit = 1
   }
   @IBAction func editImageTwo(_ sender: Any) {
-    fxInstantButton.isHidden = false
+    fxContainer.isHidden = false
     imageToEdit = 2
   }
   
   @IBAction func editImageThree(_ sender: Any) {
-    fxInstantButton.isHidden = false
+    fxContainer.isHidden = false
     imageToEdit = 3
   }
   
   @IBAction func editImageFour(_ sender: Any) {
-    fxInstantButton.isHidden = false
+    fxContainer.isHidden = false
     imageToEdit = 4
   }
   
   @IBAction func editImageFive(_ sender: Any) {
-    fxInstantButton.isHidden = false
+    fxContainer.isHidden = false
     imageToEdit = 5
   }
   
   @IBAction func editImageSix(_ sender: Any) {
-    fxInstantButton.isHidden = false
+    fxContainer.isHidden = false
     imageToEdit = 6
   }
+
+  // ///////////////////////////// //
+  // MARK: APPLYING FILTERS       //
+  // ///////////////////////////// //
   
-  // APPLY FILTER
-  @IBAction func applyFilter() {
+  @IBOutlet weak var noirButton: UIButton!
+  @IBOutlet weak var transferButton: UIButton!
+  @IBOutlet weak var tonalButton: UIButton!
+  @IBOutlet weak var processButton: UIButton!
+  @IBOutlet weak var chromeButton: UIButton!
+  
+  @IBAction func ApplyInstantFilter() {
     logic.applyFilter("CIPhotoEffectInstant",on: collage.imageToEdit(id:imageToEdit)!)
+  }
+  @IBAction func applyNoirFilter(_ sender: Any) {
+    logic.applyFilter("CIPhotoEffectNoir",on: collage.imageToEdit(id:imageToEdit)!)
+  }
+  @IBAction func applyProcessFilter(_ sender: Any) {
+    logic.applyFilter("CIPhotoEffectProcess",on: collage.imageToEdit(id:imageToEdit)!)
+  }
+  @IBAction func applyTonalFilter(_ sender: Any) {
+    logic.applyFilter("CIPhotoEffectTonal",on: collage.imageToEdit(id:imageToEdit)!)
+  }
+  
+  @IBAction func applyTransferFilter(_ sender: Any) {
+    logic.applyFilter("CIPhotoEffectTransfer",on: collage.imageToEdit(id:imageToEdit)!)
   }
 }
 

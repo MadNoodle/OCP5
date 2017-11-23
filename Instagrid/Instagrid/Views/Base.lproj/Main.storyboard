@@ -50,8 +50,8 @@
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1uj-cS-kso">
                                                 <rect key="frame" x="8" y="103" width="24" height="24"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="24" id="0PQ-zs-ni2"/>
-                                                    <constraint firstAttribute="height" constant="24" id="ck0-zf-4Cz"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="24" id="0PQ-zs-ni2"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="24" id="ck0-zf-4Cz"/>
                                                     <constraint firstAttribute="width" secondItem="1uj-cS-kso" secondAttribute="height" multiplier="1:1" id="neR-jy-adv"/>
                                                 </constraints>
                                                 <state key="normal" title="Button" image="fx_sign__1_"/>
@@ -62,7 +62,6 @@
                                             <constraint firstAttribute="width" secondItem="NS8-qd-fkk" secondAttribute="height" multiplier="278:135" id="4gW-BK-wLo"/>
                                             <constraint firstItem="4B3-9o-edK" firstAttribute="height" secondItem="NS8-qd-fkk" secondAttribute="height" id="5US-X7-ngU"/>
                                             <constraint firstItem="4B3-9o-edK" firstAttribute="centerY" secondItem="NS8-qd-fkk" secondAttribute="centerY" id="9NH-5r-Bkk"/>
-                                            <constraint firstItem="1uj-cS-kso" firstAttribute="width" secondItem="1uj-cS-kso" secondAttribute="height" multiplier="1:1" id="9kv-Wq-knG"/>
                                             <constraint firstItem="4B3-9o-edK" firstAttribute="width" secondItem="NS8-qd-fkk" secondAttribute="width" id="JGV-or-PFq"/>
                                             <constraint firstItem="n62-MB-D3G" firstAttribute="centerX" secondItem="NS8-qd-fkk" secondAttribute="centerX" id="Kp0-D4-l13"/>
                                             <constraint firstAttribute="bottom" secondItem="1uj-cS-kso" secondAttribute="bottom" constant="8" id="Vpk-X0-BBp"/>
@@ -93,7 +92,7 @@
                                                 <rect key="frame" x="8" y="103" width="24" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="AMd-EK-Mla"/>
-                                                    <constraint firstAttribute="width" constant="24" id="BR5-xf-Olz"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="24" id="BR5-xf-Olz"/>
                                                     <constraint firstAttribute="width" secondItem="2RR-L6-ww6" secondAttribute="height" multiplier="1:1" id="NUM-iZ-C84"/>
                                                 </constraints>
                                                 <state key="normal" title="Button" image="fx_sign__1_"/>
@@ -136,8 +135,9 @@
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tsg-7t-ulJ">
                                                 <rect key="frame" x="8" y="103" width="24" height="24"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="24" id="165-Zz-oqc"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="24" id="165-Zz-oqc"/>
                                                     <constraint firstAttribute="height" constant="24" id="2zR-5t-3k1"/>
+                                                    <constraint firstAttribute="width" secondItem="tsg-7t-ulJ" secondAttribute="height" multiplier="1:1" id="Bw9-5O-K3b"/>
                                                 </constraints>
                                                 <state key="normal" title="Button" image="fx_sign__1_"/>
                                                 <connections>
@@ -179,7 +179,7 @@
                                                 <rect key="frame" x="8" y="103" width="24" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="H7Z-4R-bHR"/>
-                                                    <constraint firstAttribute="width" constant="24" id="MCt-i2-xIm"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="24" id="MCt-i2-xIm"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="SRG-e4-P9J"/>
                                                     <constraint firstAttribute="width" secondItem="a69-Ui-RZ1" secondAttribute="height" multiplier="1:1" id="XzI-NJ-Ywc"/>
                                                     <constraint firstAttribute="height" constant="24" id="dQf-PH-Or4"/>
@@ -226,10 +226,9 @@
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hQ-th-Ius">
                                                 <rect key="frame" x="8" y="103" width="24" height="24"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="Fne-rt-Lml"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="O9I-S4-uf9"/>
                                                     <constraint firstAttribute="height" constant="24" id="U8l-bh-Shp"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="24" id="fUa-sL-3pf"/>
-                                                    <constraint firstAttribute="width" constant="24" id="uN9-xh-58s"/>
                                                 </constraints>
                                                 <state key="normal" title="Button" image="fx_sign__1_"/>
                                                 <connections>
@@ -281,7 +280,6 @@
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="CKO-PT-9WL"/>
                                                     <constraint firstAttribute="height" constant="24" id="Edd-V3-fe2"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="24" id="Pct-ZV-8cP"/>
-                                                    <constraint firstAttribute="width" constant="24" id="QS9-eH-LAg"/>
                                                 </constraints>
                                                 <state key="normal" title="Button" image="fx_sign__1_"/>
                                                 <connections>

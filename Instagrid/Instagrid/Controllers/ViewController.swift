@@ -260,7 +260,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera))
     {
       image.sourceType = UIImagePickerControllerSourceType.camera
-      self.present(image, animated: true, completion: nil)
+    
     }
     else
     {

@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverPresentationControllerDelegate{
   
   
  
@@ -32,7 +32,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   var orientation = false
   var imagePicked = 0
   var imageToEdit = 0
-  
+
   
   // ///////////////////////////// //
   // MARK: CORE UI VIEW FUNCTIONS //
@@ -49,6 +49,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     buttonTwoHover.isHidden = true
     buttonThreeHover.isHidden = true
    
+      
     // InitSwipe Gesture as soon as the app launches
     
     let upSwipe = UISwipeGestureRecognizer(target:self, action:#selector(DragCollage(swipe :)))
@@ -62,7 +63,25 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     forceLandscape()
   }
-
+  // /////////////////////////////// //
+  // MARK: DEVICE ADAPTATION METHODS //
+  // ////////////////////////////// //
+  
+  
+  private func IpadIphoneAdaptation (controller: UIViewController){
+    if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad {
+      if let PopOver = controller.popoverPresentationController {
+        PopOver.sourceView = self.view
+      }
+      present( controller, animated: true, completion: nil )
+      print("ipad")
+    } else{
+      print("iphone")
+      present(controller, animated: true){
+      }
+    }
+  }
+  
     private func forceLandscape() {
         orientation = logic.checkOrientation()
         // Check orientation to make the UI react according to it
@@ -74,6 +93,21 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             print("portrait")
         }
     }
+  
+  /** Callback Function for Swipe gesture
+   - important: Double check of Device orientation and swipe direction to allow one swipe direction per orientation
+   */
+  @objc private func DragCollage(swipe:UISwipeGestureRecognizer){
+    orientation = logic.checkOrientation()
+    if orientation == false && swipe.direction == .up {
+      share()
+    } else if orientation == true && swipe.direction == .left {
+      share()
+    } else {
+      print("this swipe is not allowed in this orientation")
+    }
+  }
+  
   
   // ///////////////////////// //
   // MARK: SHOW LAYOUTS //
@@ -160,13 +194,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   @IBAction func importImage3(_ sender: UIButton) {
     imagePicked = 3
     popImageSource()
- 
   }
   
   @IBAction func importImage4(_ sender: UIButton) {
     imagePicked = 4
    popImageSource()
-
   }
   
   @IBAction func importImage5(_ sender: UIButton) {
@@ -195,6 +227,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     image.delegate = self
     image.allowsEditing = false
     let alert = UIAlertController(title: "Choose an image", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
+    
+    
     alert.addAction(UIAlertAction(title: "Pick from Library", style: .default, handler: { _ in
       self.ImportImageFromAlbum(self.image)
       self.present(self.image, animated: true)
@@ -206,7 +240,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }))
     
     alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
-    self.present(alert, animated: true, completion: nil)
+    IpadIphoneAdaptation(controller: alert)
   }
 
 /**
@@ -226,7 +260,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera))
     {
       image.sourceType = UIImagePickerControllerSourceType.camera
-      
       self.present(image, animated: true, completion: nil)
     }
     else
@@ -281,19 +314,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   // ///////////////////////////// //
   
 
-  /** Callback Function for Swipe gesture
-   - important: Double check of Device orientation and swipe direction to allow one swipe direction per orientation
- */
-  @objc private func DragCollage(swipe:UISwipeGestureRecognizer){
-    orientation = logic.checkOrientation()
-    if orientation == false && swipe.direction == .up {
-      share()
-    } else if orientation == true && swipe.direction == .left {
-      share()
-    } else {
-      print("this swipe is not allowed in this orientation")
-    }
-  }
+
   /**
    Check if collage is full and then process all the event for sharing
    */
@@ -331,11 +352,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     fxButton4.isHidden = true
     fxButton5.isHidden = true
     fxButton6.isHidden = true
+    
     let imageToSave = logic.convertUiviewToImage(from:collage)
+   
     let activityController = UIActivityViewController(activityItems: [imageToSave!], applicationActivities: nil)
-    present(activityController, animated: true){
-    }
+    IpadIphoneAdaptation(controller: activityController)
+
   }
+  
   
   
   /**
@@ -378,8 +402,6 @@ private func transformCollage(){
   @IBOutlet weak var fxButton5: UIButton!
   @IBOutlet weak var fxButton6: UIButton!
   
-
- 
   // ///////////////////////////// //
   // MARK: EDITING IMAGES BUTTONS  //
   // ///////////////////////////// //
@@ -399,6 +421,7 @@ private func transformCollage(){
   }
   
   @IBAction func editImageFour(_ sender: Any) {
+
     fxContainer.isHidden = false
     imageToEdit = 4
   }
@@ -412,6 +435,7 @@ private func transformCollage(){
     fxContainer.isHidden = false
     imageToEdit = 6
   }
+  
 
   // ///////////////////////////// //
   // MARK: APPLYING FILTERS       //
@@ -439,6 +463,9 @@ private func transformCollage(){
     logic.applyFilter("CIPhotoEffectTransfer",on: collage.imageToEdit(id:imageToEdit)!)
     fxContainer.isHidden = true
   }
+
+  
+ 
 }
 
 /// This extension force the UIPicker to be displayed in landscape mode

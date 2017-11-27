@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		B93260951FC20BC400439530 /* CollageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93260941FC20BC400439530 /* CollageView.swift */; };
+		B960639E1FCC397500CA3B5E /* WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B960639D1FCC397500CA3B5E /* WebImage.swift */; };
+		B96063A21FCC8BAB00CA3B5E /* SearchImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96063A11FCC8BAB00CA3B5E /* SearchImage.swift */; };
+		B96063A61FCC8D0300CA3B5E /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96063A51FCC8D0300CA3B5E /* TableViewController.swift */; };
 		B9D229021FC389C700F334EC /* Logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D229011FC389C700F334EC /* Logic.swift */; };
 		B9E30F391FBF3B4200E8F51B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E30F381FBF3B4200E8F51B /* AppDelegate.swift */; };
 		B9E30F3B1FBF3B4200E8F51B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E30F3A1FBF3B4200E8F51B /* ViewController.swift */; };
@@ -20,6 +23,9 @@
 
 /* Begin PBXFileReference section */
 		B93260941FC20BC400439530 /* CollageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageView.swift; sourceTree = "<group>"; };
+		B960639D1FCC397500CA3B5E /* WebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImage.swift; sourceTree = "<group>"; };
+		B96063A11FCC8BAB00CA3B5E /* SearchImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchImage.swift; sourceTree = "<group>"; };
+		B96063A51FCC8D0300CA3B5E /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		B9D229011FC389C700F334EC /* Logic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logic.swift; sourceTree = "<group>"; };
 		B9E30F351FBF3B4200E8F51B /* Instagrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9E30F381FBF3B4200E8F51B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				B9D229011FC389C700F334EC /* Logic.swift */,
+				B960639D1FCC397500CA3B5E /* WebImage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -70,6 +77,8 @@
 		B9E30F371FBF3B4200E8F51B /* Instagrid */ = {
 			isa = PBXGroup;
 			children = (
+				B96063A11FCC8BAB00CA3B5E /* SearchImage.swift */,
+				B93260941FC20BC400439530 /* CollageView.swift */,
 				B93260931FC20BB100439530 /* Models */,
 				B9E30F4E1FBF409800E8F51B /* Supporting_files */,
 				B9E30F4F1FBF40B900E8F51B /* Controllers */,
@@ -93,8 +102,8 @@
 		B9E30F4F1FBF40B900E8F51B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B93260941FC20BC400439530 /* CollageView.swift */,
 				B9E30F3A1FBF3B4200E8F51B /* ViewController.swift */,
+				B96063A51FCC8D0300CA3B5E /* TableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -183,9 +192,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9D229021FC389C700F334EC /* Logic.swift in Sources */,
+				B96063A61FCC8D0300CA3B5E /* TableViewController.swift in Sources */,
+				B960639E1FCC397500CA3B5E /* WebImage.swift in Sources */,
 				B9E30F3B1FBF3B4200E8F51B /* ViewController.swift in Sources */,
 				B9E30F391FBF3B4200E8F51B /* AppDelegate.swift in Sources */,
 				B93260951FC20BC400439530 /* CollageView.swift in Sources */,
+				B96063A21FCC8BAB00CA3B5E /* SearchImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

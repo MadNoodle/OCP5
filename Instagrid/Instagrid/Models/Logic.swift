@@ -111,7 +111,7 @@ class Logic {
     filter?.setValue(ciImage, forKey: kCIInputImageKey)
     let result = filter?.outputImage!
     let cgImage = context.createCGImage(result!, from: (result?.extent)!)
-    let render:UIImage = UIImage.init(cgImage: cgImage!)
+    let render:UIImage = UIImage(cgImage: cgImage!, scale: 1.0, orientation: UIImageOrientation.up)
     visual.image = render
     
   } else {
@@ -119,6 +119,8 @@ class Logic {
   }
     
   }
+  
+ 
 
 }
 

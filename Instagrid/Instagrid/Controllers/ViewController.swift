@@ -38,7 +38,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   // MARK: CORE UI VIEW FUNCTIONS //
   // ///////////////////////////// //
     
-    
     override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -224,6 +223,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
    */
 
   private func popImageSource(){
+    
+   
+    let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "TableViewController") as! UITableViewController
+   
+
     image.delegate = self
     image.allowsEditing = false
     let alert = UIAlertController(title: "Choose an image", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
@@ -237,6 +241,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     alert.addAction(UIAlertAction(title: "Take a photo", style: .default, handler: { _ in
       self.takePicture(self.image)
       self.present(self.image, animated: true)
+    }))
+    
+    alert.addAction(UIAlertAction(title: "Search on Pixabay", style: .default, handler: { _ in
+      self.present(vc2, animated: true, completion: nil)
+     
     }))
     
     alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))

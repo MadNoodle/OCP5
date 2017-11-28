@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B93260951FC20BC400439530 /* CollageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93260941FC20BC400439530 /* CollageView.swift */; };
 		B97D75991FCD692700EEDC79 /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97D75981FCD692700EEDC79 /* ImageViewCell.swift */; };
+		B97D759B1FCD774300EEDC79 /* WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97D759A1FCD774300EEDC79 /* WebImage.swift */; };
+		B97D759F1FCDFA2A00EEDC79 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97D759E1FCDFA2A00EEDC79 /* APIClient.swift */; };
 		B99EF3ED1FCCD747005F41D3 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99EF3EB1FCCD747005F41D3 /* CollectionViewController.swift */; };
 		B99EF3EE1FCCD747005F41D3 /* CollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B99EF3EC1FCCD747005F41D3 /* CollectionViewController.xib */; };
 		B9D229021FC389C700F334EC /* Logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D229011FC389C700F334EC /* Logic.swift */; };
@@ -27,6 +29,8 @@
 		A64C4E65853759A7F2A9BEE6 /* Pods-Instagrid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagrid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instagrid/Pods-Instagrid.debug.xcconfig"; sourceTree = "<group>"; };
 		B93260941FC20BC400439530 /* CollageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageView.swift; sourceTree = "<group>"; };
 		B97D75981FCD692700EEDC79 /* ImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
+		B97D759A1FCD774300EEDC79 /* WebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImage.swift; sourceTree = "<group>"; };
+		B97D759E1FCDFA2A00EEDC79 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		B99EF3EB1FCCD747005F41D3 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		B99EF3EC1FCCD747005F41D3 /* CollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewController.xib; sourceTree = "<group>"; };
 		B9D229011FC389C700F334EC /* Logic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logic.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 			isa = PBXGroup;
 			children = (
 				B9D229011FC389C700F334EC /* Logic.swift */,
+				B97D759A1FCD774300EEDC79 /* WebImage.swift */,
+				B97D759E1FCDFA2A00EEDC79 /* APIClient.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -123,10 +129,8 @@
 		B9E30F4F1FBF40B900E8F51B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B93260941FC20BC400439530 /* CollageView.swift */,
 				B9E30F3A1FBF3B4200E8F51B /* ViewController.swift */,
 				B99EF3EB1FCCD747005F41D3 /* CollectionViewController.swift */,
-				B97D75981FCD692700EEDC79 /* ImageViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -134,6 +138,8 @@
 		B9E30F501FBF40C400E8F51B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B93260941FC20BC400439530 /* CollageView.swift */,
+				B97D75981FCD692700EEDC79 /* ImageViewCell.swift */,
 				B99EF3EC1FCCD747005F41D3 /* CollectionViewController.xib */,
 				B9E30F3C1FBF3B4200E8F51B /* Main.storyboard */,
 				B9E30F411FBF3B4200E8F51B /* LaunchScreen.storyboard */,
@@ -267,8 +273,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B97D759B1FCD774300EEDC79 /* WebImage.swift in Sources */,
 				B9D229021FC389C700F334EC /* Logic.swift in Sources */,
 				B9E30F3B1FBF3B4200E8F51B /* ViewController.swift in Sources */,
+				B97D759F1FCDFA2A00EEDC79 /* APIClient.swift in Sources */,
 				B9E30F391FBF3B4200E8F51B /* AppDelegate.swift in Sources */,
 				B93260951FC20BC400439530 /* CollageView.swift in Sources */,
 				B97D75991FCD692700EEDC79 /* ImageViewCell.swift in Sources */,

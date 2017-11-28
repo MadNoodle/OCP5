@@ -25,13 +25,17 @@ class ImageViewCell: UICollectionViewCell {
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
   
+ 
   // MARK: PROPERTIES
   /// this property initialize the preview image that will be instantiated in each cell
-  let previewImage: UIImageView = {
+    var previewImage: UIImageView = {
     let imageView = UIImageView()
-    imageView.backgroundColor = UIColor.blue
     imageView.translatesAutoresizingMaskIntoConstraints = false
+      imageView.contentMode = .scaleAspectFill
+    imageView.clipsToBounds = true
+    imageView.image = UIImage(named:"")
     return imageView
   }()
   
@@ -43,6 +47,7 @@ class ImageViewCell: UICollectionViewCell {
     // adding UIImage View in Cell
     addSubview(previewImage)
     
+    
     //Horizontal Constraints
     addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0]-16-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":previewImage]))
     
@@ -51,4 +56,10 @@ class ImageViewCell: UICollectionViewCell {
    
     
   }
+  
+  func displayContent(image: UIImage) {
+    previewImage.image = image
+    
+  }
+  
 }

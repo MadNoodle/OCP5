@@ -67,7 +67,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   // MARK: DEVICE ADAPTATION METHODS //
   // ////////////////////////////// //
   
-  
+  /**
+   Function to check if the current device is an iphone or ipad
+   - important: if it is an ipad all the UIAlertController and UIActivityViewController are displayed as popover
+   */
   private func IpadIphoneAdaptation (controller: UIViewController){
     if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad {
       if let PopOver = controller.popoverPresentationController {
@@ -81,7 +84,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
       }
     }
   }
-  
+  /**
+   Function to check if the current device orientation and forces the UIActivityViewController to be displayed in landscape if landscape
+   */
     private func forceLandscape() {
         orientation = logic.checkOrientation()
         // Check orientation to make the UI react according to it
@@ -226,19 +231,32 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   private func popImageSource(){
     image.delegate = self
     image.allowsEditing = false
+    
+    // Initialize second view controller to communicate with it
+    let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: nil) as UICollectionViewController
+    
+    // Initialize UIAlert controlelr
     let alert = UIAlertController(title: "Choose an image", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
     
-    
+    // add import from library
     alert.addAction(UIAlertAction(title: "Pick from Library", style: .default, handler: { _ in
       self.ImportImageFromAlbum(self.image)
       self.present(self.image, animated: true)
     }))
     
+    // add take pictures
     alert.addAction(UIAlertAction(title: "Take a photo", style: .default, handler: { _ in
       self.takePicture(self.image)
       self.present(self.image, animated: true)
     }))
     
+    // add search on Pixabay
+    alert.addAction(UIAlertAction(title: "Search on Pixabay", style: .default, handler: { _ in
+      self.present(vc2, animated: true)
+     
+    }))
+    
+    // add cancel
     alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
     IpadIphoneAdaptation(controller: alert)
   }
@@ -359,7 +377,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     IpadIphoneAdaptation(controller: activityController)
 
   }
-  
   
   
   /**

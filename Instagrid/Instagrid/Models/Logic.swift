@@ -80,8 +80,11 @@ class Logic {
     }
     return checkSuccess
   }
-    /// ToDo: Documenter et verifier settings auto completion
-    
+  
+  /**
+   Function to check the orientation
+   - returns: Bool
+   */
     func checkOrientation() -> Bool {
         var landscapeOrientation = false
         if UIDevice.current.orientation.isLandscape {

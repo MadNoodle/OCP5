@@ -216,7 +216,7 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagrid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9K-bs-1m5">
-                                <rect key="frame" x="149.33333333333334" y="20" width="117.00000000000003" height="35"/>
+                                <rect key="frame" x="148.66666666666666" y="20" width="116.99999999999997" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="X3H-fb-F89">
                                         <variation key="heightClass=compact-widthClass=compact" constant="39"/>
@@ -243,7 +243,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe up to share" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wG-Ot-qSq">
-                                <rect key="frame" x="103" y="145.66666666666666" width="210" height="30.333333333333343"/>
+                                <rect key="frame" x="102.33333333333331" y="145.66666666666666" width="210" height="30.333333333333343"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="5wG-Ot-qSq" secondAttribute="height" multiplier="160:29" id="Ycq-lj-M5p"/>
                                 </constraints>

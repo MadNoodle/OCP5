@@ -10,9 +10,7 @@ import UIKit
 
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverPresentationControllerDelegate{
-  
-  
- 
+
   // ///////////////////////////// //
   // MARK: VARIABLE DECLARATIONS
   // ///////////////////////////// //
@@ -26,19 +24,26 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   // ///////////////////////////// //
   // MARK: LOGIC INITIALIZATION //
   // ///////////////////////////// //
+  
+  //Collage View
   let collageView = CollageView()
+  //Model
   let logic = Logic()
+  //Initialize the Picker
   let image = UIImagePickerController()
+  // Test Variables to fulfill conditionnal test in VC
   var orientation = false
   var imagePicked = 0
   var imageToEdit = 0
-  var imageFromCollection:UIImage!
   var source = ""
-let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: nil)
+  //Properties to fetch Data from CollectionView
+  let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: nil)
+  var imageFromCollection:UIImage!
   
-  // ///////////////////////////// //
-  // MARK: CORE UI VIEW FUNCTIONS //
-  // ///////////////////////////// //
+  
+  // /////////////////// //
+  // MARK: VC LIFECYCLE //
+  // ////////////////// //
     
     
     override func viewDidLoad() {
@@ -65,25 +70,24 @@ let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: 
     
     forceLandscape()
   }
-  override func viewDidAppear(_ animated: Bool) {
-    print("j apparait")
-  }
+
   override func viewWillAppear(_ animated: Bool) {
-    print("je vais apparaitre")
+    
+    // Fetch image selected from CollectionView "VC2"
     imageFromCollection = vc2.webImage
-    print(imageFromCollection)
-    print(imagePicked)
+    
+    //Check the source of the image and populate the UIImageViews
     if source == "web"{
       self.loadImageFromWeb()}
-    else{ print("internal sources")
-      
+    else{
+      print("internal sources")
     }
-    
   }
+  
   override func awakeFromNib() {
     super.awakeFromNib()
-    print("On se reveille")
   }
+  
   // /////////////////////////////// //
   // MARK: DEVICE ADAPTATION METHODS //
   // ////////////////////////////// //
@@ -98,13 +102,14 @@ let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: 
         PopOver.sourceView = self.view
       }
       present( controller, animated: true, completion: nil )
-      print("ipad")
+      //print("ipad")
     } else{
-      print("iphone")
+      //print("iphone")
       present(controller, animated: true){
       }
     }
   }
+  
   /**
    Function to check if the current device orientation and forces the UIActivityViewController to be displayed in landscape if landscape
    */
@@ -244,18 +249,13 @@ let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: 
   /**
    Function to create an alert
    - Important: action added to dismiss the alert popup
-   - parameters:
-   - title: title of the alert appears in bold
-   - message: Message prompted
    */
-
   private func popImageSource(){
+    
     image.delegate = self
     image.allowsEditing = false
     
-    
-    
-    // Initialize UIAlert controlelr
+    // Initialize UIAlert controller
     let alert = UIAlertController(title: "Choose an image", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
     
     // add import from library
@@ -278,7 +278,6 @@ let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: 
       self.source = "web"
       self.vc2.imagePicked = self.imagePicked
       self.present(self.vc2, animated: true)
-      
     }))
     
     // add cancel
@@ -289,6 +288,8 @@ let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: 
 /**
    Method to instantiate the UIImagePickerController
    You can allow editing by switching it to @true
+   - parameters:
+      - image: UIImagePickerController
  */
  private func ImportImageFromAlbum(_ image: UIImagePickerController){
   self.image.sourceType = UIImagePickerControllerSourceType.photoLibrary
@@ -298,12 +299,13 @@ let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: 
   /**
    Method to instantiate the UIImagePickerController
    You can allow editing by switching it to @true
+   - parameters:
+      - image: UIImagePickerController
    */
   private func takePicture(_ image: UIImagePickerController){
     if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera))
     {
       image.sourceType = UIImagePickerControllerSourceType.camera
-    
     }
     else
     {
@@ -351,6 +353,9 @@ let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: 
     }
   }
   
+  /**
+   Method to send images fetched from the web in the rigth UIImageView
+   */
  func loadImageFromWeb() {
     if let image = imageFromCollection
     {
@@ -386,12 +391,11 @@ let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: 
     }
   }
 
+  
   // ///////////////////////////// //
   // MARK: EXPORTING COLLAGE       //
   // ///////////////////////////// //
   
-
-
   /**
    Check if collage is full and then process all the event for sharing
    */
@@ -403,6 +407,7 @@ let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: 
       popAlert(title: "Attention", message:"tous les espaces ne sont pas remplis")
     }
   }
+  
 /**
    Function to create an alert
    - Important: action added to dismiss the alert popup
@@ -449,18 +454,18 @@ private func transformCollage(){
  
   /// Reset the collage to empty outside of the screen and animate the return in screen
   private func resetCollage(){
-//    self.image1?.isHidden = true
-//    self.image2.isHidden = true
-//    self.image3.isHidden = true
-//    self.image4.isHidden = true
-//    self.image5.isHidden = true
-//    self.image6.isHidden = true
-//    self.image1?.image = nil
-//    self.image2.image = nil
-//    self.image3.image = nil
-//    self.image4.image = nil
-//    self.image5.image = nil
-//    self.image6.image = nil
+    self.image1?.isHidden = true
+    self.image2.isHidden = true
+    self.image3.isHidden = true
+    self.image4.isHidden = true
+    self.image5.isHidden = true
+    self.image6.isHidden = true
+    self.image1?.image = nil
+    self.image2.image = nil
+    self.image3.image = nil
+    self.image4.image = nil
+    self.image5.image = nil
+    self.image6.image = nil
     UIView.animate(withDuration: 0.7,delay: 0.5,options: [], animations: { self.collage.transform = .identity})
   }
   
@@ -497,7 +502,6 @@ private func transformCollage(){
   }
   
   @IBAction func editImageFour(_ sender: Any) {
-
     fxContainer.isHidden = false
     imageToEdit = 4
   }
@@ -520,8 +524,6 @@ private func transformCollage(){
 
   @IBAction func ApplyInstantFilter() {
     logic.applyFilter("CIPhotoEffectInstant",on: collage.imageToEdit(id:imageToEdit)!)
-     collage.imageToEdit(id:imageToEdit)!.contentMode = .scaleAspectFill
-     collage.imageToEdit(id:imageToEdit)!.clipsToBounds = true
     fxContainer.isHidden = true
   }
   @IBAction func applyNoirFilter(_ sender: Any) {
@@ -542,9 +544,11 @@ private func transformCollage(){
     fxContainer.isHidden = true
   }
 
-  
- 
 }
+
+// //////////////////// //
+// MARK: EXTENSIONS     //
+// /////////////////// //
 
 /// This extension force the UIPicker to be displayed in landscape mode
 extension UIImagePickerController

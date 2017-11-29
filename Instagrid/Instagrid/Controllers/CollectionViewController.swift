@@ -21,6 +21,10 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
   var webImage:UIImage? = UIImage()
   var imagePicked = 0
   
+  
+  // /////////////////// //
+  // MARK: VC LIFECYCLE //
+  // ////////////////// //
   override func viewDidLoad() {
     super.viewDidLoad()
     setupNavbar()
@@ -29,8 +33,149 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     collectionView?.register(ImageViewCell.self, forCellWithReuseIdentifier: "cellId")
     }
   
-  func showSpinner(){
+  // initialize the number of cells to the number of results in array ImageResults
+  override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return imageResults.count
+  }
+  
+  //Populate the cells with images in array ImageResults
+  override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> ImageViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! ImageViewCell
+   // print("RECU2: \(imageResults)")
+    cell.displayContent(image: (imageResults[indexPath.row]))
+    return cell
+  }
+  
+  // define the layout and size of a cell
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath:IndexPath) -> CGSize {
+    return CGSize(width: view.frame.width, height: 200)
     
+  }
+  // define actions when cell is tapped
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    //Store cell image in webImage that will be passed in Main VC
+    webImage = imageResults[indexPath.row]
+    dismiss(animated: true, completion: nil)
+
+  }
+
+  // //////////// //
+  // MARK: NAVBAR //
+  // //////////// //
+  /**
+   Sets up the Navbar
+   - cancel Button
+   - textField for Input
+   - Search Button
+   */
+  func setupNavbar(){
+    
+    //Properties
+    let margin : CGFloat = 8
+    let buttonWidth : CGFloat = 100
+    let buttonHeight : CGFloat = 50
+    
+    //Instantiate Navbar
+    let navBar: UIView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 60))
+    
+    let navBarWidth : CGFloat = navBar.frame.width
+    //Set background color and alpha
+    navBar.backgroundColor = UIColor.white
+    //add to superview
+    self.view.addSubview(navBar)
+    
+    //add cancel button
+    //Create button
+    let cancel = UIButton(frame: CGRect(x: margin, y: margin, width: buttonWidth, height: buttonHeight))
+    // set title
+    cancel.setTitle("Cancel", for: .normal)
+    // Set title font
+    cancel.titleLabel?.font = UIFont(name: "Delm-medium", size:20)
+    //Set title Color RGBA
+    cancel.setTitleColor(UIColor(red: 16/255.0, green: 102/255.0, blue: 152/255.0, alpha: 1.0), for: .normal)
+    //Add action
+    cancel.addTarget(self, action: #selector(self.goBack), for: .touchUpInside)
+    // add it to navbar
+    navBar.addSubview(cancel)
+    
+    //add Search button
+    //Create button
+    let search = UIButton(frame: CGRect(x: navBarWidth - (margin + buttonWidth), y: margin, width: buttonWidth, height: buttonHeight))
+    // set title
+    search.setTitle("Search", for: .normal)
+    // Set title font
+    cancel.titleLabel?.font = UIFont(name: "Delm-medium", size:20)
+    //Set title Color RGBA
+    search.setTitleColor(UIColor(red: 16/255.0, green: 102/255.0, blue: 152/255.0, alpha: 1.0), for: .normal)
+    //Add action
+    search.addTarget(self, action: #selector(self.performSearch), for: .touchUpInside)
+    // add it to navbar
+    navBar.addSubview(search)
+    
+    //add textInput for search
+    let searchInput = UITextField(frame: CGRect(x: (2 * margin + buttonWidth ), y: margin, width: navBarWidth - (2 * margin + buttonWidth ) - (2 * margin + buttonWidth ), height: buttonHeight))
+    //Placeholdr text
+    searchInput.placeholder = "Enter your request"
+    searchInput.tag = 10
+    // add it to navbar
+    navBar.addSubview(searchInput)
+  }
+  
+  // ///////////////////// //
+  // MARK: NAVBAR CALLBACKS //
+  // ///////////////////// //
+  
+  /**
+   Dismiss current controller and present Main Vc and purge WebImage
+   */
+  @objc func goBack(sender : UIButton){
+    webImage = nil
+    dismiss(animated: true, completion: nil)
+  }
+  
+  /**
+   Perform Search
+   - important: Calls APIClient and is on main thread
+   */
+  @objc func performSearch(sender : UIButton){
+    
+    //TextField to perform the search
+    let textfield = view.viewWithTag(10) as? UITextField
+    
+    // grab text from textfield
+      if let query = textfield?.text {
+        //Iniatialize empty array to store results
+      self.imageResults = []
+        //Display spinner while fetching results
+      self.showSpinner()
+        //Call the APIClient with the search parameters
+      Api.getImagesAPI(query: query) {(results:[UIImage]) in
+        
+        //Iterate throught results and append it to result Array
+        for result in results {
+          self.imageResults.append(result)
+          // Grab the result on main thread
+          DispatchQueue.main.async {
+            //Load data in  Collection View cells
+            self.collectionView?.reloadData()
+            //Hide spinner
+            self.hideSpinner()
+          }
+        }
+      }
+    }
+  }
+  
+  
+  // /////////////////// //
+  // MARK: LOADING SPINNER //
+  // ////////////////// //
+  
+  
+  /**
+   Instantiate, configure and show UIActivityIndicator
+   */
+  func showSpinner(){
     
     // Position Activity Indicator in the center of the main view
     myActivityIndicator.center = view.center
@@ -41,106 +186,15 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     // Start Activity Indicator
     myActivityIndicator.startAnimating()
     
-    // Call stopAnimating() when need to stop activity indicator
-    //myActivityIndicator.stopAnimating()
-    
+    //Show spinner
     view.addSubview(myActivityIndicator)
   }
-  
+  /**
+   Kill UIActivityIndicator
+   */
   func hideSpinner(){
     myActivityIndicator.removeFromSuperview()
   }
-  
-  
-  override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return imageResults.count
-  }
-  
-  
-  override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> ImageViewCell {
-    
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! ImageViewCell
-   // print("RECU2: \(imageResults)")
-    cell.displayContent(image: (imageResults[indexPath.row]))
-    
-    return cell
-    
-  }
-  // define the layout and size of a cell
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath:IndexPath) -> CGSize {
-    return CGSize(width: view.frame.width, height: 200)
-    
-  }
-  
-  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
-    webImage = imageResults[indexPath.row]
-    
- dismiss(animated: true, completion: nil)
-   
-  
-  }
-
-/// Setup Navbar
-  func setupNavbar(){
-    
-    let margin : CGFloat = 8
-    let buttonWidth : CGFloat = 100
-    let buttonHeight : CGFloat = 50
-    
-    let navBar: UIView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 60))
-    navBar.backgroundColor = UIColor.white
-    self.view.addSubview(navBar)
-    let navBarWidth : CGFloat = navBar.frame.width
-    
-    //add cancel button
-    let cancel = UIButton(frame: CGRect(x: margin, y: margin, width: buttonWidth, height: buttonHeight))
-    cancel.setTitle("Cancel", for: .normal)
-    cancel.setTitleColor(UIColor(red: 16/255.0, green: 102/255.0, blue: 152/255.0, alpha: 1.0), for: .normal)
-    cancel.addTarget(self, action: #selector(self.goBack), for: .touchUpInside)
-    navBar.addSubview(cancel)
-    
-    //add Search button
-    let search = UIButton(frame: CGRect(x: navBarWidth - (margin + buttonWidth), y: margin, width: buttonWidth, height: buttonHeight))
-    search.setTitle("Search", for: .normal)
-    search.setTitleColor(UIColor(red: 16/255.0, green: 102/255.0, blue: 152/255.0, alpha: 1.0), for: .normal)
-    search.addTarget(self, action: #selector(self.performSearch), for: .touchUpInside)
-    navBar.addSubview(search)
-    
-    //add textInput for search
-    let searchInput = UITextField(frame: CGRect(x: (2 * margin + buttonWidth ), y: margin, width: navBarWidth - (2 * margin + buttonWidth ) - (2 * margin + buttonWidth ), height: buttonHeight))
-    searchInput.placeholder = "Enter your request"
-    searchInput.tag = 10
-    navBar.addSubview(searchInput)
-  }
-  
-
-  @objc func goBack(sender : UIButton){
-    webImage = nil
-    dismiss(animated: true, completion: nil)
-  }
-  
-  @objc func performSearch(sender : UIButton){
-    
-    let textfield = view.viewWithTag(10) as? UITextField
-    
-      if let query = textfield?.text {
-      self.imageResults = []
-      self.showSpinner()
-      Api.getImagesAPI(query: query) {(results:[UIImage]) in
-        
-        for result in results {
-          
-          self.imageResults.append(result)
-          DispatchQueue.main.async {
-            self.collectionView?.reloadData()
-            self.hideSpinner()
-          }
-        }
-      }
-    }
-  }
-
 }
  
 

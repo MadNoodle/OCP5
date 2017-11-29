@@ -7,8 +7,11 @@
 //
 
 import Foundation
+// needed for reference to UIImage for processing conversion
 import UIKit
+// needed to apply filter and process
 import CoreImage
+
 /**
  This class handles all the logic and calculations.
  Methods:
@@ -107,34 +110,32 @@ class Logic {
    */
   
   func applyFilter(_ filter:String, on visual:UIImageView ){
+    
+    //get height and width of original image
     let initWidth = visual.image?.size.width
     let initHeight = visual.image?.size.height
     
-    
+    // if there is image apply filter
     if checkIfImageLoaded(view: visual){
-    let context = CIContext(options: nil)
-    let filter = CIFilter(name: filter)
-    let ciImage = CIImage(image:visual.image!)
-    filter?.setValue(ciImage, forKey: kCIInputImageKey)
-    let result = filter?.outputImage!
-    let cgImage = context.createCGImage(result!, from: (result?.extent)!)
+      let context = CIContext(options: nil)
+      let filter = CIFilter(name: filter)
+      let ciImage = CIImage(image:visual.image!)
+      filter?.setValue(ciImage, forKey: kCIInputImageKey)
+      let result = filter?.outputImage!
+      let cgImage = context.createCGImage(result!, from: (result?.extent)!)
       
-      if Int(initWidth!) <= Int(initHeight!){
-        let render = UIImage(cgImage: cgImage!, scale: CGFloat(1.0), orientation: (visual.image?.imageOrientation)!)
-        visual.image = render
-        
-        
-      }else{
-        let render:UIImage = UIImage.init(cgImage: cgImage!)
-        visual.image = render
-      }
-    
-    
-  } else {
-  print("désolé il n y a pas d images")
+        // This conditions solve a bug in CIImage that create flipped image if h>W
+        if Int(initWidth!) <= Int(initHeight!){
+          // force orientation if h>w
+          let render = UIImage(cgImage: cgImage!, scale: CGFloat(1.0), orientation: (visual.image?.imageOrientation)!)
+          visual.image = render
+        }else{
+          let render:UIImage = UIImage.init(cgImage: cgImage!)
+          visual.image = render
+        }
+    } else {
+      print("désolé il n y a pas d images")
+    }
   }
-    
-  }
-
 }
 

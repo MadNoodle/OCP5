@@ -7,8 +7,9 @@
 //
 
 import Foundation
-import UIKit
-
+/**
+ Object to generate copies of images fetched from APIClient
+ */
 struct WebImage {
   
   let searchImage:String?

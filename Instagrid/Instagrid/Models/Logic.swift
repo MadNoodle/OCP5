@@ -107,6 +107,10 @@ class Logic {
    */
   
   func applyFilter(_ filter:String, on visual:UIImageView ){
+    let initWidth = visual.image?.size.width
+    let initHeight = visual.image?.size.height
+    
+    
     if checkIfImageLoaded(view: visual){
     let context = CIContext(options: nil)
     let filter = CIFilter(name: filter)
@@ -114,8 +118,17 @@ class Logic {
     filter?.setValue(ciImage, forKey: kCIInputImageKey)
     let result = filter?.outputImage!
     let cgImage = context.createCGImage(result!, from: (result?.extent)!)
-    let render:UIImage = UIImage.init(cgImage: cgImage!)
-    visual.image = render
+      
+      if Int(initWidth!) <= Int(initHeight!){
+        let render = UIImage(cgImage: cgImage!, scale: CGFloat(1.0), orientation: (visual.image?.imageOrientation)!)
+        visual.image = render
+        
+        
+      }else{
+        let render:UIImage = UIImage.init(cgImage: cgImage!)
+        visual.image = render
+      }
+    
     
   } else {
   print("désolé il n y a pas d images")

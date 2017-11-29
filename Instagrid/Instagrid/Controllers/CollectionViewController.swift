@@ -18,7 +18,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
   let Api = APIClient()
   var imageResults:[UIImage] = []
   let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
-  var webImage = UIImage()
+  var webImage:UIImage? = UIImage()
   var imagePicked = 0
   
   override func viewDidLoad() {
@@ -116,6 +116,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
   
 
   @objc func goBack(sender : UIButton){
+    webImage = nil
     dismiss(animated: true, completion: nil)
   }
   

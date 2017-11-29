@@ -33,6 +33,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   var imagePicked = 0
   var imageToEdit = 0
   var imageFromCollection:UIImage!
+  var source = ""
 let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: nil)
   
   // ///////////////////////////// //
@@ -72,7 +73,12 @@ let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: 
     imageFromCollection = vc2.webImage
     print(imageFromCollection)
     print(imagePicked)
-    loadImageFromWeb()
+    if source == "web"{
+      self.loadImageFromWeb()}
+    else{ print("internal sources")
+      
+    }
+    
   }
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -254,12 +260,14 @@ let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: 
     
     // add import from library
     alert.addAction(UIAlertAction(title: "Pick from Library", style: .default, handler: { _ in
+      self.source = "lib"
       self.ImportImageFromAlbum(self.image)
       self.present(self.image, animated: true)
     }))
     
     // add take pictures
     alert.addAction(UIAlertAction(title: "Take a photo", style: .default, handler: { _ in
+      self.source = "cam"
       self.takePicture(self.image)
       self.present(self.image, animated: true)
     }))
@@ -267,7 +275,7 @@ let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: 
     // add search on Pixabay
     alert.addAction(UIAlertAction(title: "Search on Pixabay", style: .default, handler: { _ in
       // Initialize second view controller to communicate with it
-      
+      self.source = "web"
       self.vc2.imagePicked = self.imagePicked
       self.present(self.vc2, animated: true)
       
@@ -512,6 +520,8 @@ private func transformCollage(){
 
   @IBAction func ApplyInstantFilter() {
     logic.applyFilter("CIPhotoEffectInstant",on: collage.imageToEdit(id:imageToEdit)!)
+     collage.imageToEdit(id:imageToEdit)!.contentMode = .scaleAspectFill
+     collage.imageToEdit(id:imageToEdit)!.clipsToBounds = true
     fxContainer.isHidden = true
   }
   @IBAction func applyNoirFilter(_ sender: Any) {

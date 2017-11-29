@@ -16,27 +16,51 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
   
   let Api = APIClient()
   var imageResults:[UIImage] = []
+  let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.collectionView?.delegate = self
     collectionView?.backgroundColor = UIColor.white
     collectionView?.register(ImageViewCell.self, forCellWithReuseIdentifier: "cellId")
     
+    
+    self.showSpinner()
+    
+    
     Api.getImagesAPI(query: "cat") {(results:[UIImage]) in
+      
       for result in results {
         self.imageResults.append(result)
         DispatchQueue.main.async {
           self.collectionView?.reloadData()
+          self.hideSpinner()
         }
-        
       }
     }
-    
-    
-    
-  
     }
+  func showSpinner(){
+    
+    
+    // Position Activity Indicator in the center of the main view
+    myActivityIndicator.center = view.center
+    
+    // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
+    myActivityIndicator.hidesWhenStopped = false
+    
+    // Start Activity Indicator
+    myActivityIndicator.startAnimating()
+    
+    // Call stopAnimating() when need to stop activity indicator
+    //myActivityIndicator.stopAnimating()
+    
+    view.addSubview(myActivityIndicator)
+  }
   
+  func hideSpinner(){
+    myActivityIndicator.removeFromSuperview()
+    
+  }
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return imageResults.count
   }

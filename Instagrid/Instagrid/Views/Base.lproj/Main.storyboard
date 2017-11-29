@@ -216,7 +216,7 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagrid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9K-bs-1m5">
-                                <rect key="frame" x="149" y="20" width="117" height="35"/>
+                                <rect key="frame" x="149.33333333333334" y="20" width="117.00000000000003" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="X3H-fb-F89">
                                         <variation key="heightClass=compact-widthClass=compact" constant="39"/>
@@ -243,7 +243,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe up to share" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wG-Ot-qSq">
-                                <rect key="frame" x="102.66666666666669" y="145.66666666666666" width="210" height="30.333333333333343"/>
+                                <rect key="frame" x="103" y="145.66666666666666" width="210" height="30.333333333333343"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="5wG-Ot-qSq" secondAttribute="height" multiplier="160:29" id="Ycq-lj-M5p"/>
                                 </constraints>
@@ -816,7 +816,7 @@
                                 </variation>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.72933894395828247" green="0.84395766258239746" blue="0.90226036310195923" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.72941176470588232" green="0.84313725490196079" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="HeH-cC-nxa" firstAttribute="bottom" secondItem="7Gn-DF-It7" secondAttribute="bottom" id="0E6-V0-2dL"/>
                             <constraint firstItem="xiN-aL-vYK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="0N0-FF-563"/>

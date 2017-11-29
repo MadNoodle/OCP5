@@ -31,5 +31,10 @@
                 <outlet property="delegate" destination="-1" id="9aC-8N-iBw"/>
             </connections>
         </collectionView>
+        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="7wy-15-9uf">
+            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <point key="canvasLocation" x="98" y="619"/>
+        </activityIndicatorView>
     </objects>
 </document>

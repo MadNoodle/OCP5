@@ -19,6 +19,7 @@ class ImageViewCell: UICollectionViewCell {
   // MARK: INITIALIZATION
   override init(frame: CGRect){
     super.init(frame:frame)
+    
     setupImage()
   }
   

@@ -17,7 +17,9 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
   
   let Api = APIClient()
   var imageResults:[UIImage] = []
-  let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+  let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+  var webImage = UIImage()
+  var imagePicked = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -58,8 +60,9 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> ImageViewCell {
     
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! ImageViewCell
-    print("RECU2: \(imageResults)")
+   // print("RECU2: \(imageResults)")
     cell.displayContent(image: (imageResults[indexPath.row]))
+    
     return cell
     
   }
@@ -69,6 +72,14 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     
   }
   
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    webImage = imageResults[indexPath.row]
+    
+ dismiss(animated: true, completion: nil)
+   
+  
+  }
 
 /// Setup Navbar
   func setupNavbar(){
@@ -126,9 +137,9 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
           }
         }
       }
-      
-      
     }
   }
-  
+
 }
+ 
+

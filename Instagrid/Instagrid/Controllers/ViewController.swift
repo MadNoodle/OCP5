@@ -32,7 +32,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   var orientation = false
   var imagePicked = 0
   var imageToEdit = 0
-
+  var imageFromCollection:UIImage!
+let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: nil)
   
   // ///////////////////////////// //
   // MARK: CORE UI VIEW FUNCTIONS //
@@ -62,6 +63,20 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     self.view.addGestureRecognizer(upSwipe)
     
     forceLandscape()
+  }
+  override func viewDidAppear(_ animated: Bool) {
+    print("j apparait")
+  }
+  override func viewWillAppear(_ animated: Bool) {
+    print("je vais apparaitre")
+    imageFromCollection = vc2.webImage
+    print(imageFromCollection)
+    print(imagePicked)
+    loadImageFromWeb()
+  }
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    print("On se reveille")
   }
   // /////////////////////////////// //
   // MARK: DEVICE ADAPTATION METHODS //
@@ -179,12 +194,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   // ////////////////////// //
   
   // Image Containers
-  @IBOutlet weak var image1: UIImageView!
-  @IBOutlet weak var image2: UIImageView!
-  @IBOutlet weak var image3: UIImageView!
-  @IBOutlet weak var image4: UIImageView!
-  @IBOutlet weak var image5: UIImageView!
-  @IBOutlet weak var image6: UIImageView!
+  @IBOutlet  var image1: UIImageView!
+  @IBOutlet  var image2: UIImageView!
+  @IBOutlet  var image3: UIImageView!
+  @IBOutlet  var image4: UIImageView!
+  @IBOutlet  var image5: UIImageView!
+  @IBOutlet  var image6: UIImageView!
   
   @IBAction func importImage(_ sender: UIButton) {
     imagePicked = 1
@@ -232,8 +247,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     image.delegate = self
     image.allowsEditing = false
     
-    // Initialize second view controller to communicate with it
-    let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: nil) as UICollectionViewController
+    
     
     // Initialize UIAlert controlelr
     let alert = UIAlertController(title: "Choose an image", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
@@ -252,8 +266,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     // add search on Pixabay
     alert.addAction(UIAlertAction(title: "Search on Pixabay", style: .default, handler: { _ in
-      self.present(vc2, animated: true)
-     
+      // Initialize second view controller to communicate with it
+      
+      self.vc2.imagePicked = self.imagePicked
+      self.present(self.vc2, animated: true)
+      
     }))
     
     // add cancel
@@ -326,7 +343,41 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
   }
   
-  
+ func loadImageFromWeb() {
+    if let image = imageFromCollection
+    {
+      switch imagePicked {
+      case 1:
+        image1.image = image
+        self.image1.isHidden = false
+        fxButton1.isHidden = false
+      case 2:
+        image2.image = image
+        self.image2.isHidden = false
+        fxButton2.isHidden = false
+      case 3:
+        image3.image = image
+        self.image3.isHidden = false
+        fxButton3.isHidden = false
+      case 4:
+        image4.image = image
+        self.image4.isHidden = false
+        fxButton4.isHidden = false
+      case 5:
+        image5.image = image
+        self.image5.isHidden = false
+        fxButton5.isHidden = false
+      case 6:
+        image6.image = image
+        self.image6.isHidden = false
+        fxButton6.isHidden = false
+      default:
+        print("Erreur de chargement d'image")
+      }
+      
+    }
+  }
+
   // ///////////////////////////// //
   // MARK: EXPORTING COLLAGE       //
   // ///////////////////////////// //
@@ -390,18 +441,18 @@ private func transformCollage(){
  
   /// Reset the collage to empty outside of the screen and animate the return in screen
   private func resetCollage(){
-    self.image1.isHidden = true
-    self.image2.isHidden = true
-    self.image3.isHidden = true
-    self.image4.isHidden = true
-    self.image5.isHidden = true
-    self.image6.isHidden = true
-    self.image1.image = nil
-    self.image2.image = nil
-    self.image3.image = nil
-    self.image4.image = nil
-    self.image5.image = nil
-    self.image6.image = nil
+//    self.image1?.isHidden = true
+//    self.image2.isHidden = true
+//    self.image3.isHidden = true
+//    self.image4.isHidden = true
+//    self.image5.isHidden = true
+//    self.image6.isHidden = true
+//    self.image1?.image = nil
+//    self.image2.image = nil
+//    self.image3.image = nil
+//    self.image4.image = nil
+//    self.image5.image = nil
+//    self.image6.image = nil
     UIView.animate(withDuration: 0.7,delay: 0.5,options: [], animations: { self.collage.transform = .identity})
   }
   

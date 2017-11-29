@@ -82,6 +82,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     else{
       print("internal sources")
     }
+    //Purge imageFromColelction
+    imageFromCollection = UIImage()
   }
   
   override func awakeFromNib() {

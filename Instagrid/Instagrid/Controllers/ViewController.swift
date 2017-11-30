@@ -10,17 +10,17 @@ import UIKit
 
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverPresentationControllerDelegate{
-
+  
   // ///////////////////////////// //
   // MARK: VARIABLE DECLARATIONS
   // ///////////////////////////// //
-
+  
   // Collage View
   @IBOutlet weak var collage: CollageView!
   
   @IBOutlet weak var fxContainer: UIView!
-
-
+  
+  
   // ///////////////////////////// //
   // MARK: LOGIC INITIALIZATION //
   // ///////////////////////////// //
@@ -44,9 +44,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   // /////////////////// //
   // MARK: VC LIFECYCLE //
   // ////////////////// //
-    
-    
-    override func viewDidLoad() {
+  
+  
+  override func viewDidLoad() {
     super.viewDidLoad()
     
     // Init UI with layout one & button one higlighted
@@ -55,8 +55,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     buttonOneHover.isHidden = false
     buttonTwoHover.isHidden = true
     buttonThreeHover.isHidden = true
-   
-      
+    
+    
     // InitSwipe Gesture as soon as the app launches
     
     let upSwipe = UISwipeGestureRecognizer(target:self, action:#selector(DragCollage(swipe :)))
@@ -70,7 +70,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     forceLandscape()
   }
-
+  
   override func viewWillAppear(_ animated: Bool) {
     
     // Fetch image selected from CollectionView "VC2"
@@ -115,17 +115,17 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   /**
    Function to check if the current device orientation and forces the UIActivityViewController to be displayed in landscape if landscape
    */
-    private func forceLandscape() {
-        orientation = logic.checkOrientation()
-        // Check orientation to make the UI react according to it
-        if  orientation {
-            //Rotate UIActivityViewController in landscape
-            let landscapeRawValue = UIInterfaceOrientation.landscapeLeft.rawValue
-            UIDevice.current.setValue(landscapeRawValue, forKey: "orientation")
-        } else {
-            print("portrait")
-        }
+  private func forceLandscape() {
+    orientation = logic.checkOrientation()
+    // Check orientation to make the UI react according to it
+    if  orientation {
+      //Rotate UIActivityViewController in landscape
+      let landscapeRawValue = UIInterfaceOrientation.landscapeLeft.rawValue
+      UIDevice.current.setValue(landscapeRawValue, forKey: "orientation")
+    } else {
+      print("portrait")
     }
+  }
   
   /** Callback Function for Swipe gesture
    - important: Double check of Device orientation and swipe direction to allow one swipe direction per orientation
@@ -231,7 +231,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   @IBAction func importImage4(_ sender: UIButton) {
     imagePicked = 4
-   popImageSource()
+    popImageSource()
   }
   
   @IBAction func importImage5(_ sender: UIButton) {
@@ -286,23 +286,23 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
     IpadIphoneAdaptation(controller: alert)
   }
-
-/**
-   Method to instantiate the UIImagePickerController
-   You can allow editing by switching it to @true
-   - parameters:
-      - image: UIImagePickerController
- */
- private func ImportImageFromAlbum(_ image: UIImagePickerController){
-  self.image.sourceType = UIImagePickerControllerSourceType.photoLibrary
-   self.present(image, animated: true, completion: nil)
-  }
-
+  
   /**
    Method to instantiate the UIImagePickerController
    You can allow editing by switching it to @true
    - parameters:
-      - image: UIImagePickerController
+   - image: UIImagePickerController
+   */
+  private func ImportImageFromAlbum(_ image: UIImagePickerController){
+    self.image.sourceType = UIImagePickerControllerSourceType.photoLibrary
+    self.present(image, animated: true, completion: nil)
+  }
+  
+  /**
+   Method to instantiate the UIImagePickerController
+   You can allow editing by switching it to @true
+   - parameters:
+   - image: UIImagePickerController
    */
   private func takePicture(_ image: UIImagePickerController){
     if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera))
@@ -316,10 +316,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
       self.present(alert, animated: true, completion: nil)
     }
   }
-
-/**
+  
+  /**
    Method to show the UIImagePickerController and handle the completion
-  */
+   */
   internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
     if let image = info[UIImagePickerControllerOriginalImage] as? UIImage
     {
@@ -351,14 +351,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
       default:
         print("Erreur de chargement d'image")
       }
-        self.dismiss(animated: true, completion: {self.forceLandscape()})
+      self.dismiss(animated: true, completion: {self.forceLandscape()})
     }
   }
   
   /**
    Method to send images fetched from the web in the rigth UIImageView
    */
- func loadImageFromWeb() {
+  func loadImageFromWeb() {
     if let image = imageFromCollection
     {
       switch imagePicked {
@@ -392,7 +392,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
       
     }
   }
-
+  
   
   // ///////////////////////////// //
   // MARK: EXPORTING COLLAGE       //
@@ -410,13 +410,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
   }
   
-/**
+  /**
    Function to create an alert
    - Important: action added to dismiss the alert popup
    - parameters:
-      - title: title of the alert appears in bold
-      - message: Message prompted
- */
+   - title: title of the alert appears in bold
+   - message: Message prompted
+   */
   private func popAlert(title:String, message:String){
     let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { (action) in
@@ -438,10 +438,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     fxButton6.isHidden = true
     
     let imageToSave = logic.convertUiviewToImage(from:collage)
-   
+    
     let activityController = UIActivityViewController(activityItems: [imageToSave!], applicationActivities: nil)
     IpadIphoneAdaptation(controller: activityController)
-
+    
   }
   
   
@@ -449,11 +449,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
    Animate the Collage View
    - duration : 0.3
    */
-private func transformCollage(){
-  let transform = CGAffineTransform(translationX: 0, y: -600)
-  UIView.animate(withDuration: 0.3, animations: { self.collage.transform = transform }) { (success) in if success { self.resetCollage()}}
+  private func transformCollage(){
+    let transform = CGAffineTransform(translationX: 0, y: -600)
+    UIView.animate(withDuration: 0.3, animations: { self.collage.transform = transform }) { (success) in if success { self.resetCollage()}}
+    
+    
   }
- 
+  
   /// Reset the collage to empty outside of the screen and animate the return in screen
   private func resetCollage(){
     self.image1?.isHidden = true
@@ -518,12 +520,12 @@ private func transformCollage(){
     imageToEdit = 6
   }
   
-
+  
   // ///////////////////////////// //
   // MARK: APPLYING FILTERS       //
   // ///////////////////////////// //
   
-
+  
   @IBAction func ApplyInstantFilter() {
     logic.applyFilter("CIPhotoEffectInstant",on: collage.imageToEdit(id:imageToEdit)!)
     fxContainer.isHidden = true
@@ -545,7 +547,7 @@ private func transformCollage(){
     logic.applyFilter("CIPhotoEffectTransfer",on: collage.imageToEdit(id:imageToEdit)!)
     fxContainer.isHidden = true
   }
-
+  
 }
 
 // //////////////////// //
@@ -555,10 +557,10 @@ private func transformCollage(){
 /// This extension force the UIPicker to be displayed in landscape mode
 extension UIImagePickerController
 {
-    override open var shouldAutorotate: Bool {
-        return true
-    }
-    override open var supportedInterfaceOrientations : UIInterfaceOrientationMask {
-        return .all
-    }
+  override open var shouldAutorotate: Bool {
+    return true
+  }
+  override open var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+    return .all
+  }
 }

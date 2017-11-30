@@ -31,7 +31,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     self.collectionView?.delegate = self
     collectionView?.backgroundColor = UIColor(red: 186/255.0, green: 215/255.0, blue: 230/255.0, alpha: 1.0)
     collectionView?.register(ImageViewCell.self, forCellWithReuseIdentifier: "cellId")
-    }
+  }
   
   // initialize the number of cells to the number of results in array ImageResults
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -41,7 +41,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
   //Populate the cells with images in array ImageResults
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> ImageViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! ImageViewCell
-   // print("RECU2: \(imageResults)")
+    // print("RECU2: \(imageResults)")
     cell.displayContent(image: (imageResults[indexPath.row]))
     return cell
   }
@@ -56,9 +56,9 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     //Store cell image in webImage that will be passed in Main VC
     webImage = imageResults[indexPath.row]
     dismiss(animated: true, completion: nil)
-
+    
   }
-
+  
   // //////////// //
   // MARK: NAVBAR //
   // //////////// //
@@ -143,12 +143,12 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     let textfield = view.viewWithTag(10) as? UITextField
     
     // grab text from textfield
-      if let query = textfield?.text {
-        //Iniatialize empty array to store results
+    if let query = textfield?.text {
+      //Iniatialize empty array to store results
       self.imageResults = []
-        //Display spinner while fetching results
+      //Display spinner while fetching results
       self.showSpinner()
-        //Call the APIClient with the search parameters
+      //Call the APIClient with the search parameters
       Api.getImagesAPI(query: query) {(results:[UIImage]) in
         
         //Iterate throught results and append it to result Array
@@ -196,5 +196,5 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     myActivityIndicator.removeFromSuperview()
   }
 }
- 
+
 

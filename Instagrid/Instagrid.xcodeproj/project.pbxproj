@@ -105,6 +105,8 @@
 		B9E30F4F1FBF40B900E8F51B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B93260941FC20BC400439530 /* CollageView.swift */,
+				B97D75981FCD692700EEDC79 /* ImageViewCell.swift */,
 				B9E30F3A1FBF3B4200E8F51B /* ViewController.swift */,
 				B99EF3EB1FCCD747005F41D3 /* CollectionViewController.swift */,
 			);
@@ -114,8 +116,6 @@
 		B9E30F501FBF40C400E8F51B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B93260941FC20BC400439530 /* CollageView.swift */,
-				B97D75981FCD692700EEDC79 /* ImageViewCell.swift */,
 				B99EF3EC1FCCD747005F41D3 /* CollectionViewController.xib */,
 				B9E30F3C1FBF3B4200E8F51B /* Main.storyboard */,
 				B9E30F411FBF3B4200E8F51B /* LaunchScreen.storyboard */,

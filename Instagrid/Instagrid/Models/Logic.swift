@@ -42,14 +42,14 @@ class Logic {
   /**
    Function to check if an UIImageView has an Image Inside
    - returns: Bool
- */
- func checkIfImageLoaded(view:UIImageView) -> Bool{
-     var imageLoaded = false
-      if view.image != nil{
-        print("il y a une image")
-        imageLoaded = true
-      } else {
-        imageLoaded = false
+   */
+  func checkIfImageLoaded(view:UIImageView) -> Bool{
+    var imageLoaded = false
+    if view.image != nil{
+      print("il y a une image")
+      imageLoaded = true
+    } else {
+      imageLoaded = false
     }
     return imageLoaded
   }
@@ -88,20 +88,20 @@ class Logic {
    Function to check the orientation
    - returns: Bool
    */
-    func checkOrientation() -> Bool {
-        var landscapeOrientation = false
-        if UIDevice.current.orientation.isLandscape {
-            landscapeOrientation = true
-            print("Landscape")
-        } else{
-            print("Portrait")
-            landscapeOrientation = false
-        }
-        return landscapeOrientation
+  func checkOrientation() -> Bool {
+    var landscapeOrientation = false
+    if UIDevice.current.orientation.isLandscape {
+      landscapeOrientation = true
+      print("Landscape")
+    } else{
+      print("Portrait")
+      landscapeOrientation = false
     }
-    
+    return landscapeOrientation
+  }
+  
   /** Liste des filtres
-    CIPhotoEffectNoir
+   CIPhotoEffectNoir
    CIPhotoEffectChrome
    CIPhotoEffectInstant
    CIPhotoEffectTransfer
@@ -124,15 +124,15 @@ class Logic {
       let result = filter?.outputImage!
       let cgImage = context.createCGImage(result!, from: (result?.extent)!)
       
-        // This conditions solve a bug in CIImage that create flipped image if h>W
-        if Int(initWidth!) <= Int(initHeight!){
-          // force orientation if h>w
-          let render = UIImage(cgImage: cgImage!, scale: CGFloat(1.0), orientation: (visual.image?.imageOrientation)!)
-          visual.image = render
-        }else{
-          let render:UIImage = UIImage.init(cgImage: cgImage!)
-          visual.image = render
-        }
+      // This conditions solve a bug in CIImage that create flipped image if h>W
+      if Int(initWidth!) <= Int(initHeight!){
+        // force orientation if h>w
+        let render = UIImage(cgImage: cgImage!, scale: CGFloat(1.0), orientation: (visual.image?.imageOrientation)!)
+        visual.image = render
+      }else{
+        let render:UIImage = UIImage.init(cgImage: cgImage!)
+        visual.image = render
+      }
     } else {
       print("désolé il n y a pas d images")
     }

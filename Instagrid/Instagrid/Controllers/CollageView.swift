@@ -9,8 +9,8 @@
 import UIKit
 
 /**
-this class contains the informations on different layouts for collage
-Methods:
+ this class contains the informations on different layouts for collage
+ Methods:
  ## getLayoutInfo()
  says which view is visible for which layout
  ## isFull()
@@ -39,12 +39,12 @@ class CollageView: UIView  {
   // ///////////// //
   // MARK: METHODS //
   // ///////////// //
-
+  
   /** This function return an array of Bool that say which square/rect view is hidden or not for each kind of view
    - Important: the array follow this order *[RectTop,RectBot,squareOne,squareTwo,squareThree,squareFour]*
-  - parameters:
+   - parameters:
    * name: one of the member of the Layout enum
- */
+   */
   func getLayoutInfo(name:Layouts) -> [Bool]{
     switch name {
     case .one:
@@ -55,13 +55,13 @@ class CollageView: UIView  {
       return [true,true,false,false,false,false]
     }
   }
-
+  
   
   /**
    This function check if all imageViews in a collage Layout are filled by .image.
    - returns: Bool . If true the test is passed
-  - Example:
-    ````
+   - Example:
+   ````
    if view.isFull(){
    print(" this view is full")
    
@@ -106,7 +106,7 @@ class CollageView: UIView  {
 
 
 
-  
-  
-  
+
+
+
 

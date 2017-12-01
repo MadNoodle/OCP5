@@ -18,9 +18,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   // Collage View
   @IBOutlet weak var collage: CollageView!
   
-  @IBOutlet weak var fxContainer: UIView!
-  
-  
   // ///////////////////////////// //
   // MARK: LOGIC INITIALIZATION //
   // ///////////////////////////// //
@@ -38,7 +35,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   var source = ""
   //Properties to fetch Data from CollectionView
   let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: nil)
+  let edit = EditImageController(nibName: "EditImageController", bundle: nil)
+  
+  //Receiver for image selected from web search
   var imageFromCollection:UIImage!
+  
+  //Receiver for image edited in fx editor
+  var imageReceivedFromFx:UIImage!
+  
   
   
   // /////////////////// //
@@ -69,17 +73,28 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     self.view.addGestureRecognizer(upSwipe)
     
     forceLandscape()
+    //Initialize the Notification observer to receive changes after dismissing fxEditor
+    NotificationCenter.default.addObserver(self, selector: #selector(refreshList(notification:)), name:NSNotification.Name(rawValue: "refresh"), object: nil)
   }
   
+  // CallBack 
+  @objc func refreshList(notification: NSNotification){
+    imageReceivedFromFx = edit.finalImage
+    self.loadImageFromWeb(fromImage: imageReceivedFromFx, to: imageToEdit)
+  }
+  
+  
   override func viewWillAppear(_ animated: Bool) {
-    
+    print("maintenant")
     // Fetch image selected from CollectionView "VC2"
     imageFromCollection = vc2.webImage
+    // imageReceivedFromFx = edit.finalImage
+    imageReceivedFromFx = edit.finalImage
     
     //Check the source of the image and populate the UIImageViews
     if source == "web"{
-      self.loadImageFromWeb()}
-    else{
+      self.loadImageFromWeb(fromImage: imageFromCollection, to: imagePicked)
+    } else {
       print("internal sources")
     }
     //Purge imageFromColelction
@@ -88,6 +103,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   override func awakeFromNib() {
     super.awakeFromNib()
+    print("apres")
   }
   
   // /////////////////////////////// //
@@ -358,10 +374,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   /**
    Method to send images fetched from the web in the rigth UIImageView
    */
-  private func loadImageFromWeb() {
-    if let image = imageFromCollection
+  public func loadImageFromWeb(fromImage: UIImage?, to target: Int ) {
+    if let image = fromImage
     {
-      switch imagePicked {
+      switch target {
       case 1:
         image1.image = image
         self.image1.isHidden = false
@@ -487,69 +503,73 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   @IBOutlet weak var fxButton5: UIButton!
   @IBOutlet weak var fxButton6: UIButton!
   
+  var imageToSendToEdit: UIImageView?
+  
   // ///////////////////////////// //
   // MARK: EDITING IMAGES BUTTONS  //
   // ///////////////////////////// //
   
   @IBAction func editImageOne(_ sender: UIButton) {
-    fxContainer.isHidden = false
     imageToEdit = 1
+    if logic.checkIfImageLoaded(view: image1){
+      sendToEditor(imageToEdit: imagePicked)
+    } else {
+      print("désolé il n y a pas d images")
+    }
   }
   @IBAction func editImageTwo(_ sender: Any) {
-    fxContainer.isHidden = false
     imageToEdit = 2
+    if logic.checkIfImageLoaded(view: image2){
+      sendToEditor(imageToEdit: imagePicked)
+    } else {
+      print("désolé il n y a pas d images")
+    }
   }
   
   @IBAction func editImageThree(_ sender: Any) {
-    fxContainer.isHidden = false
     imageToEdit = 3
+    if logic.checkIfImageLoaded(view: image3){
+      sendToEditor(imageToEdit: imagePicked)
+    } else {
+      print("désolé il n y a pas d images")
+    }
   }
   
   @IBAction func editImageFour(_ sender: Any) {
-    fxContainer.isHidden = false
     imageToEdit = 4
+    if logic.checkIfImageLoaded(view: image4){
+      sendToEditor(imageToEdit: imagePicked)
+    } else {
+      print("désolé il n y a pas d images")
+    }
   }
   
   @IBAction func editImageFive(_ sender: Any) {
-    fxContainer.isHidden = false
     imageToEdit = 5
+    if logic.checkIfImageLoaded(view: image5){
+      sendToEditor(imageToEdit: imagePicked)
+    } else {
+      print("désolé il n y a pas d images")
+    }
   }
   
   @IBAction func editImageSix(_ sender: Any) {
-    fxContainer.isHidden = false
     imageToEdit = 6
+    if logic.checkIfImageLoaded(view: image6){
+      sendToEditor(imageToEdit: imagePicked)
+    } else {
+      print("désolé il n y a pas d images")
+    }
   }
   
-  
-  // ///////////////////////////// //
-  // MARK: APPLYING FILTERS       //
-  // ///////////////////////////// //
-  
-  
-  @IBAction func ApplyInstantFilter() {
-    logic.applyFilter("CIPhotoEffectInstant",on: collage.imageToEdit(id:imageToEdit)!)
-    fxContainer.isHidden = true
+  func sendToEditor(imageToEdit:Int){
+    imageToSendToEdit = view.viewWithTag(imageToEdit)! as? UIImageView
+    print(imageToSendToEdit!)
+    edit.tag = imageToSendToEdit
+    edit.modalPresentationStyle = .overFullScreen
+    present(edit, animated: true,completion:nil)
   }
-  @IBAction func applyNoirFilter(_ sender: Any) {
-    logic.applyFilter("CIPhotoEffectNoir",on: collage.imageToEdit(id:imageToEdit)!)
-    fxContainer.isHidden = true
-  }
-  @IBAction func applyProcessFilter(_ sender: Any) {
-    logic.applyFilter("CIPhotoEffectProcess",on: collage.imageToEdit(id:imageToEdit)!)
-    fxContainer.isHidden = true
-  }
-  @IBAction func applyTonalFilter(_ sender: Any) {
-    logic.applyFilter("CIPhotoEffectTonal",on: collage.imageToEdit(id:imageToEdit)!)
-    fxContainer.isHidden = true
-  }
-  
-  @IBAction func applyTransferFilter(_ sender: Any) {
-    logic.applyFilter("CIPhotoEffectTransfer",on: collage.imageToEdit(id:imageToEdit)!)
-    fxContainer.isHidden = true
-  }
-  
 }
-
 // //////////////////// //
 // MARK: EXTENSIONS     //
 // /////////////////// //
@@ -564,3 +584,4 @@ extension UIImagePickerController
     return .all
   }
 }
+

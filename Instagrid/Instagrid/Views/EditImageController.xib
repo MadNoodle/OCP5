@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Delm-Medium.otf">
+            <string>Delm-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditImageController" customModule="Instagrid" customModuleProvider="target">
+            <connections>
+                <outlet property="container" destination="8Ex-ns-ffd" id="xpy-N3-7G9"/>
+                <outlet property="fxContainer" destination="eka-ff-iYe" id="zrI-YW-Yx1"/>
+                <outlet property="imageToEdit" destination="7kZ-fl-MzT" id="2MK-hO-ZqM"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eka-ff-iYe" userLabel="fx_container">
+                    <rect key="frame" x="0.0" y="537" width="414" height="116"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hox-nR-c0Z">
+                            <rect key="frame" x="7" y="8" width="399" height="100"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yoS-2O-Gjs">
+                                    <rect key="frame" x="0.0" y="0.0" width="79.666666666666671" height="100"/>
+                                    <state key="normal" image="icon_fx_instant"/>
+                                    <connections>
+                                        <action selector="applyInstantFilter:" destination="-1" eventType="touchUpInside" id="liG-1O-Xvh"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0A-I9-4VR">
+                                    <rect key="frame" x="79.666666666666671" y="0.0" width="80.000000000000014" height="100"/>
+                                    <state key="normal" image="Noir_icon"/>
+                                    <connections>
+                                        <action selector="applyNoirFilter:" destination="-1" eventType="touchUpInside" id="EED-8Z-lDZ"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGo-04-kpe">
+                                    <rect key="frame" x="159.66666666666666" y="0.0" width="79.666666666666657" height="100"/>
+                                    <state key="normal" image="Process_icon"/>
+                                    <connections>
+                                        <action selector="applyProcessFilter:" destination="-1" eventType="touchUpInside" id="uV0-cJ-dWk"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pY-wL-f9h">
+                                    <rect key="frame" x="239.33333333333337" y="0.0" width="80" height="100"/>
+                                    <state key="normal" image="tonal_icon"/>
+                                    <connections>
+                                        <action selector="applyTonalFilter:" destination="-1" eventType="touchUpInside" id="8Gl-HW-MhF"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D4v-kk-61M">
+                                    <rect key="frame" x="319.33333333333331" y="0.0" width="79.666666666666686" height="100"/>
+                                    <state key="normal" image="transfer_icon"/>
+                                    <connections>
+                                        <action selector="applyTransferFilter:" destination="-1" eventType="touchUpInside" id="N5K-cN-TLA"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.13279107209999999" green="0.40309077500000001" blue="0.60640341040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="hox-nR-c0Z" firstAttribute="top" secondItem="AWn-br-5z6" secondAttribute="top" constant="8" id="2Ig-fh-zxf"/>
+                        <constraint firstItem="hox-nR-c0Z" firstAttribute="centerX" secondItem="eka-ff-iYe" secondAttribute="centerX" id="H55-UR-Qs9"/>
+                        <constraint firstItem="hox-nR-c0Z" firstAttribute="trailing" secondItem="AWn-br-5z6" secondAttribute="trailing" constant="-8" id="TYO-Lo-2uz"/>
+                        <constraint firstItem="hox-nR-c0Z" firstAttribute="centerY" secondItem="eka-ff-iYe" secondAttribute="centerY" id="iDd-t0-z5H"/>
+                        <constraint firstItem="hox-nR-c0Z" firstAttribute="leading" secondItem="AWn-br-5z6" secondAttribute="leading" constant="7" id="pyJ-Wj-dId"/>
+                        <constraint firstItem="AWn-br-5z6" firstAttribute="centerX" secondItem="eka-ff-iYe" secondAttribute="centerX" id="rPC-Nx-7QH"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="AWn-br-5z6"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKN-Fd-WLR">
+                    <rect key="frame" x="376" y="698" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="FLH-RH-kh5"/>
+                        <constraint firstAttribute="width" secondItem="AKN-Fd-WLR" secondAttribute="height" multiplier="1:1" id="G7U-UP-dvD"/>
+                        <constraint firstAttribute="width" constant="30" id="QnH-EW-B5W"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="17"/>
+                    <state key="normal" title="use">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="useImage:" destination="-1" eventType="touchUpInside" id="oJt-6u-Bcf"/>
+                    </connections>
+                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0ef-ie-JSh">
+                    <rect key="frame" x="135" y="20" width="145" height="38"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYc-m2-5gn">
+                            <rect key="frame" x="0.0" y="0.0" width="30" height="38"/>
+                            <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="22"/>
+                            <state key="normal" title="fx">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="filter:" destination="-1" eventType="touchUpInside" id="zgv-gL-lxT"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzC-Yj-YFK">
+                            <rect key="frame" x="50" y="0.0" width="37" height="38"/>
+                            <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="22"/>
+                            <state key="normal" title="img">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="insertImage:" destination="-1" eventType="touchUpInside" id="qlP-q9-gVO"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXp-NX-JPB">
+                            <rect key="frame" x="107" y="0.0" width="38" height="38"/>
+                            <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="22"/>
+                            <state key="normal" title="text">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="insertText:" destination="-1" eventType="touchUpInside" id="1go-Q9-HJ8"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c2t-q1-7dY">
+                    <rect key="frame" x="20" y="698" width="45" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="45" id="K1F-gK-b5A"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="17"/>
+                    <state key="normal" title="cancel">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="goBack:" destination="-1" eventType="touchUpInside" id="ANP-bz-tSD"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ex-ns-ffd">
+                    <rect key="frame" x="11" y="192" width="383" height="266"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7kZ-fl-MzT">
+                            <rect key="frame" x="7" y="0.0" width="368" height="274"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="274" id="wJj-Et-nqd"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="7kZ-fl-MzT" firstAttribute="trailing" secondItem="8Ex-ns-ffd" secondAttribute="trailingMargin" id="0Dv-G0-SVk"/>
+                        <constraint firstItem="7kZ-fl-MzT" firstAttribute="centerY" secondItem="8Ex-ns-ffd" secondAttribute="centerY" id="Mht-fA-qno"/>
+                        <constraint firstItem="7kZ-fl-MzT" firstAttribute="centerY" secondItem="8Ex-ns-ffd" secondAttribute="centerY" constant="-32" id="crZ-J7-ha9"/>
+                        <constraint firstItem="7kZ-fl-MzT" firstAttribute="centerX" secondItem="8Ex-ns-ffd" secondAttribute="centerX" id="sD4-gk-qG7"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.14313615860000001" green="0.14313615860000001" blue="0.14313615860000001" alpha="0.49186643835616439" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="0ef-ie-JSh" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="31N-eU-dAR"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="AKN-Fd-WLR" secondAttribute="bottom" constant="8" id="4SR-Ol-hMP"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AKN-Fd-WLR" secondAttribute="trailing" constant="8" id="4qG-HY-dVc"/>
+                <constraint firstItem="8Ex-ns-ffd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="192" id="4u6-AI-DEH"/>
+                <constraint firstItem="c2t-q1-7dY" firstAttribute="baseline" secondItem="AKN-Fd-WLR" secondAttribute="firstBaseline" id="7Ig-BJ-lwV"/>
+                <constraint firstItem="c2t-q1-7dY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="DjG-qF-umv"/>
+                <constraint firstItem="8Ex-ns-ffd" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailingMargin" id="I56-Sw-piP"/>
+                <constraint firstItem="c2t-q1-7dY" firstAttribute="top" secondItem="eka-ff-iYe" secondAttribute="bottom" constant="45" id="PyU-u0-aNV"/>
+                <constraint firstItem="8Ex-ns-ffd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="11" id="SD7-sh-0cI"/>
+                <constraint firstItem="eka-ff-iYe" firstAttribute="top" secondItem="8Ex-ns-ffd" secondAttribute="bottom" constant="79" id="Use-vq-BNc"/>
+                <constraint firstAttribute="trailing" secondItem="eka-ff-iYe" secondAttribute="trailing" id="YAF-Qj-sMO"/>
+                <constraint firstItem="0ef-ie-JSh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="cFo-Ub-LKj"/>
+                <constraint firstItem="c2t-q1-7dY" firstAttribute="firstBaseline" secondItem="AKN-Fd-WLR" secondAttribute="baseline" id="pTe-Em-ugV"/>
+                <constraint firstItem="eka-ff-iYe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="q6h-UT-LtO"/>
+                <constraint firstItem="c2t-q1-7dY" firstAttribute="top" secondItem="AKN-Fd-WLR" secondAttribute="top" id="urC-Qv-CBJ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="-54" y="-71"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Noir_icon" width="100" height="100"/>
+        <image name="Process_icon" width="100" height="100"/>
+        <image name="icon_fx_instant" width="100" height="100"/>
+        <image name="tonal_icon" width="100" height="100"/>
+        <image name="transfer_icon" width="100" height="100"/>
+    </resources>
+</document>

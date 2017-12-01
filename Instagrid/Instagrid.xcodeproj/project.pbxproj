@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B91306541FD15B86002D8D11 /* EditImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91306521FD15B86002D8D11 /* EditImageController.swift */; };
+		B91306551FD15B86002D8D11 /* EditImageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91306531FD15B86002D8D11 /* EditImageController.xib */; };
+		B91306571FD1C69E002D8D11 /* FxEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91306561FD1C69E002D8D11 /* FxEditor.swift */; };
 		B93260951FC20BC400439530 /* CollageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93260941FC20BC400439530 /* CollageView.swift */; };
 		B97D75991FCD692700EEDC79 /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97D75981FCD692700EEDC79 /* ImageViewCell.swift */; };
 		B97D759B1FCD774300EEDC79 /* WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97D759A1FCD774300EEDC79 /* WebImage.swift */; };
@@ -24,6 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B91306521FD15B86002D8D11 /* EditImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImageController.swift; sourceTree = "<group>"; };
+		B91306531FD15B86002D8D11 /* EditImageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditImageController.xib; sourceTree = "<group>"; };
+		B91306561FD1C69E002D8D11 /* FxEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FxEditor.swift; sourceTree = "<group>"; };
 		B93260941FC20BC400439530 /* CollageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageView.swift; sourceTree = "<group>"; };
 		B97D75981FCD692700EEDC79 /* ImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
 		B97D759A1FCD774300EEDC79 /* WebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImage.swift; sourceTree = "<group>"; };
@@ -59,6 +65,7 @@
 				B9D229011FC389C700F334EC /* Logic.swift */,
 				B97D759A1FCD774300EEDC79 /* WebImage.swift */,
 				B97D759E1FCDFA2A00EEDC79 /* APIClient.swift */,
+				B91306561FD1C69E002D8D11 /* FxEditor.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -109,6 +116,7 @@
 				B97D75981FCD692700EEDC79 /* ImageViewCell.swift */,
 				B9E30F3A1FBF3B4200E8F51B /* ViewController.swift */,
 				B99EF3EB1FCCD747005F41D3 /* CollectionViewController.swift */,
+				B91306521FD15B86002D8D11 /* EditImageController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -116,6 +124,7 @@
 		B9E30F501FBF40C400E8F51B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B91306531FD15B86002D8D11 /* EditImageController.xib */,
 				B99EF3EC1FCCD747005F41D3 /* CollectionViewController.xib */,
 				B9E30F3C1FBF3B4200E8F51B /* Main.storyboard */,
 				B9E30F411FBF3B4200E8F51B /* LaunchScreen.storyboard */,
@@ -187,6 +196,7 @@
 				B9E30F401FBF3B4200E8F51B /* Assets.xcassets in Resources */,
 				B9E30F4D1FBF3DC400E8F51B /* ThirstySoftRegular.otf in Resources */,
 				B9E30F4B1FBF3DBD00E8F51B /* Delm-Medium.otf in Resources */,
+				B91306551FD15B86002D8D11 /* EditImageController.xib in Resources */,
 				B9E30F3E1FBF3B4200E8F51B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -198,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B91306571FD1C69E002D8D11 /* FxEditor.swift in Sources */,
 				B97D759B1FCD774300EEDC79 /* WebImage.swift in Sources */,
 				B9D229021FC389C700F334EC /* Logic.swift in Sources */,
 				B9E30F3B1FBF3B4200E8F51B /* ViewController.swift in Sources */,
@@ -205,6 +216,7 @@
 				B9E30F391FBF3B4200E8F51B /* AppDelegate.swift in Sources */,
 				B93260951FC20BC400439530 /* CollageView.swift in Sources */,
 				B97D75991FCD692700EEDC79 /* ImageViewCell.swift in Sources */,
+				B91306541FD15B86002D8D11 /* EditImageController.swift in Sources */,
 				B99EF3ED1FCCD747005F41D3 /* CollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

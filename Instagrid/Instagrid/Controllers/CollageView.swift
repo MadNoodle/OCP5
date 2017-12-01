@@ -45,7 +45,7 @@ class CollageView: UIView  {
    - parameters:
    * name: one of the member of the Layout enum
    */
-  func getLayoutInfo(name:Layouts) -> [Bool]{
+  internal func getLayoutInfo(name:Layouts) -> [Bool]{
     switch name {
     case .one:
       return [false,true,true,true,false,false]
@@ -69,7 +69,7 @@ class CollageView: UIView  {
    print("this view is not full")}
    ````
    */
-  func isFull() -> Bool{
+  internal func isFull() -> Bool{
     //SquareOne ImageView
     let view1 = self.viewWithTag(1) as! UIImageView
     //SquareTwo ImageView
@@ -98,7 +98,7 @@ class CollageView: UIView  {
     return checkSuccess
   }
   
-  func imageToEdit(id:Int) -> UIImageView?{
+  internal func imageToEdit(id:Int) -> UIImageView?{
     let view = self.viewWithTag(id) as! UIImageView
     return view
   }

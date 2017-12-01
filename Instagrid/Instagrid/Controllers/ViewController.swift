@@ -191,7 +191,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   }
   
   /// Populates Layout View with views of the selected type of collage layout
-  func showLayout(id:Int){
+  private func showLayout(id:Int){
     let displays = collageView.getLayoutInfo(name: CollageView.Layouts(rawValue: id)!)
     rectTop.isHidden = displays[0]
     rectBot.isHidden = displays[1]
@@ -358,7 +358,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   /**
    Method to send images fetched from the web in the rigth UIImageView
    */
-  func loadImageFromWeb() {
+  private func loadImageFromWeb() {
     if let image = imageFromCollection
     {
       switch imagePicked {

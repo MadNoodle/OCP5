@@ -16,9 +16,9 @@ import UIKit
 class CollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
   
   let Api = APIClient()
-  var imageResults:[UIImage] = []
-  let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
-  var loading = UILabel()
+  private var imageResults:[UIImage] = []
+  private let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+  private var loading = UILabel()
   var webImage:UIImage? = UIImage()
   var imagePicked = 0
   
@@ -69,7 +69,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
    - textField for Input
    - Search Button
    */
-  func setupNavbar(){
+  private func setupNavbar(){
     
     //Properties
     let margin : CGFloat = 8
@@ -177,7 +177,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
   /**
    Show loading text
    */
-  func showLoading(){
+  private func showLoading(){
     // Instantiate the label
     loading = UILabel(frame: CGRect(x: 0, y: view.frame.height / 3 , width: view.frame.width, height: 40))
     // set the text
@@ -194,14 +194,14 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
   /**
   Remove Loading Text
    */
-  func hideLoading(){
+  private func hideLoading(){
     loading.removeFromSuperview()
   }
   
   /**
    Instantiate, configure and show UIActivityIndicator
    */
-  func showSpinner(){
+  private func showSpinner(){
     
     // Position Activity Indicator in the center of the main view
     myActivityIndicator.center = view.center
@@ -218,7 +218,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
   /**
    Kill UIActivityIndicator
    */
-  func hideSpinner(){
+  private func hideSpinner(){
     myActivityIndicator.removeFromSuperview()
   }
 }

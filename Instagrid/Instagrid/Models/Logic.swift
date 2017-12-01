@@ -27,7 +27,7 @@ import CoreImage
 class Logic {
   /// This function authorize the user to import images from the library
   
-  func convertUiviewToImage(from view:CollageView) -> UIImage?{
+  internal func convertUiviewToImage(from view:CollageView) -> UIImage?{
     
     // if images of the layout all contains an UIImage
     // Define the zone we want capture
@@ -43,7 +43,7 @@ class Logic {
    Function to check if an UIImageView has an Image Inside
    - returns: Bool
    */
-  func checkIfImageLoaded(view:UIImageView) -> Bool{
+  internal func checkIfImageLoaded(view:UIImageView) -> Bool{
     var imageLoaded = false
     if view.image != nil{
       print("il y a une image")
@@ -59,7 +59,7 @@ class Logic {
    - important: the 3 parameters are UIImageViews not UIImages nor UIViews
    - returns: Bool
    */
-  func checkIfFullThreeViewsLayout(_ view1: UIImageView, _ view2: UIImageView, _ view3: UIImageView) -> Bool {
+  internal func checkIfFullThreeViewsLayout(_ view1: UIImageView, _ view2: UIImageView, _ view3: UIImageView) -> Bool {
     var checkSuccess = false
     if view1.image != nil && view2.image != nil && view3.image != nil{
       checkSuccess = true
@@ -74,7 +74,7 @@ class Logic {
    - important: the 4 parameters are UIImageViews not UIImages nor UIViews
    - returns: Bool
    */
-  func checkIfFullFourViewsLayout(_ view1: UIImageView, _ view2: UIImageView, _ view3: UIImageView, _ view4: UIImageView) -> Bool {
+  internal func checkIfFullFourViewsLayout(_ view1: UIImageView, _ view2: UIImageView, _ view3: UIImageView, _ view4: UIImageView) -> Bool {
     var checkSuccess = false
     if view1.image != nil && view2.image != nil && view3.image != nil && view4.image != nil {
       checkSuccess = true
@@ -88,7 +88,7 @@ class Logic {
    Function to check the orientation
    - returns: Bool
    */
-  func checkOrientation() -> Bool {
+  internal func checkOrientation() -> Bool {
     var landscapeOrientation = false
     if UIDevice.current.orientation.isLandscape {
       landscapeOrientation = true
@@ -109,7 +109,7 @@ class Logic {
    CIPhotoEffectTonal
    */
   
-  func applyFilter(_ filter:String, on visual:UIImageView ){
+  internal func applyFilter(_ filter:String, on visual:UIImageView ){
     
     //get height and width of original image
     let initWidth = visual.image?.size.width

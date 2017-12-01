@@ -43,7 +43,7 @@ class ImageViewCell: UICollectionViewCell {
   /**
    This function create a subView of type UIImageView and applies constraints to it
    */
-  func setupViews(){
+  private func setupViews(){
     // adding UIImage View in Cell
     addSubview(previewImage)
     
@@ -58,7 +58,7 @@ class ImageViewCell: UICollectionViewCell {
   /**
    assign an image to the cell
    */
-  func displayContent(image: UIImage) {
+  internal func displayContent(image: UIImage) {
     previewImage.image = image
   }
   

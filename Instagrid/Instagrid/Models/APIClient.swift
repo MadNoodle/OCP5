@@ -39,7 +39,7 @@ class APIClient {
    - returns: [UIImage]
    
    */
-  func getImagesAPI(query: String, completionHandler: @escaping (_ results: [UIImage]) -> ())  {
+  internal func getImagesAPI(query: String, completionHandler: @escaping (_ results: [UIImage]) -> ())  {
     
     let url = baseUrl + query + searchOptions + numberOfResults
     let request = URLRequest(url: URL(string: url)!)
@@ -82,7 +82,7 @@ class APIClient {
    - returns:
    UIImage
    */
-  func convertUrlToImage(urlString: WebImage) -> UIImage {
+  private func convertUrlToImage(urlString: WebImage) -> UIImage {
     var image : UIImage?
     if let url = URL(string: urlString.searchImage!){
       do{

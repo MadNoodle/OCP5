@@ -18,6 +18,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
   let Api = APIClient()
   var imageResults:[UIImage] = []
   let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+  var loading = UILabel()
   var webImage:UIImage? = UIImage()
   var imagePicked = 0
   
@@ -104,7 +105,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     // set title
     search.setTitle("Search", for: .normal)
     // Set title font
-    cancel.titleLabel?.font = UIFont(name: "Delm-medium", size:20)
+    search.titleLabel?.font = UIFont(name: "Delm-medium", size:20)
     //Set title Color RGBA
     search.setTitleColor(UIColor(red: 16/255.0, green: 102/255.0, blue: 152/255.0, alpha: 1.0), for: .normal)
     //Add action
@@ -148,6 +149,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
       self.imageResults = []
       //Display spinner while fetching results
       self.showSpinner()
+      self.showLoading()
       //Call the APIClient with the search parameters
       Api.getImagesAPI(query: query) {(results:[UIImage]) in
         
@@ -160,6 +162,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
             self.collectionView?.reloadData()
             //Hide spinner
             self.hideSpinner()
+            self.hideLoading()
           }
         }
       }
@@ -171,6 +174,29 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
   // MARK: LOADING SPINNER //
   // ////////////////// //
   
+  /**
+   Show loading text
+   */
+  func showLoading(){
+    // Instantiate the label
+    loading = UILabel(frame: CGRect(x: 0, y: view.frame.height / 3 , width: view.frame.width, height: 40))
+    // set the text
+    loading.text = "Searching "
+    // set the alignment
+    loading.textAlignment = .center
+    //set the font
+    loading.font = UIFont(name: "Delm-medium", size: 40)
+    //set text color
+    loading.textColor = UIColor.white
+
+    view.addSubview(loading)
+  }
+  /**
+  Remove Loading Text
+   */
+  func hideLoading(){
+    loading.removeFromSuperview()
+  }
   
   /**
    Instantiate, configure and show UIActivityIndicator

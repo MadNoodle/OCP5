@@ -14,6 +14,9 @@
 		B97D75991FCD692700EEDC79 /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97D75981FCD692700EEDC79 /* ImageViewCell.swift */; };
 		B97D759B1FCD774300EEDC79 /* WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97D759A1FCD774300EEDC79 /* WebImage.swift */; };
 		B97D759F1FCDFA2A00EEDC79 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97D759E1FCDFA2A00EEDC79 /* APIClient.swift */; };
+		B9977BA61FD2C22F0096CBC4 /* MarkerFelt.ttc in Resources */ = {isa = PBXBuildFile; fileRef = B9977BA51FD2C22F0096CBC4 /* MarkerFelt.ttc */; };
+		B9977BB41FD312C80096CBC4 /* EmojiCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9977BB31FD312C80096CBC4 /* EmojiCollectionViewController.swift */; };
+		B9977BB61FD313970096CBC4 /* EmojiViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9977BB51FD313970096CBC4 /* EmojiViewCell.swift */; };
 		B99EF3ED1FCCD747005F41D3 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99EF3EB1FCCD747005F41D3 /* CollectionViewController.swift */; };
 		B99EF3EE1FCCD747005F41D3 /* CollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B99EF3EC1FCCD747005F41D3 /* CollectionViewController.xib */; };
 		B9D229021FC389C700F334EC /* Logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D229011FC389C700F334EC /* Logic.swift */; };
@@ -34,6 +37,9 @@
 		B97D75981FCD692700EEDC79 /* ImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
 		B97D759A1FCD774300EEDC79 /* WebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImage.swift; sourceTree = "<group>"; };
 		B97D759E1FCDFA2A00EEDC79 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		B9977BA51FD2C22F0096CBC4 /* MarkerFelt.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = MarkerFelt.ttc; sourceTree = "<group>"; };
+		B9977BB31FD312C80096CBC4 /* EmojiCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCollectionViewController.swift; sourceTree = "<group>"; };
+		B9977BB51FD313970096CBC4 /* EmojiViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiViewCell.swift; sourceTree = "<group>"; };
 		B99EF3EB1FCCD747005F41D3 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		B99EF3EC1FCCD747005F41D3 /* CollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewController.xib; sourceTree = "<group>"; };
 		B9D229011FC389C700F334EC /* Logic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logic.swift; sourceTree = "<group>"; };
@@ -59,11 +65,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B91306581FD29769002D8D11 /* subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				B97D759A1FCD774300EEDC79 /* WebImage.swift */,
+				B93260941FC20BC400439530 /* CollageView.swift */,
+				B97D75981FCD692700EEDC79 /* ImageViewCell.swift */,
+			);
+			path = subclasses;
+			sourceTree = "<group>";
+		};
 		B93260931FC20BB100439530 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				B9D229011FC389C700F334EC /* Logic.swift */,
-				B97D759A1FCD774300EEDC79 /* WebImage.swift */,
 				B97D759E1FCDFA2A00EEDC79 /* APIClient.swift */,
 				B91306561FD1C69E002D8D11 /* FxEditor.swift */,
 			);
@@ -89,6 +104,7 @@
 		B9E30F371FBF3B4200E8F51B /* Instagrid */ = {
 			isa = PBXGroup;
 			children = (
+				B91306581FD29769002D8D11 /* subclasses */,
 				B93260931FC20BB100439530 /* Models */,
 				B9E30F4E1FBF409800E8F51B /* Supporting_files */,
 				B9E30F4F1FBF40B900E8F51B /* Controllers */,
@@ -102,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				B9E30F3F1FBF3B4200E8F51B /* Assets.xcassets */,
+				B9977BA51FD2C22F0096CBC4 /* MarkerFelt.ttc */,
 				B9E30F4C1FBF3DC400E8F51B /* ThirstySoftRegular.otf */,
 				B9E30F381FBF3B4200E8F51B /* AppDelegate.swift */,
 				B9E30F4A1FBF3DBD00E8F51B /* Delm-Medium.otf */,
@@ -112,11 +129,11 @@
 		B9E30F4F1FBF40B900E8F51B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B93260941FC20BC400439530 /* CollageView.swift */,
-				B97D75981FCD692700EEDC79 /* ImageViewCell.swift */,
 				B9E30F3A1FBF3B4200E8F51B /* ViewController.swift */,
 				B99EF3EB1FCCD747005F41D3 /* CollectionViewController.swift */,
 				B91306521FD15B86002D8D11 /* EditImageController.swift */,
+				B9977BB31FD312C80096CBC4 /* EmojiCollectionViewController.swift */,
+				B9977BB51FD313970096CBC4 /* EmojiViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -195,6 +212,7 @@
 				B9E30F431FBF3B4200E8F51B /* LaunchScreen.storyboard in Resources */,
 				B9E30F401FBF3B4200E8F51B /* Assets.xcassets in Resources */,
 				B9E30F4D1FBF3DC400E8F51B /* ThirstySoftRegular.otf in Resources */,
+				B9977BA61FD2C22F0096CBC4 /* MarkerFelt.ttc in Resources */,
 				B9E30F4B1FBF3DBD00E8F51B /* Delm-Medium.otf in Resources */,
 				B91306551FD15B86002D8D11 /* EditImageController.xib in Resources */,
 				B9E30F3E1FBF3B4200E8F51B /* Main.storyboard in Resources */,
@@ -209,12 +227,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B91306571FD1C69E002D8D11 /* FxEditor.swift in Sources */,
+				B9977BB61FD313970096CBC4 /* EmojiViewCell.swift in Sources */,
 				B97D759B1FCD774300EEDC79 /* WebImage.swift in Sources */,
 				B9D229021FC389C700F334EC /* Logic.swift in Sources */,
 				B9E30F3B1FBF3B4200E8F51B /* ViewController.swift in Sources */,
 				B97D759F1FCDFA2A00EEDC79 /* APIClient.swift in Sources */,
 				B9E30F391FBF3B4200E8F51B /* AppDelegate.swift in Sources */,
 				B93260951FC20BC400439530 /* CollageView.swift in Sources */,
+				B9977BB41FD312C80096CBC4 /* EmojiCollectionViewController.swift in Sources */,
 				B97D75991FCD692700EEDC79 /* ImageViewCell.swift in Sources */,
 				B91306541FD15B86002D8D11 /* EditImageController.swift in Sources */,
 				B99EF3ED1FCCD747005F41D3 /* CollectionViewController.swift in Sources */,

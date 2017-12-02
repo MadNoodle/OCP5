@@ -48,6 +48,7 @@
 	<array>
 		<string>Delm-Medium.otf</string>
 		<string>ThirstySoftRegular.otf</string>
+		<string>MarkerFelt.ttc</string>
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>donne tes photos</string>

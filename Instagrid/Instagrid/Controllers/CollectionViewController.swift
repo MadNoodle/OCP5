@@ -21,6 +21,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
   private var loading = UILabel()
   var webImage:UIImage? = UIImage()
   var imagePicked = 0
+  var delegate : DataExchangeDelegate? = nil
   
   
   // /////////////////// //
@@ -54,8 +55,13 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
   }
   // define actions when cell is tapped
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    if delegate != nil {
+      let image = imageResults[indexPath.row]
+      delegate?.userSelectedImage(image: image)
+    }
     //Store cell image in webImage that will be passed in Main VC
-    webImage = imageResults[indexPath.row]
+   // webImage = imageResults[indexPath.row]
     dismiss(animated: true, completion: nil)
     
   }

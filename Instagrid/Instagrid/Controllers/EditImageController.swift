@@ -9,40 +9,43 @@
 import UIKit
 
 class EditImageController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+ 
   //Main VC
   let homeVc = UIViewController(nibName: "ViewController", bundle: nil)
+  // Load Model
   let fxEditor = FxEditor()
-  let logic = Logic()
+  
   //Var to store the image from HomeVC
   var tag : UIImageView?
-  var finalImage = UIImage()
+  //Init Gestures
   var panGesture = UIPanGestureRecognizer()
   var panGestureImg = UIPanGestureRecognizer()
   var pinch = UIPinchGestureRecognizer()
   var pinchImg = UIPinchGestureRecognizer()
   
+  //Initialize Delegate for DataExhange Protocol
+  var delegate : DataExchangeDelegate? = nil
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    // Instantiate Pan gestures for text and images
     panGesture = UIPanGestureRecognizer(target: self, action: #selector(viewDragged))
     panGestureImg = UIPanGestureRecognizer(target: self, action: #selector(imgDragged))
-    pinch = UIPinchGestureRecognizer(target: self, action: #selector(scale))
-    pinchImg = UIPinchGestureRecognizer(target: self, action: #selector(scaleImg))
-    
-    self.view.addGestureRecognizer(pinch)
-    self.view.addGestureRecognizer(pinchImg)
     self.textInput.addGestureRecognizer(panGesture)
     self.emoji.addGestureRecognizer(panGestureImg)
+    
+    // Instantiate Pinch gestures for text and images
+    pinch = UIPinchGestureRecognizer(target: self, action: #selector(scale))
+    pinchImg = UIPinchGestureRecognizer(target: self, action: #selector(scaleImg))
+    self.view.addGestureRecognizer(pinch)
+    self.view.addGestureRecognizer(pinchImg)
+    
+    // Gestures options
     self.emoji.isUserInteractionEnabled = true
     self.textInput.isUserInteractionEnabled = true
     self.view.isMultipleTouchEnabled = true
-    
-    
-    
   }
-  
-  
   
   
   //Load image after all the views had been initialize
@@ -65,63 +68,96 @@ class EditImageController: UIViewController, UICollectionViewDataSource, UIColle
   
   // Sends back the image to main view 
   @IBAction func useImage(_ sender: Any) {
-    finalImage = fxEditor.convertUiviewToImage(from: self.container )!
-    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refresh"), object: nil)
+    if delegate != nil {
+      let image = fxEditor.convertUiviewToImage(from: self.container )!
+      delegate?.userSelectedImage(image: image)
+    }
     dismiss(animated: true, completion: nil)
   }
-  
-  
   
   // ///////////////////////////// //
   // MARK: GESTURE CALLBACKS      //
   // ///////////////////////////// //
   
-  
+  // Container View that will be captured, saved and sent back to Main Vc
   @IBOutlet weak var container: UIView!
   
+  /**
+   Callback function for PanGesture on textField
+   allow the user to move the text in the frame of the container
+   */
   @objc func viewDragged(){
-    
+    //Grab the position of the touch and store it
     let newOrigin = panGesture.location(in: self.container)
-    if newOrigin.x >= textInput.frame.width / 2 && newOrigin.y >= textInput.frame.height / 2 && newOrigin.x <= container.frame.width - textInput.frame.width / 2 && newOrigin.y <= container.frame.height - textInput.frame.height / 2{
+    
+    // Clamp the textField movement in the container  frame
+    if newOrigin.x >= textInput.frame.width / 2 && newOrigin.y >= textInput.frame.height / 2 && newOrigin.x <= container.frame.width - textInput.frame.width / 2 && newOrigin.y <= container.frame.height - textInput.frame.height / 2 {
+      
+      // update the coordinates of the textField
       let newFrame = CGRect(x: newOrigin.x - (textInput.frame.width / 2), y: newOrigin.y - (textInput.frame.height / 2), width: textInput.frame.width, height: textInput.frame.height)
       textInput.frame = newFrame
     }
-    else {print("Out of bounds")}
+    else {
+      print("Out of bounds")
+    }
   }
   
+  /**
+   Callback function for PanGesture on Images
+   allow the user to move the text in the frame of the container
+   */
   @objc func imgDragged(){
-    
+    //Grab the position of the touch and store it
     let newOrigin = panGestureImg.location(in: self.container)
+    
+    // Clamp the textField movement in the container  frame
     if newOrigin.x >= emoji.frame.width / 2 && newOrigin.y >= emoji.frame.height / 2 && newOrigin.x <= container.frame.width - emoji.frame.width / 2 && newOrigin.y <= container.frame.height - emoji.frame.height / 2{
+      
+      // update the coordinates of the textField
       let newFrame = CGRect(x: newOrigin.x - (emoji.frame.width / 2), y: newOrigin.y - (emoji.frame.height / 2), width: emoji.frame.width, height: emoji.frame.height)
       emoji.frame = newFrame
-      
     }
     else {
       print("Out of bounds")
-      
     }
   }
   
+  /**
+   Callback function for PinchGesture on textField.
+   It handles the scaling of font and frame
+   */
   @objc func scale(sender:UIPinchGestureRecognizer){
-    print(pinch.scale)
-    var pointSize = textInput.font?.pointSize
-    pointSize = ((sender.velocity > 0) ? 1 : -1) * 1 + pointSize!;
-    textInput.font = UIFont( name: (textInput.font?.fontName)!, size: (pointSize)!)
     
+    // Size of the font
+    var pointSize = textInput.font?.pointSize
+    // set the factor to increase or decrease the scale of font
+    pointSize = ((sender.velocity > 0) ? 1 : -1) * 1 + pointSize!;
+    //Set the font size
+    textInput.font = UIFont( name: (textInput.font?.fontName)!, size: (pointSize)!)
+    // set the new frame
     let newFrame = CGRect(x: textInput.frame.origin.x , y: textInput.frame.origin.y, width: textInput.frame.width * pinch.scale, height: textInput.frame.height * pinch.scale)
     
     textInput.sizeToFit()
+    // allocate new frame
     textInput.frame = newFrame
+    // re Display the frame if needed
     textInput.setNeedsDisplay()
+    // Reset the scale to One if the user stop pincinhing and pinch again
     pinch.scale = 1
   }
   
+  /**
+   Callback function for PinchGesture on emoji.
+   It handles the scaling of font and frame
+   */
   @objc func scaleImg(sender:UIPinchGestureRecognizer){
-    print(pinchImg.scale)
+    // set the new frame
     let newFrame = CGRect(x: emoji.frame.origin.x , y: emoji.frame.origin.y, width: emoji.frame.width * pinchImg.scale, height: emoji.frame.height * pinchImg.scale)
+    // allocate new frame
     emoji.frame = newFrame
+    // re Display the frame if needed
     emoji.setNeedsDisplay()
+     // Reset the scale to One if the user stop pincinhing and pinch again
     pinchImg.scale = 1
   }
   
@@ -167,12 +203,17 @@ class EditImageController: UIViewController, UICollectionViewDataSource, UIColle
     
   }
   
+  //Create a TextField Object
   var textInput: UITextField = {
+    // Init Frame
     let textInput = UITextField(frame: CGRect(x: 100, y: 100, width: 500, height: 100))
+    // Allow interaction and gestures
     textInput.isUserInteractionEnabled = true
+    //set placeholder text & options
     textInput.placeholder = "Tap here to enter your text"
     textInput.textAlignment = .center
     textInput.placeHolderColor = UIColor.white
+    //set text options
     textInput.font = UIFont(name:"delm-medium", size: 14)
     textInput.textColor = UIColor.white
     textInput.sizeToFit()
@@ -224,7 +265,7 @@ class EditImageController: UIViewController, UICollectionViewDataSource, UIColle
   }
   
   // ///////////////////////////// //
-  // MARK: ADDING IMAGES     //
+  // MARK: ADDING IMAGES            //
   // ///////////////////////////// //
   
   @IBAction func insertImage(_ sender: Any) {
@@ -236,20 +277,35 @@ class EditImageController: UIViewController, UICollectionViewDataSource, UIColle
   ]
   
   
-  // initailize collecctionView
+/**
+   This function instantiate the Emoji Collection View
+   - important: Needs UICollectionViewDelegate & UICollectionViewDatasource
+   - note: Cell is handled in CollectionViewCell.swift
+ */
   func setupCollection(){
+    
+    //Instantiate the Flow Layout
     let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+    
+    //set cell size
     layout.itemSize = CGSize(width: 50, height: 50)
+    
+    //set scroll direction
     layout.scrollDirection = .horizontal
     
+    //Set the frame of the collectionView
     let newFrame = CGRect(x: 0, y: self.view.frame.height - 200, width: self.view.frame.width, height: 200)
     let myCollectionView:UICollectionView = UICollectionView(frame: newFrame, collectionViewLayout: layout)
+    
+    // set the delegates for Collection
     myCollectionView.dataSource = self
     myCollectionView.delegate = self
+    
+    // register the custom
     myCollectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "MyCell")
     myCollectionView.backgroundColor = UIColor.hoverBlue
     
-    
+    //add the collection to the superview
     self.view.addSubview(myCollectionView)
   }
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -265,7 +321,6 @@ class EditImageController: UIViewController, UICollectionViewDataSource, UIColle
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     //Store cell image in webImage that will be passed in Main VC
-    print("tape")
     emoji.image = UIImage(named:items[indexPath.row])
     container.addSubview(emoji)
     collectionView.removeFromSuperview()
@@ -276,7 +331,10 @@ class EditImageController: UIViewController, UICollectionViewDataSource, UIColle
     emoji.isUserInteractionEnabled = true
     return emoji
   }()
+  
+
 }
+
 
 
 

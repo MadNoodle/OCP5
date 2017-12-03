@@ -9,7 +9,16 @@
 import Foundation
 import UIKit
 
+
+/**
+ All class extensions needed for the program
+ */
+
+
+/// Add one property and one method to UITextField
 extension UITextField{
+  
+  //Color of placeholder text
   @IBInspectable var placeHolderColor: UIColor? {
     get {
       return self.placeHolderColor
@@ -18,16 +27,18 @@ extension UITextField{
       self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSAttributedStringKey.foregroundColor: newValue!])
     }
   }
+  
+  // Scale font method
   func scaleFontSize (scale: CGFloat) {
     
     self.font =  UIFont(name: (self.font?.fontName)!, size: (self.font?.pointSize)! * scale)!
   }
 }
 
+/// This extension create colors from RGB using the 255 index
 extension UIColor {
   // Setup custom colours we can use throughout the app using hex values
   static let hoverBlue = UIColor(red: 16, green: 102, blue: 152, a: 0.7)
-  
   
   // Create a UIColor from RGB
   convenience init(red: Int, green: Int, blue: Int, a: CGFloat ) {

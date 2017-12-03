@@ -8,6 +8,13 @@
 
 import UIKit
 
+
+/// Enum for the 3 initial Layouts
+enum Layouts:Int{
+  case one = 1
+  case two = 2
+  case three = 3
+}
 /**
  this class contains the informations on different layouts for collage
  Methods:
@@ -18,12 +25,7 @@ import UIKit
  */
 class CollageView: UIView  {
   
-  /// Enum for the 3 initial Layouts
-  enum Layouts:Int{
-    case one = 1
-    case two = 2
-    case three = 3
-  }
+ 
   
   // ////////////////////////// //
   // MARK: PROPERTIES& VARIABLES //

@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverPresentationControllerDelegate{
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverPresentationControllerDelegate, DataExchangeDelegate{
   
   // ///////////////////////////// //
   // MARK: VARIABLE DECLARATIONS
@@ -17,11 +17,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   // Collage View
   @IBOutlet weak var collage: CollageView!
-  
-  // ///////////////////////////// //
-  // MARK: LOGIC INITIALIZATION //
-  // ///////////////////////////// //
-  
   //Collage View
   let collageView = CollageView()
   //Model
@@ -31,80 +26,43 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   // Test Variables to fulfill conditionnal test in VC
   var orientation = false
   var imagePicked = 0
-  var imageToEdit = 0
-  var source = ""
-  //Properties to fetch Data from CollectionView
+  
+  //ViewControllers
   let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: nil)
   let edit = EditImageController(nibName: "EditImageController", bundle: nil)
-  
-  //Receiver for image selected from web search
-  var imageFromCollection:UIImage!
-  
-  //Receiver for image edited in fx editor
-  var imageReceivedFromFx:UIImage!
-  
   
   
   // /////////////////// //
   // MARK: VC LIFECYCLE //
   // ////////////////// //
   
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    // Initialize delegations
+    vc2.delegate = self
+    edit.delegate = self
+    image.delegate = self
+    image.allowsEditing = false
     // Init UI with layout one & button one higlighted
-    showLayout(id:1)
-    collage.type = .one
-    buttonOneHover.isHidden = false
-    buttonTwoHover.isHidden = true
-    buttonThreeHover.isHidden = true
-    
+    displayLayout(id: 1, type: .one, false, true, true)
     
     // InitSwipe Gesture as soon as the app launches
-    
+    //UpSwipe
     let upSwipe = UISwipeGestureRecognizer(target:self, action:#selector(DragCollage(swipe :)))
     upSwipe.direction = UISwipeGestureRecognizerDirection.up
-    
+    self.view.addGestureRecognizer(upSwipe)
+    //LeftSwipe
     let leftSwipe = UISwipeGestureRecognizer(target:self, action:#selector(DragCollage(swipe :)))
     leftSwipe.direction = UISwipeGestureRecognizerDirection.left
-    
     self.view.addGestureRecognizer(leftSwipe)
-    self.view.addGestureRecognizer(upSwipe)
     
+    //ForceLandscape for UIActivity Controller in we are in landsccapemode
     forceLandscape()
-    //Initialize the Notification observer to receive changes after dismissing fxEditor
-    NotificationCenter.default.addObserver(self, selector: #selector(refreshList(notification:)), name:NSNotification.Name(rawValue: "refresh"), object: nil)
-  }
-  
-  // CallBack 
-  @objc func refreshList(notification: NSNotification){
-    imageReceivedFromFx = edit.finalImage
-    self.loadImageFromWeb(fromImage: imageReceivedFromFx, to: imageToEdit)
   }
   
   
-  override func viewWillAppear(_ animated: Bool) {
-    print("maintenant")
-    // Fetch image selected from CollectionView "VC2"
-    imageFromCollection = vc2.webImage
-    // imageReceivedFromFx = edit.finalImage
-    imageReceivedFromFx = edit.finalImage
-    
-    //Check the source of the image and populate the UIImageViews
-    if source == "web"{
-      self.loadImageFromWeb(fromImage: imageFromCollection, to: imagePicked)
-    } else {
-      print("internal sources")
-    }
-    //Purge imageFromColelction
-    imageFromCollection = UIImage()
-  }
-  
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    print("apres")
-  }
+
   
   // /////////////////////////////// //
   // MARK: DEVICE ADAPTATION METHODS //
@@ -127,11 +85,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
       }
     }
   }
-  
+
   /**
    Function to check if the current device orientation and forces the UIActivityViewController to be displayed in landscape if landscape
    */
-  private func forceLandscape() {
+    private func forceLandscape() {
     orientation = logic.checkOrientation()
     // Check orientation to make the UI react according to it
     if  orientation {
@@ -181,43 +139,50 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   /// Shows layout One and highligth button One
   @IBAction func selectLayoutOne() {
-    showLayout(id:1)
-    collage.type = .one
-    buttonOneHover.isHidden = false
-    buttonTwoHover.isHidden = true
-    buttonThreeHover.isHidden = true
+    displayLayout(id: 1, type: .one, false, true, true)
   }
   
   /// Shows layout Two and highligth button Two
   @IBAction func selectLayoutTwo() {
-    showLayout(id:2)
-    collage.type = .two
-    buttonOneHover.isHidden = true
-    buttonTwoHover.isHidden = false
-    buttonThreeHover.isHidden = true
+    displayLayout(id: 2, type: .two, true, false, true)
   }
   
   /// Shows layout Three and highligth button Three
   @IBAction func selectLayoutthree() {
-    showLayout(id:3)
-    collage.type = .three
-    buttonOneHover.isHidden = true
-    buttonTwoHover.isHidden = true
-    buttonThreeHover.isHidden = false
+    displayLayout(id: 3, type: .three, true, true, false)
   }
   
-  /// Populates Layout View with views of the selected type of collage layout
-  private func showLayout(id:Int){
-    let displays = collageView.getLayoutInfo(name: CollageView.Layouts(rawValue: id)!)
+  /**
+   Populates Layout View with views of the selected type of collage layout
+   - parameters:
+     - id : Int number index of the layout
+     - type: reference to Layouts enum
+     - one: Bool
+     - two: Bool
+     - three: Bool
+ */
+  private func displayLayout(id:Int, type: Layouts,_ one:Bool, _ two: Bool, _ three: Bool){
+    let displays = collageView.getLayoutInfo(name: Layouts(rawValue: id)!)
     rectTop.isHidden = displays[0]
     rectBot.isHidden = displays[1]
     squareOne.isHidden = displays[2]
     squareTwo.isHidden = displays[3]
     squareThree.isHidden = displays[4]
     squareFour.isHidden = displays[5]
-    
+    collage.type = type
+    buttonOneHover.isHidden = one
+    buttonTwoHover.isHidden = two
+    buttonThreeHover.isHidden = three
   }
   
+  // //////////////////////////////////////////////////// //
+  // MARK: DELEGATION METHODS TO COMMUNICATE BETWEEN VCs  //
+  // /////////////////////////////////////////////////// //
+  
+  //Receiver for image selected from web search
+  func userSelectedImage(image: UIImage) {
+    loadImageFromWeb(fromImage: image, to: imagePicked)
+  }
   // ////////////////////// //
   // MARK: IMPORTING IMAGES //
   // ////////////////////// //
@@ -270,22 +235,17 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
    */
   private func popImageSource(){
     
-    image.delegate = self
-    image.allowsEditing = false
-    
     // Initialize UIAlert controller
     let alert = UIAlertController(title: "Choose an image", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
     
     // add import from library
     alert.addAction(UIAlertAction(title: "Pick from Library", style: .default, handler: { _ in
-      self.source = "lib"
       self.ImportImageFromAlbum(self.image)
       self.present(self.image, animated: true)
     }))
     
     // add take pictures
     alert.addAction(UIAlertAction(title: "Take a photo", style: .default, handler: { _ in
-      self.source = "cam"
       self.takePicture(self.image)
       self.present(self.image, animated: true)
     }))
@@ -293,14 +253,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     // add search on Pixabay
     alert.addAction(UIAlertAction(title: "Search on Pixabay", style: .default, handler: { _ in
       // Initialize second view controller to communicate with it
-      self.source = "web"
       self.vc2.imagePicked = self.imagePicked
       self.present(self.vc2, animated: true)
     }))
     
     // add cancel
     alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
-    IpadIphoneAdaptation(controller: alert)
+    
+    //present as a popover if the Device is Ipad
+    self.IpadIphoneAdaptation(controller: alert)
   }
   
   /**
@@ -341,29 +302,17 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     {
       switch imagePicked {
       case 1:
-        image1.image = image
-        self.image1.isHidden = false
-        fxButton1.isHidden = false
+        LoadImage(image, in: image1, hide: fxButton1)
       case 2:
-        image2.image = image
-        self.image2.isHidden = false
-        fxButton2.isHidden = false
+        LoadImage(image, in: image2, hide: fxButton2)
       case 3:
-        image3.image = image
-        self.image3.isHidden = false
-        fxButton3.isHidden = false
+        LoadImage(image, in: image3, hide: fxButton3)
       case 4:
-        image4.image = image
-        self.image4.isHidden = false
-        fxButton4.isHidden = false
+        LoadImage(image, in: image4, hide: fxButton4)
       case 5:
-        image5.image = image
-        self.image5.isHidden = false
-        fxButton5.isHidden = false
+        LoadImage(image, in: image5, hide: fxButton5)
       case 6:
-        image6.image = image
-        self.image6.isHidden = false
-        fxButton6.isHidden = false
+        LoadImage(image, in: image6, hide: fxButton6)
       default:
         print("Erreur de chargement d'image")
       }
@@ -379,36 +328,35 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     {
       switch target {
       case 1:
-        image1.image = image
-        self.image1.isHidden = false
-        fxButton1.isHidden = false
+        LoadImage(image, in: image1, hide: fxButton1)
       case 2:
-        image2.image = image
-        self.image2.isHidden = false
-        fxButton2.isHidden = false
+       LoadImage(image, in: image2, hide: fxButton2)
       case 3:
-        image3.image = image
-        self.image3.isHidden = false
-        fxButton3.isHidden = false
+       LoadImage(image, in: image3, hide: fxButton3)
       case 4:
-        image4.image = image
-        self.image4.isHidden = false
-        fxButton4.isHidden = false
+       LoadImage(image, in: image4, hide: fxButton4)
       case 5:
-        image5.image = image
-        self.image5.isHidden = false
-        fxButton5.isHidden = false
+       LoadImage(image, in: image5, hide: fxButton5)
       case 6:
-        image6.image = image
-        self.image6.isHidden = false
-        fxButton6.isHidden = false
+        LoadImage(image, in: image6, hide: fxButton6)
       default:
         print("Erreur de chargement d'image")
       }
-      
     }
   }
   
+  /**
+   function to populate an image container with an image from source
+   - parameters:
+       - picture: UIImage to load
+       - container: UIImageView where image have to be loaded
+       - button: buttonto hide
+  */
+  func LoadImage(_ picture: UIImage, in container: UIImageView, hide button:UIButton){
+    container.image = picture
+    container.isHidden = false
+    button.isHidden = false
+  }
   
   // ///////////////////////////// //
   // MARK: EXPORTING COLLAGE       //
@@ -460,7 +408,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
   }
   
-  
   /**
    Animate the Collage View
    - duration : 0.3
@@ -474,26 +421,25 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   /// Reset the collage to empty outside of the screen and animate the return in screen
   private func resetCollage(){
-    self.image1?.isHidden = true
-    self.image2.isHidden = true
-    self.image3.isHidden = true
-    self.image4.isHidden = true
-    self.image5.isHidden = true
-    self.image6.isHidden = true
-    self.image1?.image = nil
-    self.image2.image = nil
-    self.image3.image = nil
-    self.image4.image = nil
-    self.image5.image = nil
-    self.image6.image = nil
+    // Declare all the image containers to purge
+    let containers = [image1,image2,image3,image4,image5,image6]
+    //purge
+    for container in containers {
+      resetImage(container!)
+    }
+    // Animate the return of the empty colalge in the screen
     UIView.animate(withDuration: 0.7,delay: 0.5,options: [], animations: { self.collage.transform = .identity})
+  }
+  //reset one colalge UIImageView to empty
+  private func resetImage(_ image:UIImageView){
+    image.isHidden = true
+    image.image = nil
   }
   
   
   // ///////////////////////////// //
   // MARK: EDITING IMAGES          //
   // ///////////////////////////// //
-  
   
   //FX buttons
   @IBOutlet weak var fxButton1: UIButton!
@@ -503,72 +449,60 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   @IBOutlet weak var fxButton5: UIButton!
   @IBOutlet weak var fxButton6: UIButton!
   
+  //Index of the UIImageView to Edit in collage
+  var imageToEdit = 0
+  //Variable to store the result from editing
   var imageToSendToEdit: UIImageView?
   
+  let errorMessage = "désolé il n y a pas d images"
   // ///////////////////////////// //
   // MARK: EDITING IMAGES BUTTONS  //
   // ///////////////////////////// //
   
   @IBAction func editImageOne(_ sender: UIButton) {
-    imageToEdit = 1
-    if logic.checkIfImageLoaded(view: image1){
-      sendToEditor(imageToEdit: imagePicked)
-    } else {
-      print("désolé il n y a pas d images")
-    }
+    sendToEditor(imageIndex: 1, image: image1)
   }
+  
   @IBAction func editImageTwo(_ sender: Any) {
-    imageToEdit = 2
-    if logic.checkIfImageLoaded(view: image2){
-      sendToEditor(imageToEdit: imagePicked)
-    } else {
-      print("désolé il n y a pas d images")
-    }
+    sendToEditor(imageIndex: 2, image: image2)
   }
   
   @IBAction func editImageThree(_ sender: Any) {
-    imageToEdit = 3
-    if logic.checkIfImageLoaded(view: image3){
-      sendToEditor(imageToEdit: imagePicked)
-    } else {
-      print("désolé il n y a pas d images")
-    }
+   sendToEditor(imageIndex: 3, image: image3)
   }
   
   @IBAction func editImageFour(_ sender: Any) {
-    imageToEdit = 4
-    if logic.checkIfImageLoaded(view: image4){
-      sendToEditor(imageToEdit: imagePicked)
-    } else {
-      print("désolé il n y a pas d images")
-    }
+   sendToEditor(imageIndex: 4, image: image4)
   }
   
   @IBAction func editImageFive(_ sender: Any) {
-    imageToEdit = 5
-    if logic.checkIfImageLoaded(view: image5){
-      sendToEditor(imageToEdit: imagePicked)
-    } else {
-      print("désolé il n y a pas d images")
-    }
+    sendToEditor(imageIndex: 5, image: image5)
   }
   
   @IBAction func editImageSix(_ sender: Any) {
-    imageToEdit = 6
-    if logic.checkIfImageLoaded(view: image6){
-      sendToEditor(imageToEdit: imagePicked)
+    sendToEditor(imageIndex: 6, image: image6)
+  }
+  
+  /**
+   Method to send the content from UIImageView in Edit ViewController
+   This method present MODALLY EditVc
+   - parameters:
+   - imageToEdit: Int identifier of the image in Collage
+   */
+  func sendToEditor(imageIndex:Int, image: UIImageView){
+    imageToEdit = imageIndex
+    if logic.checkIfImageLoaded(view: image){
+      // ToDo: delegation???
+      imageToSendToEdit = view.viewWithTag(imageToEdit)! as? UIImageView
+      edit.tag = imageToSendToEdit
+      //Present fxEditor Modally
+      edit.modalPresentationStyle = .overFullScreen
+      present(edit, animated: true,completion:nil)
     } else {
-      print("désolé il n y a pas d images")
+      print(errorMessage)
     }
   }
   
-  func sendToEditor(imageToEdit:Int){
-    imageToSendToEdit = view.viewWithTag(imageToEdit)! as? UIImageView
-    print(imageToSendToEdit!)
-    edit.tag = imageToSendToEdit
-    edit.modalPresentationStyle = .overFullScreen
-    present(edit, animated: true,completion:nil)
-  }
 }
 
 

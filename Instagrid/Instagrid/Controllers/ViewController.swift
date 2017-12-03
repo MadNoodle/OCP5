@@ -570,18 +570,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     present(edit, animated: true,completion:nil)
   }
 }
-// //////////////////// //
-// MARK: EXTENSIONS     //
-// /////////////////// //
 
-/// This extension force the UIPicker to be displayed in landscape mode
-extension UIImagePickerController
-{
-  override open var shouldAutorotate: Bool {
-    return true
-  }
-  override open var supportedInterfaceOrientations : UIInterfaceOrientationMask {
-    return .all
-  }
-}
+
+
 

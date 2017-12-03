@@ -100,7 +100,7 @@
                     <rect key="frame" x="0.0" y="557" width="414" height="96"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="F2J-8c-RsK" userLabel="fonts">
-                            <rect key="frame" x="88" y="8.3333333333333712" width="238" height="44"/>
+                            <rect key="frame" x="88" y="9" width="238" height="44"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yga-oW-kpm" userLabel="font1">
                                     <rect key="frame" x="0.0" y="0.0" width="46" height="44"/>

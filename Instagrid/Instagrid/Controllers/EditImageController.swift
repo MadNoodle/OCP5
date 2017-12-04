@@ -22,10 +22,8 @@ class EditImageController: UIViewController, UICollectionViewDataSource, UIColle
   var panGestureImg = UIPanGestureRecognizer()
   var pinch = UIPinchGestureRecognizer()
   var pinchImg = UIPinchGestureRecognizer()
-  
   //Initialize Delegate for DataExhange Protocol
   var delegate : DataExchangeDelegate? = nil
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -47,6 +45,7 @@ class EditImageController: UIViewController, UICollectionViewDataSource, UIColle
     self.view.isMultipleTouchEnabled = true
   }
   
+  @IBOutlet weak var dummy: UIStackView!
   
   //Load image after all the views had been initialize
   override func viewWillAppear(_ animated: Bool) {
@@ -55,7 +54,8 @@ class EditImageController: UIViewController, UICollectionViewDataSource, UIColle
   // Image
   @IBOutlet weak var imageToEdit: UIImageView!
   
-  @IBOutlet weak var fxContainer: UIView!
+
+  @IBOutlet weak var fxContainer: UIStackView!
   //fetch image from collageView in HomeVC
   func getImage(){
     imageToEdit.image = tag?.image
@@ -72,6 +72,14 @@ class EditImageController: UIViewController, UICollectionViewDataSource, UIColle
       let image = fxEditor.convertUiviewToImage(from: self.container )!
       delegate?.userSelectedImage(image: image)
     }
+  
+      if container.contains(emoji) {
+        self.emoji.removeFromSuperview()
+  }
+    if container.contains(textInput) {
+      self.textInput.removeFromSuperview()
+    }
+    
     dismiss(animated: true, completion: nil)
   }
   
@@ -168,6 +176,8 @@ class EditImageController: UIViewController, UICollectionViewDataSource, UIColle
   @IBAction func filter(_ sender: Any) {
     fxContainer.isHidden = false
     fontContainer.isHidden = true
+  
+    
   }
   
   
@@ -195,12 +205,13 @@ class EditImageController: UIViewController, UICollectionViewDataSource, UIColle
   // MARK: TYPING AND EDITING TEXT     //
   // ///////////////////////////// //
   
-  @IBOutlet weak var fontContainer: UIView!
+
+  @IBOutlet weak var fontContainer: UIStackView!
   @IBAction func insertText(_ sender: Any) {
     container.addSubview(textInput)
     fontContainer.isHidden = false
     fxContainer.isHidden = true
-    
+    dummy.isHidden = true
   }
   
   //Create a TextField Object
@@ -270,6 +281,7 @@ class EditImageController: UIViewController, UICollectionViewDataSource, UIColle
   
   @IBAction func insertImage(_ sender: Any) {
     setupCollection()
+    dummy.isHidden = true
   }
   
   //Declare all the images
@@ -324,7 +336,6 @@ class EditImageController: UIViewController, UICollectionViewDataSource, UIColle
     emoji.image = UIImage(named:items[indexPath.row])
     container.addSubview(emoji)
     collectionView.removeFromSuperview()
-    
   }
   var emoji: UIImageView = {
     let emoji = UIImageView(frame: CGRect(x: 100, y: 100, width: 25, height: 25))

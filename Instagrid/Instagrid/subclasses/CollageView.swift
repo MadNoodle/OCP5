@@ -34,9 +34,6 @@ class CollageView: UIView  {
   
   /// Initialize the CollageView with the layout One
   var type:Layouts = .one
-  ///Reference the logic in order to call logic functions on the view
-  let logic = Logic()
-  
   
   // ///////////// //
   // MARK: METHODS //
@@ -91,11 +88,11 @@ class CollageView: UIView  {
     // call the logic function to choose the right function to evaluate if full according to the layout
     switch self.type{
     case .one:
-      checkSuccess = logic.checkIfFullThreeViewsLayout(view3, view4, view5)
+      checkSuccess = Logic.checkIfFullThreeViewsLayout(view3, view4, view5)
     case .two:
-      checkSuccess = logic.checkIfFullThreeViewsLayout(view1, view2, view6)
+      checkSuccess = Logic.checkIfFullThreeViewsLayout(view1, view2, view6)
     case .three:
-      checkSuccess = logic.checkIfFullFourViewsLayout(view1, view2, view3, view4)
+      checkSuccess = Logic.checkIfFullFourViewsLayout(view1, view2, view3, view4)
     }
     return checkSuccess
   }

@@ -19,8 +19,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   @IBOutlet weak var collage: CollageView!
   //Collage View
   let collageView = CollageView()
-  //Model
-  let logic = Logic()
+
   //Initialize the Picker
   let image = UIImagePickerController()
   // Test Variables to fulfill conditionnal test in VC
@@ -90,7 +89,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
    Function to check if the current device orientation and forces the UIActivityViewController to be displayed in landscape if landscape
    */
     private func forceLandscape() {
-    orientation = logic.checkOrientation()
+    orientation = Logic.checkOrientation()
     // Check orientation to make the UI react according to it
     if  orientation {
       //Rotate UIActivityViewController in landscape
@@ -105,7 +104,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
    - important: Double check of Device orientation and swipe direction to allow one swipe direction per orientation
    */
   @objc private func DragCollage(swipe:UISwipeGestureRecognizer){
-    orientation = logic.checkOrientation()
+    orientation = Logic.checkOrientation()
     if orientation == false && swipe.direction == .up {
       share()
     } else if orientation == true && swipe.direction == .left {
@@ -401,7 +400,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     fxButton5.isHidden = true
     fxButton6.isHidden = true
     
-    let imageToSave = logic.convertUiviewToImage(from:collage)
+    let imageToSave = Logic.convertUiviewToImage(from:collage)
     
     let activityController = UIActivityViewController(activityItems: [imageToSave!], applicationActivities: nil)
     IpadIphoneAdaptation(controller: activityController)
@@ -491,10 +490,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
    */
   func sendToEditor(imageIndex:Int, image: UIImageView){
     imageToEdit = imageIndex
-    if logic.checkIfImageLoaded(view: image){
+    if Logic.checkIfImageLoaded(view: image){
       // ToDo: delegation???
       imageToSendToEdit = view.viewWithTag(imageToEdit)! as? UIImageView
       edit.tag = imageToSendToEdit
+      edit.imHeigth = (imageToSendToEdit?.frame)!.height
+      edit.imWidth = (imageToSendToEdit?.frame)!.width
       //Present fxEditor Modally
       edit.modalPresentationStyle = .overFullScreen
       present(edit, animated: true,completion:nil)

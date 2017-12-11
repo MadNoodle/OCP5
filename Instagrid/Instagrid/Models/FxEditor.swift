@@ -12,8 +12,10 @@ import UIKit
 // needed to apply filter and process
 import CoreImage
 
-class FxEditor{
+struct FxEditor{
   
+  // forbid initialisation
+  fileprivate init(){}
   
   /** Liste des filtres
    CIPhotoEffectNoir
@@ -24,7 +26,7 @@ class FxEditor{
    CIPhotoEffectTonal
    */
   
-  internal func applyFilter(_ filter:String, on visual:UIImageView ){
+  static func applyFilter(_ filter:String, on visual:UIImageView ){
     
     //get height and width of original image
     let initWidth = visual.image?.size.width
@@ -53,7 +55,7 @@ class FxEditor{
   
   /// This function authorize the user to import images from the library
   
-  internal func convertUiviewToImage(from view:UIView) -> UIImage?{
+  static func convertUiviewToImage(from view:UIView) -> UIImage?{
     
     // if images of the layout all contains an UIImage
     // Define the zone we want capture

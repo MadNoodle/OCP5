@@ -15,7 +15,6 @@ import UIKit
 @IBDesignable
 class CollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
   
-  let Api = APIClient()
   private var imageResults:[UIImage] = []
   private let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
   private var loading = UILabel()
@@ -61,7 +60,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
       delegate?.userSelectedImage(image: image)
     }
     //Store cell image in webImage that will be passed in Main VC
-   // webImage = imageResults[indexPath.row]
+    // webImage = imageResults[indexPath.row]
     dismiss(animated: true, completion: nil)
     
   }
@@ -69,12 +68,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
   // //////////// //
   // MARK: NAVBAR //
   // //////////// //
-  /**
-   Sets up the Navbar
-   - cancel Button
-   - textField for Input
-   - Search Button
-   */
+  
   private func setupNavbar(){
     
     //Properties
@@ -91,6 +85,14 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     //add to superview
     self.view.addSubview(navBar)
     
+    addCancelButton(margin, buttonWidth, buttonHeight, navBar)
+    
+    addSearchButton(navBarWidth, margin, buttonWidth, buttonHeight, navBar)
+    
+    addSearchInputField(margin, buttonWidth, navBarWidth, buttonHeight, navBar)
+  }
+  
+  fileprivate func addCancelButton(_ margin: CGFloat, _ buttonWidth: CGFloat, _ buttonHeight: CGFloat, _ navBar: UIView) {
     //add cancel button
     //Create button
     let cancel = UIButton(frame: CGRect(x: margin, y: margin, width: buttonWidth, height: buttonHeight))
@@ -104,7 +106,9 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     cancel.addTarget(self, action: #selector(self.goBack), for: .touchUpInside)
     // add it to navbar
     navBar.addSubview(cancel)
-    
+  }
+  
+  fileprivate func addSearchButton(_ navBarWidth: CGFloat, _ margin: CGFloat, _ buttonWidth: CGFloat, _ buttonHeight: CGFloat, _ navBar: UIView) {
     //add Search button
     //Create button
     let search = UIButton(frame: CGRect(x: navBarWidth - (margin + buttonWidth), y: margin, width: buttonWidth, height: buttonHeight))
@@ -118,7 +122,9 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     search.addTarget(self, action: #selector(self.performSearch), for: .touchUpInside)
     // add it to navbar
     navBar.addSubview(search)
-    
+  }
+  
+  fileprivate func addSearchInputField(_ margin: CGFloat, _ buttonWidth: CGFloat, _ navBarWidth: CGFloat, _ buttonHeight: CGFloat, _ navBar: UIView) {
     //add textInput for search
     let searchInput = UITextField(frame: CGRect(x: (2 * margin + buttonWidth ), y: margin, width: navBarWidth - (2 * margin + buttonWidth ) - (2 * margin + buttonWidth ), height: buttonHeight))
     //Placeholdr text
@@ -127,6 +133,14 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     // add it to navbar
     navBar.addSubview(searchInput)
   }
+  
+  /**
+   Sets up the Navbar
+   - cancel Button
+   - textField for Input
+   - Search Button
+   */
+  
   
   // ///////////////////// //
   // MARK: NAVBAR CALLBACKS //
@@ -157,12 +171,16 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
       self.showSpinner()
       self.showLoading()
       //Call the APIClient with the search parameters
-      Api.getImagesAPI(query: query) {(results:[UIImage]) in
-        
-        //Iterate throught results and append it to result Array
-        for result in results {
-          self.imageResults.append(result)
-          // Grab the result on main thread
+      
+      // Grab the result on bg thread
+      DispatchQueue.global(qos: .userInteractive).async{
+        APIClient.getImagesAPI(query: query) {(results:[UIImage]) in
+          
+          //Iterate throught results and append it to result Array
+          for result in results {
+            self.imageResults.append(result)
+          }
+          //send results on main threads
           DispatchQueue.main.async {
             //Load data in  Collection View cells
             self.collectionView?.reloadData()
@@ -194,11 +212,11 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     loading.font = UIFont(name: "Delm-medium", size: 40)
     //set text color
     loading.textColor = UIColor.white
-
+    
     view.addSubview(loading)
   }
   /**
-  Remove Loading Text
+   Remove Loading Text
    */
   private func hideLoading(){
     loading.removeFromSuperview()

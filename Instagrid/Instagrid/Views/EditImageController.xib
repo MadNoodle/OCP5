@@ -41,10 +41,10 @@
                     <rect key="frame" x="8" y="28" width="398" height="700"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="0ef-ie-JSh" userLabel="options">
-                            <rect key="frame" x="0.0" y="0.0" width="398" height="37"/>
+                            <rect key="frame" x="0.0" y="0.0" width="398" height="38"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYc-m2-5gn">
-                                    <rect key="frame" x="0.0" y="0.0" width="30" height="37"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="30" height="38"/>
                                     <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="22"/>
                                     <state key="normal" title="fx">
                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -54,7 +54,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzC-Yj-YFK">
-                                    <rect key="frame" x="182.66666666666666" y="0.0" width="30" height="37"/>
+                                    <rect key="frame" x="176.66666666666666" y="0.0" width="37" height="38"/>
                                     <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="22"/>
                                     <state key="normal" title="img">
                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -64,7 +64,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXp-NX-JPB">
-                                    <rect key="frame" x="365" y="0.0" width="33" height="37"/>
+                                    <rect key="frame" x="360" y="0.0" width="38" height="38"/>
                                     <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="22"/>
                                     <state key="normal" title="text">
                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -76,7 +76,7 @@
                             </subviews>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ex-ns-ffd">
-                            <rect key="frame" x="0.0" y="47" width="398" height="398"/>
+                            <rect key="frame" x="0.0" y="48" width="398" height="398"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7kZ-fl-MzT">
                                     <rect key="frame" x="0.0" y="0.0" width="398" height="398"/>
@@ -104,19 +104,20 @@
                             </variation>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="toH-Gt-UTn" userLabel="dummy">
-                            <rect key="frame" x="174" y="455" width="50" height="195"/>
+                            <rect key="frame" x="174" y="456" width="50" height="194"/>
                             <subviews>
                                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="OGz-xM-7tW" userLabel="fonts">
-                                    <rect key="frame" x="0.0" y="-483" width="50" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="-484" width="50" height="0.0"/>
                                     <viewLayoutGuide key="safeArea" id="J2B-md-f3C"/>
                                 </stackView>
                                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gts-da-d70" userLabel="colors">
-                                    <rect key="frame" x="-115" y="-483" width="280" height="40"/>
+                                    <rect key="frame" x="-115" y="-484" width="280" height="40"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2H-Qj-w4m">
                                             <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                             <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="IpH-sU-ztz"/>
                                                 <constraint firstAttribute="width" secondItem="x2H-Qj-w4m" secondAttribute="height" multiplier="1:1" id="YJR-lf-fd3"/>
                                                 <constraint firstAttribute="width" constant="40" id="kuB-uA-hAM"/>
                                             </constraints>
@@ -127,10 +128,6 @@
                                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZE-D3-pwt">
                                             <rect key="frame" x="60" y="0.0" width="40" height="40"/>
                                             <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="40" id="3Ko-XJ-AdE"/>
-                                                <constraint firstAttribute="width" secondItem="YZE-D3-pwt" secondAttribute="height" multiplier="1:1" id="J8E-hz-4ry"/>
-                                            </constraints>
                                             <connections>
                                                 <action selector="blue:" destination="-1" eventType="touchUpInside" id="i9d-ea-ngb"/>
                                             </connections>
@@ -170,15 +167,20 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="YZE-D3-pwt" firstAttribute="width" secondItem="x2H-Qj-w4m" secondAttribute="width" id="G1H-o1-k1Z"/>
+                                        <constraint firstItem="doG-sq-5I9" firstAttribute="height" secondItem="x2H-Qj-w4m" secondAttribute="height" id="8EF-iw-Hrd"/>
+                                        <constraint firstItem="doG-sq-5I9" firstAttribute="centerY" secondItem="x2H-Qj-w4m" secondAttribute="centerY" id="9Ma-2f-t8n"/>
+                                        <constraint firstItem="YZE-D3-pwt" firstAttribute="centerY" secondItem="x2H-Qj-w4m" secondAttribute="centerY" id="E8Y-Y8-kVs"/>
+                                        <constraint firstItem="yQ8-Sj-Jfn" firstAttribute="height" secondItem="x2H-Qj-w4m" secondAttribute="height" id="IGu-f5-axu"/>
+                                        <constraint firstItem="yQ8-Sj-Jfn" firstAttribute="centerY" secondItem="x2H-Qj-w4m" secondAttribute="centerY" id="LTy-Hv-mqY"/>
+                                        <constraint firstItem="yQ8-Sj-Jfn" firstAttribute="width" secondItem="x2H-Qj-w4m" secondAttribute="width" id="MgC-cY-gpU"/>
+                                        <constraint firstItem="doG-sq-5I9" firstAttribute="width" secondItem="x2H-Qj-w4m" secondAttribute="width" id="NHz-e0-hTy"/>
+                                        <constraint firstItem="x2H-Qj-w4m" firstAttribute="centerY" secondItem="gts-da-d70" secondAttribute="centerY" id="Obb-Ej-XGg"/>
+                                        <constraint firstItem="YZE-D3-pwt" firstAttribute="height" secondItem="x2H-Qj-w4m" secondAttribute="height" id="TCp-K2-17w"/>
                                         <constraint firstAttribute="height" constant="40" id="Wuf-Vg-WD4"/>
-                                        <constraint firstItem="cOR-vF-9KU" firstAttribute="height" secondItem="x2H-Qj-w4m" secondAttribute="height" id="XSo-FP-PCz"/>
-                                        <constraint firstItem="doG-sq-5I9" firstAttribute="width" secondItem="x2H-Qj-w4m" secondAttribute="width" id="egu-rA-brc"/>
-                                        <constraint firstItem="YZE-D3-pwt" firstAttribute="height" secondItem="x2H-Qj-w4m" secondAttribute="height" id="fm1-S0-Hq0"/>
-                                        <constraint firstItem="yQ8-Sj-Jfn" firstAttribute="height" secondItem="x2H-Qj-w4m" secondAttribute="height" id="jDh-j8-oKo"/>
-                                        <constraint firstItem="doG-sq-5I9" firstAttribute="height" secondItem="x2H-Qj-w4m" secondAttribute="height" id="jLj-ZB-KJc"/>
-                                        <constraint firstItem="cOR-vF-9KU" firstAttribute="width" secondItem="x2H-Qj-w4m" secondAttribute="width" id="kcl-XG-mMw"/>
-                                        <constraint firstItem="yQ8-Sj-Jfn" firstAttribute="width" secondItem="x2H-Qj-w4m" secondAttribute="width" id="vqg-Cp-Hba"/>
+                                        <constraint firstItem="cOR-vF-9KU" firstAttribute="centerY" secondItem="x2H-Qj-w4m" secondAttribute="centerY" id="ZBp-7r-IRN"/>
+                                        <constraint firstItem="cOR-vF-9KU" firstAttribute="width" secondItem="x2H-Qj-w4m" secondAttribute="width" id="aO9-yW-NFj"/>
+                                        <constraint firstItem="YZE-D3-pwt" firstAttribute="width" secondItem="x2H-Qj-w4m" secondAttribute="width" id="jDN-IY-ReS"/>
+                                        <constraint firstItem="cOR-vF-9KU" firstAttribute="height" secondItem="x2H-Qj-w4m" secondAttribute="height" id="v5C-ZY-Sop"/>
                                     </constraints>
                                 </stackView>
                             </subviews>
@@ -374,7 +376,7 @@
                             <rect key="frame" x="8" y="660" width="382" height="40"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c2t-q1-7dY">
-                                    <rect key="frame" x="0.0" y="0.0" width="38" height="40"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
                                     <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="17"/>
                                     <state key="normal" title="cancel">
                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

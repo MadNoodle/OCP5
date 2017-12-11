@@ -24,10 +24,12 @@ import CoreImage
  ## checkIfFullFourViewsLayout()
  check if a 4 images layout has images in all ImageViews
  */
-class Logic {
+struct Logic {
+  
+  fileprivate init(){}
   /// This function authorize the user to import images from the library
   
-  internal func convertUiviewToImage(from view:CollageView) -> UIImage?{
+  static func convertUiviewToImage(from view:CollageView) -> UIImage?{
     
     // if images of the layout all contains an UIImage
     // Define the zone we want capture
@@ -43,7 +45,7 @@ class Logic {
    Function to check if an UIImageView has an Image Inside
    - returns: Bool
    */
-  internal func checkIfImageLoaded(view:UIImageView) -> Bool{
+  static func checkIfImageLoaded(view:UIImageView) -> Bool{
     var imageLoaded = false
     if view.image != nil{
       print("il y a une image")
@@ -59,7 +61,7 @@ class Logic {
    - important: the 3 parameters are UIImageViews not UIImages nor UIViews
    - returns: Bool
    */
-  internal func checkIfFullThreeViewsLayout(_ view1: UIImageView, _ view2: UIImageView, _ view3: UIImageView) -> Bool {
+  static func checkIfFullThreeViewsLayout(_ view1: UIImageView, _ view2: UIImageView, _ view3: UIImageView) -> Bool {
     var checkSuccess = false
     if view1.image != nil && view2.image != nil && view3.image != nil{
       checkSuccess = true
@@ -74,7 +76,7 @@ class Logic {
    - important: the 4 parameters are UIImageViews not UIImages nor UIViews
    - returns: Bool
    */
-  internal func checkIfFullFourViewsLayout(_ view1: UIImageView, _ view2: UIImageView, _ view3: UIImageView, _ view4: UIImageView) -> Bool {
+  static func checkIfFullFourViewsLayout(_ view1: UIImageView, _ view2: UIImageView, _ view3: UIImageView, _ view4: UIImageView) -> Bool {
     var checkSuccess = false
     if view1.image != nil && view2.image != nil && view3.image != nil && view4.image != nil {
       checkSuccess = true
@@ -88,7 +90,7 @@ class Logic {
    Function to check the orientation
    - returns: Bool
    */
-  internal func checkOrientation() -> Bool {
+  static func checkOrientation() -> Bool {
     var landscapeOrientation = false
     if UIDevice.current.orientation.isLandscape {
       landscapeOrientation = true
@@ -99,43 +101,6 @@ class Logic {
     }
     return landscapeOrientation
   }
-  
-  /** Liste des filtres
-   CIPhotoEffectNoir
-   CIPhotoEffectChrome
-   CIPhotoEffectInstant
-   CIPhotoEffectTransfer
-   CIPhotoEffectProcess
-   CIPhotoEffectTonal
-   */
-  
-  internal func applyFilter(_ filter:String, on visual:UIImageView ){
-    
-    //get height and width of original image
-    let initWidth = visual.image?.size.width
-    let initHeight = visual.image?.size.height
-    
-    // if there is image apply filter
-    if checkIfImageLoaded(view: visual){
-      let context = CIContext(options: nil)
-      let filter = CIFilter(name: filter)
-      let ciImage = CIImage(image:visual.image!)
-      filter?.setValue(ciImage, forKey: kCIInputImageKey)
-      let result = filter?.outputImage!
-      let cgImage = context.createCGImage(result!, from: (result?.extent)!)
-      
-      // This conditions solve a bug in CIImage that create flipped image if h>W
-      if Int(initWidth!) <= Int(initHeight!){
-        // force orientation if h>w
-        let render = UIImage(cgImage: cgImage!, scale: CGFloat(1.0), orientation: (visual.image?.imageOrientation)!)
-        visual.image = render
-      }else{
-        let render:UIImage = UIImage.init(cgImage: cgImage!)
-        visual.image = render
-      }
-    } else {
-      print("désolé il n y a pas d images")
-    }
-  }
+
 }
 

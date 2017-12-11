@@ -40,7 +40,6 @@ class EditImageController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     initPanGestures()
-    initPinchGestures()
     setupGestureOptions()
   }
   
@@ -101,18 +100,11 @@ class EditImageController: UIViewController {
   
   fileprivate func initPanGestures() {
     // Instantiate Pan gestures for text and images
+  
     panGesture = UIPanGestureRecognizer(target: self, action: #selector(viewDragged))
     panGestureImg = UIPanGestureRecognizer(target: self, action: #selector(imgDragged))
     self.textInput.addGestureRecognizer(panGesture)
     self.emoji.addGestureRecognizer(panGestureImg)
-  }
-  
-  fileprivate func initPinchGestures() {
-    // Instantiate Pinch gestures for text and images
-    pinch = UIPinchGestureRecognizer(target: self, action: #selector(scale))
-    pinchImg = UIPinchGestureRecognizer(target: self, action: #selector(scaleImg))
-    self.view.addGestureRecognizer(pinch)
-    self.view.addGestureRecognizer(pinchImg)
   }
   
   fileprivate func setupGestureOptions() {
@@ -168,14 +160,17 @@ class EditImageController: UIViewController {
    It handles the scaling of font and frame
    */
   @objc func scale(sender:UIPinchGestureRecognizer){
-    
+   
+  if sender.scale >= 1 && sender.scale <= 1.2 {
     // Size of the font
     var pointSize = textInput.font?.pointSize
     // set the factor to increase or decrease the scale of font
-    pointSize = ((sender.velocity > 0) ? 1 : -1) * 1 + pointSize!;
+    pointSize = ((sender.scale > 0) ? 1 : -1) * 2 + pointSize!;
     //Set the font size
     textInput.font = UIFont( name: (textInput.font?.fontName)!, size: (pointSize)!)
     setNewFrame(for: textInput, scaleToApply: pinch.scale)
+    }
+    
   }
   
   /**
@@ -194,14 +189,17 @@ class EditImageController: UIViewController {
        - scaleToApply: gesture's pinch scale
  */
   func setNewFrame(for view:UIView, scaleToApply: CGFloat){
-    let newFrame = CGRect(x: view.frame.origin.x , y: view.frame.origin.y, width: view.frame.width * scaleToApply, height: view.frame.height * scaleToApply)
-    if scaleToApply >= 1 && scaleToApply <= 1.2 {
+    let scale = scaleToApply
+    if scale >= 1 && scale <= 1.2 {
+    let newFrame = CGRect(x: view.frame.origin.x , y: view.frame.origin.y, width: view.frame.width * scale, height: view.frame.height * scale)
+    
       view.sizeToFit()
       // allocate new frame
       view.frame = newFrame
       // re Display the frame if needed
       view.setNeedsDisplay()
     }
+    
   }
   
   
@@ -245,6 +243,8 @@ class EditImageController: UIViewController {
     fontContainer.isHidden = false
     fxContainer.isHidden = true
     dummy.isHidden = true
+    pinch = UIPinchGestureRecognizer(target: self, action: #selector(scale))
+    self.view.addGestureRecognizer(pinch)
   }
   
   //Create a TextField Object
@@ -321,6 +321,8 @@ class EditImageController: UIViewController {
   @IBAction func insertImage(_ sender: Any) {
     setupCollection()
     dummy.isHidden = false
+    pinchImg = UIPinchGestureRecognizer(target: self, action: #selector(scaleImg))
+    self.view.addGestureRecognizer(pinchImg)
   }
   
   let items = EmojiData.data

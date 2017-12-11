@@ -20,15 +20,11 @@ import UIKit
  convert images url tu UIImage object
  */
 class APIClient {
-  
   //Base url including API key
   static let baseUrl = "https://pixabay.com/api/?key=6288350-cee414581d8372ab44a7d46dc&q="
-  
   //options for request ( only image and number of result)
   static let numberOfResults = "10"
- static let searchOptions = "&image_type=photo&per_page="
-  
-  
+  static let searchOptions = "&image_type=photo&per_page="
   
   /**
    APIClient Main method
@@ -36,10 +32,8 @@ class APIClient {
    - query: String from textField in CollectionView
    - completionHandler:([UIImage] -> ())
    - returns: [UIImage]
-   
    */
   static func getImagesAPI(query: String, completionHandler: @escaping (_ results: [UIImage]) -> ())  {
-    
     let url = baseUrl + query + searchOptions + numberOfResults
     let request = URLRequest(url: URL(string: url)!)
     
@@ -55,10 +49,10 @@ class APIClient {
             for result in results {
               //store results in a WebImage Object
               // Warning the compiler bug throws an error "No calls to throwing functions occur within 'try' "
-               let webImageObject = WebImage(json: result)
-                //Convert to UIImage
-                let final = self.convertUrlToImage(urlString: webImageObject)
-                imageArray.append(final)
+              let webImageObject = WebImage(json: result)
+              //Convert to UIImage
+              let final = self.convertUrlToImage(urlString: webImageObject)
+              imageArray.append(final)
               
               // print("RECUS: \(image Array)")
             }
@@ -66,7 +60,6 @@ class APIClient {
           //return an Array
           completionHandler(imageArray)
         } catch {
-          
           print(error.localizedDescription)
         }
       }

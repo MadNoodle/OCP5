@@ -25,12 +25,9 @@ enum Layouts:Int{
  */
 class CollageView: UIView  {
   
- 
-  
   // ////////////////////////// //
-  // MARK: PROPERTIES& VARIABLES //
+  // MARK: PROPERTIES //
   // ////////////////////////// //
-  
   
   /// Initialize the CollageView with the layout One
   var type:Layouts = .one

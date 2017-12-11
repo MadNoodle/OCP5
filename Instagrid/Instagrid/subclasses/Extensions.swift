@@ -62,3 +62,40 @@ extension UIImagePickerController
     return .all
   }
 }
+
+extension ViewController {
+  // /////////////////////////////// //
+  // MARK: - DEVICE ADAPTATION METHODS //
+  // ////////////////////////////// //
+  
+  /**
+   Function to check if the current device is an iphone or ipad
+   - important: if it is an ipad all the UIAlertController and UIActivityViewController are displayed as popover
+   */
+   func IpadIphoneAdaptation (controller: UIViewController){
+    if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad {
+      if let PopOver = controller.popoverPresentationController {
+        PopOver.sourceView = self.view
+      }
+      present( controller, animated: true, completion: nil )
+      //print("ipad")
+    } else{
+      //print("iphone")
+      present(controller, animated: true){
+      }
+    }
+  }
+  
+  /**
+   Function to check if the current device orientation and forces the UIActivityViewController to be displayed in landscape if landscape
+   */
+   func forceLandscape() {
+    orientation = Logic.checkOrientation()
+    // Check orientation to make the UI react according to it
+    if  orientation {
+      //Rotate UIActivityViewController in landscape
+      let landscapeRawValue = UIInterfaceOrientation.landscapeLeft.rawValue
+      UIDevice.current.setValue(landscapeRawValue, forKey: "orientation")
+    } 
+  }
+}

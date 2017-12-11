@@ -9,17 +9,12 @@
 import UIKit
 
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverPresentationControllerDelegate, DataExchangeDelegate{
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverPresentationControllerDelegate{
   
   // ///////////////////////////// //
-  // MARK: VARIABLE DECLARATIONS
+  // MARK: - PROPERTIES
   // ///////////////////////////// //
   
-  // Collage View
-  @IBOutlet weak var collage: CollageView!
-  //Collage View
-  let collageView = CollageView()
-
   //Initialize the Picker
   let image = UIImagePickerController()
   // Test Variables to fulfill conditionnal test in VC
@@ -29,15 +24,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   //ViewControllers
   let vc2 = CollectionViewController(nibName: "CollectionViewController", bundle: nil)
   let edit = EditImageController(nibName: "EditImageController", bundle: nil)
-  
-  
+  //MARK: - OUTLETS
+  // Collage View
+  @IBOutlet weak var collage: CollageView!
+
   // /////////////////// //
-  // MARK: VC LIFECYCLE //
+  // MARK: - VC LIFECYCLE //
   // ////////////////// //
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     // Initialize delegations
     vc2.delegate = self
     edit.delegate = self
@@ -45,60 +41,31 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     image.allowsEditing = false
     // Init UI with layout one & button one higlighted
     displayLayout(id: 1, type: .one, false, true, true)
-    
+    initUpSwipe()
+    initLeftSwipe()
+    //ForceLandscape for UIActivity Controller in we are in landsccapemode
+    forceLandscape()
+  }
+  
+  // ///////////////////////// //
+  // MARK: - GESTURES //
+  // ///////////////////////// //
+
+  fileprivate func initUpSwipe() {
     // InitSwipe Gesture as soon as the app launches
     //UpSwipe
     let upSwipe = UISwipeGestureRecognizer(target:self, action:#selector(DragCollage(swipe :)))
     upSwipe.direction = UISwipeGestureRecognizerDirection.up
     self.view.addGestureRecognizer(upSwipe)
+  }
+  
+  fileprivate func initLeftSwipe() {
     //LeftSwipe
     let leftSwipe = UISwipeGestureRecognizer(target:self, action:#selector(DragCollage(swipe :)))
     leftSwipe.direction = UISwipeGestureRecognizerDirection.left
     self.view.addGestureRecognizer(leftSwipe)
-    
-    //ForceLandscape for UIActivity Controller in we are in landsccapemode
-    forceLandscape()
-  }
-  
-  
-
-  
-  // /////////////////////////////// //
-  // MARK: DEVICE ADAPTATION METHODS //
-  // ////////////////////////////// //
-  
-  /**
-   Function to check if the current device is an iphone or ipad
-   - important: if it is an ipad all the UIAlertController and UIActivityViewController are displayed as popover
-   */
-  private func IpadIphoneAdaptation (controller: UIViewController){
-    if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad {
-      if let PopOver = controller.popoverPresentationController {
-        PopOver.sourceView = self.view
-      }
-      present( controller, animated: true, completion: nil )
-      //print("ipad")
-    } else{
-      //print("iphone")
-      present(controller, animated: true){
-      }
-    }
   }
 
-  /**
-   Function to check if the current device orientation and forces the UIActivityViewController to be displayed in landscape if landscape
-   */
-    private func forceLandscape() {
-    orientation = Logic.checkOrientation()
-    // Check orientation to make the UI react according to it
-    if  orientation {
-      //Rotate UIActivityViewController in landscape
-      let landscapeRawValue = UIInterfaceOrientation.landscapeLeft.rawValue
-      UIDevice.current.setValue(landscapeRawValue, forKey: "orientation")
-    } else {
-      print("portrait")
-    }
-  }
   
   /** Callback Function for Swipe gesture
    - important: Double check of Device orientation and swipe direction to allow one swipe direction per orientation
@@ -116,7 +83,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   
   // ///////////////////////// //
-  // MARK: SHOW LAYOUTS //
+  // MARK: - SHOW LAYOUTS //
   // ///////////////////////// //
   
   // Collage squares
@@ -161,7 +128,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
      - three: Bool
  */
   private func displayLayout(id:Int, type: Layouts,_ one:Bool, _ two: Bool, _ three: Bool){
-    let displays = collageView.getLayoutInfo(name: Layouts(rawValue: id)!)
+    let displays = collage.getLayoutInfo(name: Layouts(rawValue: id)!)
     rectTop.isHidden = displays[0]
     rectBot.isHidden = displays[1]
     squareOne.isHidden = displays[2]
@@ -174,16 +141,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     buttonThreeHover.isHidden = three
   }
   
-  // //////////////////////////////////////////////////// //
-  // MARK: DELEGATION METHODS TO COMMUNICATE BETWEEN VCs  //
-  // /////////////////////////////////////////////////// //
-  
-  //Receiver for image selected from web search
-  func userSelectedImage(image: UIImage) {
-    loadImageFromWeb(fromImage: image, to: imagePicked)
-  }
+
   // ////////////////////// //
-  // MARK: IMPORTING IMAGES //
+  // MARK: - IMPORTING IMAGES //
   // ////////////////////// //
   
   // Image Containers
@@ -225,7 +185,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   }
   
   // /////////////////////////// //
-  // MARK: IMPORTING IMAGES      //
+  // MARK: - IMPORTING IMAGES      //
   // /////////////////////////// //
   
   /**
@@ -315,8 +275,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
       default:
         print("Erreur de chargement d'image")
       }
-      self.dismiss(animated: true, completion: {self.forceLandscape()})
+     
     }
+     self.dismiss(animated: true, completion: {self.forceLandscape()})
   }
   
   /**
@@ -358,7 +319,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   }
   
   // ///////////////////////////// //
-  // MARK: EXPORTING COLLAGE       //
+  // MARK: - EXPORTING COLLAGE       //
   // ///////////////////////////// //
   
   /**
@@ -399,12 +360,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     fxButton4.isHidden = true
     fxButton5.isHidden = true
     fxButton6.isHidden = true
-    
     let imageToSave = Logic.convertUiviewToImage(from:collage)
-    
     let activityController = UIActivityViewController(activityItems: [imageToSave!], applicationActivities: nil)
     IpadIphoneAdaptation(controller: activityController)
-    
   }
   
   /**
@@ -414,8 +372,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   private func transformCollage(){
     let transform = CGAffineTransform(translationX: 0, y: -600)
     UIView.animate(withDuration: 0.3, animations: { self.collage.transform = transform }) { (success) in if success { self.resetCollage()}}
-    
-    
   }
   
   /// Reset the collage to empty outside of the screen and animate the return in screen
@@ -437,7 +393,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   
   // ///////////////////////////// //
-  // MARK: EDITING IMAGES          //
+  // MARK: - EDITING IMAGES          //
   // ///////////////////////////// //
   
   //FX buttons
@@ -450,12 +406,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   //Index of the UIImageView to Edit in collage
   var imageToEdit = 0
-  //Variable to store the result from editing
+  //Property to store the result from editing
   var imageToSendToEdit: UIImageView?
   
   let errorMessage = "désolé il n y a pas d images"
   // ///////////////////////////// //
-  // MARK: EDITING IMAGES BUTTONS  //
+  // MARK: - EDITING IMAGES BUTTONS  //
   // ///////////////////////////// //
   
   @IBAction func editImageOne(_ sender: UIButton) {
@@ -491,11 +447,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   func sendToEditor(imageIndex:Int, image: UIImageView){
     imageToEdit = imageIndex
     if Logic.checkIfImageLoaded(view: image){
-      // ToDo: delegation???
       imageToSendToEdit = view.viewWithTag(imageToEdit)! as? UIImageView
       edit.tag = imageToSendToEdit
-      edit.imHeigth = (imageToSendToEdit?.frame)!.height
-      edit.imWidth = (imageToSendToEdit?.frame)!.width
       //Present fxEditor Modally
       edit.modalPresentationStyle = .overFullScreen
       present(edit, animated: true,completion:nil)
@@ -506,6 +459,17 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
 }
 
-
+extension ViewController : DataExchangeDelegate {
+  
+  // //////////////////////////////////////////////////// //
+  // MARK: - DELEGATION METHODS TO COMMUNICATE BETWEEN VCs  //
+  // /////////////////////////////////////////////////// //
+  
+  //Receiver for image selected from web search
+  func userSelectedImage(image: UIImage) {
+    loadImageFromWeb(fromImage: image, to: imagePicked)
+  }
+  
+}
 
 

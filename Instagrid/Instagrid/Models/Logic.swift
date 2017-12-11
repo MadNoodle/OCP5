@@ -13,7 +13,7 @@ import UIKit
 import CoreImage
 
 /**
- This class handles all the logic and calculations.
+ This struct handles all the logic and calculations.
  Methods:
  ## convertUiviewToImage()
  convert collageView to image
@@ -94,9 +94,7 @@ struct Logic {
     var landscapeOrientation = false
     if UIDevice.current.orientation.isLandscape {
       landscapeOrientation = true
-      print("Landscape")
     } else{
-      print("Portrait")
       landscapeOrientation = false
     }
     return landscapeOrientation

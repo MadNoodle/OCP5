@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -41,32 +41,29 @@
                     <rect key="frame" x="8" y="28" width="398" height="700"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="0ef-ie-JSh" userLabel="options">
-                            <rect key="frame" x="0.0" y="0.0" width="398" height="38"/>
+                            <rect key="frame" x="0.0" y="0.0" width="398" height="35"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYc-m2-5gn">
-                                    <rect key="frame" x="0.0" y="0.0" width="30" height="38"/>
-                                    <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="22"/>
-                                    <state key="normal" title="fx">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYc-m2-5gn">
+                                    <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                    <state key="normal" image="wechat_moment_L@3x">
                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="filter:" destination="-1" eventType="touchUpInside" id="zgv-gL-lxT"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzC-Yj-YFK">
-                                    <rect key="frame" x="176.66666666666666" y="0.0" width="37" height="38"/>
-                                    <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="22"/>
-                                    <state key="normal" title="img">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzC-Yj-YFK">
+                                    <rect key="frame" x="178.66666666666666" y="0.0" width="35" height="35"/>
+                                    <state key="normal" image="Smiley : Happy@3x">
                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="insertImage:" destination="-1" eventType="touchUpInside" id="qlP-q9-gVO"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXp-NX-JPB">
-                                    <rect key="frame" x="360" y="0.0" width="38" height="38"/>
-                                    <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="22"/>
-                                    <state key="normal" title="text">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXp-NX-JPB">
+                                    <rect key="frame" x="357" y="0.0" width="41" height="35"/>
+                                    <state key="normal" image="Group 18@3x">
                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
@@ -76,7 +73,7 @@
                             </subviews>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ex-ns-ffd">
-                            <rect key="frame" x="0.0" y="48" width="398" height="398"/>
+                            <rect key="frame" x="0.0" y="45" width="398" height="398"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7kZ-fl-MzT">
                                     <rect key="frame" x="0.0" y="0.0" width="398" height="398"/>
@@ -104,14 +101,14 @@
                             </variation>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="toH-Gt-UTn" userLabel="dummy">
-                            <rect key="frame" x="174" y="456" width="50" height="194"/>
+                            <rect key="frame" x="174" y="453" width="50" height="197"/>
                             <subviews>
                                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="OGz-xM-7tW" userLabel="fonts">
-                                    <rect key="frame" x="0.0" y="-484" width="50" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="-481" width="50" height="0.0"/>
                                     <viewLayoutGuide key="safeArea" id="J2B-md-f3C"/>
                                 </stackView>
                                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gts-da-d70" userLabel="colors">
-                                    <rect key="frame" x="-115" y="-484" width="280" height="40"/>
+                                    <rect key="frame" x="-85" y="-481" width="220" height="40"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2H-Qj-w4m">
                                             <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -125,15 +122,8 @@
                                                 <action selector="yellow:" destination="-1" eventType="touchUpInside" id="Ujs-nI-j06"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZE-D3-pwt">
-                                            <rect key="frame" x="60" y="0.0" width="40" height="40"/>
-                                            <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <action selector="blue:" destination="-1" eventType="touchUpInside" id="i9d-ea-ngb"/>
-                                            </connections>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yQ8-Sj-Jfn">
-                                            <rect key="frame" x="120" y="0.0" width="40" height="40"/>
+                                            <rect key="frame" x="60" y="0.0" width="40" height="40"/>
                                             <color key="backgroundColor" red="0.55634254220000001" green="0.97934550050000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="T0G-2b-iNU"/>
@@ -144,7 +134,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cOR-vF-9KU">
-                                            <rect key="frame" x="180" y="0.0" width="40" height="40"/>
+                                            <rect key="frame" x="120" y="0.0" width="40" height="40"/>
                                             <color key="backgroundColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="3O6-iZ-zb3"/>
@@ -155,7 +145,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doG-sq-5I9">
-                                            <rect key="frame" x="240" y="0.0" width="40" height="40"/>
+                                            <rect key="frame" x="180" y="0.0" width="40" height="40"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="6HB-EK-QRU"/>
@@ -169,17 +159,14 @@
                                     <constraints>
                                         <constraint firstItem="doG-sq-5I9" firstAttribute="height" secondItem="x2H-Qj-w4m" secondAttribute="height" id="8EF-iw-Hrd"/>
                                         <constraint firstItem="doG-sq-5I9" firstAttribute="centerY" secondItem="x2H-Qj-w4m" secondAttribute="centerY" id="9Ma-2f-t8n"/>
-                                        <constraint firstItem="YZE-D3-pwt" firstAttribute="centerY" secondItem="x2H-Qj-w4m" secondAttribute="centerY" id="E8Y-Y8-kVs"/>
                                         <constraint firstItem="yQ8-Sj-Jfn" firstAttribute="height" secondItem="x2H-Qj-w4m" secondAttribute="height" id="IGu-f5-axu"/>
                                         <constraint firstItem="yQ8-Sj-Jfn" firstAttribute="centerY" secondItem="x2H-Qj-w4m" secondAttribute="centerY" id="LTy-Hv-mqY"/>
                                         <constraint firstItem="yQ8-Sj-Jfn" firstAttribute="width" secondItem="x2H-Qj-w4m" secondAttribute="width" id="MgC-cY-gpU"/>
                                         <constraint firstItem="doG-sq-5I9" firstAttribute="width" secondItem="x2H-Qj-w4m" secondAttribute="width" id="NHz-e0-hTy"/>
                                         <constraint firstItem="x2H-Qj-w4m" firstAttribute="centerY" secondItem="gts-da-d70" secondAttribute="centerY" id="Obb-Ej-XGg"/>
-                                        <constraint firstItem="YZE-D3-pwt" firstAttribute="height" secondItem="x2H-Qj-w4m" secondAttribute="height" id="TCp-K2-17w"/>
                                         <constraint firstAttribute="height" constant="40" id="Wuf-Vg-WD4"/>
                                         <constraint firstItem="cOR-vF-9KU" firstAttribute="centerY" secondItem="x2H-Qj-w4m" secondAttribute="centerY" id="ZBp-7r-IRN"/>
                                         <constraint firstItem="cOR-vF-9KU" firstAttribute="width" secondItem="x2H-Qj-w4m" secondAttribute="width" id="aO9-yW-NFj"/>
-                                        <constraint firstItem="YZE-D3-pwt" firstAttribute="width" secondItem="x2H-Qj-w4m" secondAttribute="width" id="jDN-IY-ReS"/>
                                         <constraint firstItem="cOR-vF-9KU" firstAttribute="height" secondItem="x2H-Qj-w4m" secondAttribute="height" id="v5C-ZY-Sop"/>
                                     </constraints>
                                 </stackView>
@@ -376,7 +363,7 @@
                             <rect key="frame" x="8" y="660" width="382" height="40"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c2t-q1-7dY">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="38" height="40"/>
                                     <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="17"/>
                                     <state key="normal" title="cancel">
                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -437,10 +424,13 @@
         </view>
     </objects>
     <resources>
+        <image name="Group 18@3x" width="41" height="35"/>
         <image name="Noir_icon" width="100" height="100"/>
         <image name="Process_icon" width="100" height="100"/>
+        <image name="Smiley : Happy@3x" width="35" height="35"/>
         <image name="icon_fx_instant" width="100" height="100"/>
         <image name="tonal_icon" width="100" height="100"/>
         <image name="transfer_icon" width="100" height="100"/>
+        <image name="wechat_moment_L@3x" width="35" height="35"/>
     </resources>
 </document>

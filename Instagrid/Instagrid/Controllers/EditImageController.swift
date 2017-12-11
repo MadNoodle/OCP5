@@ -34,7 +34,7 @@ class EditImageController: UIViewController {
   @IBOutlet weak var fontContainer: UIStackView!
   
   // /////////////////////// //
-  // MARK: LIFECYCLE METHODS //
+  // MARK: - LIFECYCLE METHODS //
   // /////////////////////// //
   
   override func viewDidLoad() {
@@ -49,7 +49,7 @@ class EditImageController: UIViewController {
   }
   
   // //////////////////// //
-  // MARK: CONTENT IMPORT //
+  // MARK: - CONTENT IMPORT //
   // //////////////////// //
   
   //fetch image from collageView in HomeVC
@@ -57,7 +57,7 @@ class EditImageController: UIViewController {
     imageToEdit.image = tag?.image
   }
    // /////////////// //
-   // MARK: NAVIGATION //
+   // MARK: - NAVIGATION //
    // /////////////// //
   
   /**
@@ -95,7 +95,7 @@ class EditImageController: UIViewController {
   }
   
   // /////////////// //
-  // MARK: GESTURES  //
+  // MARK: - GESTURES  //
   // /////////////// //
   
   fileprivate func initPanGestures() {
@@ -204,7 +204,7 @@ class EditImageController: UIViewController {
   
   
   // ///////////////////////////// //
-  // MARK: APPLYING FILTERS       //
+  // MARK: - APPLYING FILTERS       //
   // ///////////////////////////// //
   
   // show filter palette
@@ -235,7 +235,7 @@ class EditImageController: UIViewController {
   
   
   // ///////////////////////////// //
-  // MARK: TYPING AND EDITING TEXT     //
+  // MARK: - TYPING AND EDITING TEXT     //
   // ///////////////////////////// //
   
   @IBAction func insertText(_ sender: Any) {
@@ -265,7 +265,7 @@ class EditImageController: UIViewController {
   }()
   
   // ////////////////////////// //
-  // MARK : CHANGING FONTS TYPE //
+  // MARK : - CHANGING FONTS TYPE //
   // ////////////////////////// //
   
   @IBAction func switchfont1(_ sender: Any) {
@@ -281,7 +281,7 @@ class EditImageController: UIViewController {
   }
   
   // ////////////////////////// //
-  // MARK : CHANGING FONTS COLOR //
+  // MARK : - CHANGING FONTS COLOR //
    // ////////////////////////// //
   
   
@@ -315,7 +315,7 @@ class EditImageController: UIViewController {
   }
   
   // ///////////////////////////// //
-  // MARK: ADDING IMAGES            //
+  // MARK: - ADDING IMAGES            //
   // ///////////////////////////// //
   
   @IBAction func insertImage(_ sender: Any) {
@@ -368,7 +368,7 @@ class EditImageController: UIViewController {
 }
 
 // //////////////////// //
-// MARK: EXTENSION      //
+// MARK: - EXTENSION      //
 // //////////////////// //
 
 /**

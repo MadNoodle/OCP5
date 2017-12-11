@@ -17,7 +17,7 @@ struct FxEditor{
   // forbid initialisation
   fileprivate init(){}
   
-  /** Liste des filtres
+  /** Filter Lis
    CIPhotoEffectNoir
    CIPhotoEffectChrome
    CIPhotoEffectInstant

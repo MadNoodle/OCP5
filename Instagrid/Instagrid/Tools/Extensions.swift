@@ -52,7 +52,8 @@ extension UIColor {
   
 }
 
-/// This extension force the UIPicker to be displayed in landscape mode
+/// This extension force the UIPicker
+/// to be displayed in landscape mode
 extension UIImagePickerController
 {
   override open var shouldAutorotate: Bool {
@@ -70,7 +71,8 @@ extension ViewController {
   
   /**
    Function to check if the current device is an iphone or ipad
-   - important: if it is an ipad all the UIAlertController and UIActivityViewController are displayed as popover
+   - important: if it is an ipad all the UIAlertController
+   and UIActivityViewController are displayed as popover
    */
    func IpadIphoneAdaptation (controller: UIViewController){
     if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad {
@@ -87,7 +89,9 @@ extension ViewController {
   }
   
   /**
-   Function to check if the current device orientation and forces the UIActivityViewController to be displayed in landscape if landscape
+   Function to check if the current device orientation
+   and forces the UIActivityViewController to be
+   displayed in landscape if landscape
    */
    func forceLandscape() {
     orientation = Logic.checkOrientation()

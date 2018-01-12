@@ -69,26 +69,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B91306581FD29769002D8D11 /* subclasses */ = {
+		B91306581FD29769002D8D11 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				B9977BDF1FD403350096CBC4 /* CollectionViewCell.swift */,
-				B97D759A1FCD774300EEDC79 /* WebImage.swift */,
-				B93260941FC20BC400439530 /* CollageView.swift */,
-				B97D75981FCD692700EEDC79 /* ImageViewCell.swift */,
 				B9E09A421FD4121500C8D2C9 /* Extensions.swift */,
 			);
-			path = subclasses;
+			path = Tools;
 			sourceTree = "<group>";
 		};
-		B93260931FC20BB100439530 /* Models */ = {
+		B93260931FC20BB100439530 /* WebSearch */ = {
 			isa = PBXGroup;
 			children = (
-				B9D229011FC389C700F334EC /* Logic.swift */,
+				B97D75981FCD692700EEDC79 /* ImageViewCell.swift */,
+				B97D759A1FCD774300EEDC79 /* WebImage.swift */,
+				B9977BDF1FD403350096CBC4 /* CollectionViewCell.swift */,
 				B97D759E1FCDFA2A00EEDC79 /* APIClient.swift */,
-				B91306561FD1C69E002D8D11 /* FxEditor.swift */,
+				B99EF3EC1FCCD747005F41D3 /* CollectionViewController.xib */,
 			);
-			path = Models;
+			path = WebSearch;
 			sourceTree = "<group>";
 		};
 		B9604B831FDEC17E00C5BA7D /* Fonts */ = {
@@ -120,11 +118,11 @@
 		B9E30F371FBF3B4200E8F51B /* Instagrid */ = {
 			isa = PBXGroup;
 			children = (
-				B91306581FD29769002D8D11 /* subclasses */,
-				B93260931FC20BB100439530 /* Models */,
+				B9E30F501FBF40C400E8F51B /* Home */,
+				B91306581FD29769002D8D11 /* Tools */,
+				B93260931FC20BB100439530 /* WebSearch */,
+				B9E30F4F1FBF40B900E8F51B /* FxEditor */,
 				B9E30F4E1FBF409800E8F51B /* Supporting_files */,
-				B9E30F4F1FBF40B900E8F51B /* Controllers */,
-				B9E30F501FBF40C400E8F51B /* Views */,
 				B9E30F441FBF3B4200E8F51B /* Info.plist */,
 			);
 			path = Instagrid;
@@ -133,7 +131,6 @@
 		B9E30F4E1FBF409800E8F51B /* Supporting_files */ = {
 			isa = PBXGroup;
 			children = (
-				B9604B631FDE863800C5BA7D /* EmojiData.swift */,
 				B9E30F411FBF3B4200E8F51B /* LaunchScreen.storyboard */,
 				B9E30F3F1FBF3B4200E8F51B /* Assets.xcassets */,
 				B9604B831FDEC17E00C5BA7D /* Fonts */,
@@ -143,24 +140,27 @@
 			path = Supporting_files;
 			sourceTree = "<group>";
 		};
-		B9E30F4F1FBF40B900E8F51B /* Controllers */ = {
+		B9E30F4F1FBF40B900E8F51B /* FxEditor */ = {
 			isa = PBXGroup;
 			children = (
-				B9E30F3A1FBF3B4200E8F51B /* ViewController.swift */,
+				B9604B631FDE863800C5BA7D /* EmojiData.swift */,
 				B99EF3EB1FCCD747005F41D3 /* CollectionViewController.swift */,
 				B91306521FD15B86002D8D11 /* EditImageController.swift */,
+				B91306561FD1C69E002D8D11 /* FxEditor.swift */,
+				B91306531FD15B86002D8D11 /* EditImageController.xib */,
 			);
-			path = Controllers;
+			path = FxEditor;
 			sourceTree = "<group>";
 		};
-		B9E30F501FBF40C400E8F51B /* Views */ = {
+		B9E30F501FBF40C400E8F51B /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				B91306531FD15B86002D8D11 /* EditImageController.xib */,
-				B99EF3EC1FCCD747005F41D3 /* CollectionViewController.xib */,
+				B93260941FC20BC400439530 /* CollageView.swift */,
+				B9D229011FC389C700F334EC /* Logic.swift */,
+				B9E30F3A1FBF3B4200E8F51B /* ViewController.swift */,
 				B9E30F3C1FBF3B4200E8F51B /* Main.storyboard */,
 			);
-			path = Views;
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -36,8 +36,10 @@ class CollageView: UIView  {
   // MARK: METHODS //
   // ///////////// //
   
-  /** This function return an array of Bool that say which square/rect view is hidden or not for each kind of view
-   - Important: the array follow this order *[RectTop,RectBot,squareOne,squareTwo,squareThree,squareFour]*
+  /** This function return an array of Bool that say which
+   square/rect view is hidden or not for each kind of view
+   - Important: the array follow this order
+   *[RectTop,RectBot,squareOne,squareTwo,squareThree,squareFour]*
    - parameters:
    * name: one of the member of the Layout enum
    */
@@ -54,7 +56,8 @@ class CollageView: UIView  {
   
   
   /**
-   This function check if all imageViews in a collage Layout are filled by .image.
+   This function check if all imageViews in a
+   collage Layout are filled by .image.
    - returns: Bool . If true the test is passed
    - Example:
    ````
@@ -79,10 +82,12 @@ class CollageView: UIView  {
     //RectBot ImageView
     let view6 = self.viewWithTag(6) as! UIImageView
     
-    // Initialize the validation @false in order for the logic to compute true
+    // Initialize the validation @false in order
+    // for the logic to compute true
     var checkSuccess = false
     
-    // call the logic function to choose the right function to evaluate if full according to the layout
+    // call the logic function to choose the right
+    //function to evaluate if full according to the layout
     switch self.type{
     case .one:
       checkSuccess = Logic.checkIfFullThreeViewsLayout(view3, view4, view5)

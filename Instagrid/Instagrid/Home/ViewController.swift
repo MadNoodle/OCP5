@@ -68,7 +68,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
   
   /** Callback Function for Swipe gesture
-   - important: Double check of Device orientation and swipe direction to allow one swipe direction per orientation
+   - important: Double check of Device orientation and swipe
+   direction to allow one swipe direction per orientation
    */
   @objc private func DragCollage(swipe:UISwipeGestureRecognizer){
     orientation = Logic.checkOrientation()

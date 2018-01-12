@@ -9,7 +9,8 @@
 import UIKit
 
 /**
- This class defines all the properties to create a collectionView cell in CollectionViewController
+ This class defines all the properties to create
+ a collectionView cell in CollectionViewController
  Methods:
  ## setupImage()
  - instantiate image in a cell
@@ -27,7 +28,8 @@ class ImageViewCell: UICollectionViewCell {
   }
   
   // MARK: PROPERTIES
-  /// this property initialize the preview image that will be instantiated in each cell
+  /// this property initialize the preview image
+  /// that will be instantiated in each cell
   var previewImage: UIImageView = {
     let imageView = UIImageView()
     imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +43,8 @@ class ImageViewCell: UICollectionViewCell {
   // MARK: METHODS
   
   /**
-   This function create a subView of type UIImageView and applies constraints to it
+   This function create a subView of type
+   UIImageView and applies constraints to it
    */
   private func setupViews(){
     // adding UIImage View in Cell

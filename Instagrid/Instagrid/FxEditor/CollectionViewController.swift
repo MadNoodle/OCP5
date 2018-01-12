@@ -13,7 +13,7 @@ import UIKit
  CollectionView Controller that handles the display of the photo search on Pixabay
  */
 @IBDesignable
-class CollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class CollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
   
   private var imageResults:[UIImage] = []
   private let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
@@ -130,6 +130,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     //Placeholdr text
     searchInput.placeholder = "Enter your request"
     searchInput.tag = 10
+    searchInput.delegate = self
     // add it to navbar
     navBar.addSubview(searchInput)
   }
@@ -160,39 +161,43 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
    */
   @objc func performSearch(sender : UIButton){
     
-    //TextField to perform the search
-    let textfield = view.viewWithTag(10) as? UITextField
+    searchImage()
     
-    // grab text from textfield
-    if let query = textfield?.text {
-      //Iniatialize empty array to store results
-      self.imageResults = []
-      //Display spinner while fetching results
-      self.showSpinner()
-      self.showLoading()
-      //Call the APIClient with the search parameters
-      
-      // Grab the result on bg thread
-      DispatchQueue.global(qos: .userInteractive).async{
-        APIClient.getImagesAPI(query: query) {(results:[UIImage]) in
-          
-          //Iterate throught results and append it to result Array
-          for result in results {
-            self.imageResults.append(result)
-          }
-          //send results on main threads
-          DispatchQueue.main.async {
-            //Load data in  Collection View cells
-            self.collectionView?.reloadData()
-            //Hide spinner
-            self.hideSpinner()
-            self.hideLoading()
-          }
+  }
+
+func searchImage(){
+  //TextField to perform the search
+  let textfield = view.viewWithTag(10) as? UITextField
+  
+  // grab text from textfield
+  if let query = textfield?.text {
+    //Iniatialize empty array to store results
+    self.imageResults = []
+    //Display spinner while fetching results
+    self.showSpinner()
+    self.showLoading()
+    //Call the APIClient with the search parameters
+    
+    // Grab the result on bg thread
+    DispatchQueue.global(qos: .userInteractive).async{
+      APIClient.getImagesAPI(query: query) {(results:[UIImage]) in
+        
+        //Iterate throught results and append it to result Array
+        for result in results {
+          self.imageResults.append(result)
+        }
+        //send results on main threads
+        DispatchQueue.main.async {
+          //Load data in  Collection View cells
+          self.collectionView?.reloadData()
+          //Hide spinner
+          self.hideSpinner()
+          self.hideLoading()
         }
       }
     }
   }
-  
+  }
   
   // /////////////////// //
   // MARK: LOADING SPINNER //
@@ -244,6 +249,14 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
    */
   private func hideSpinner(){
     myActivityIndicator.removeFromSuperview()
+  }
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.view.endEditing(true)
+  }
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    searchImage()
+    return(true)
   }
 }
 

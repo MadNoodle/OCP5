@@ -80,11 +80,9 @@
 		B93260931FC20BB100439530 /* WebSearch */ = {
 			isa = PBXGroup;
 			children = (
-				B97D75981FCD692700EEDC79 /* ImageViewCell.swift */,
-				B97D759A1FCD774300EEDC79 /* WebImage.swift */,
-				B9977BDF1FD403350096CBC4 /* CollectionViewCell.swift */,
-				B97D759E1FCDFA2A00EEDC79 /* APIClient.swift */,
-				B99EF3EC1FCCD747005F41D3 /* CollectionViewController.xib */,
+				B97FBEE420120DFA0008FCC0 /* Views */,
+				B97FBEE320120DED0008FCC0 /* Controller */,
+				B97FBEE220120DE20008FCC0 /* Model */,
 			);
 			path = WebSearch;
 			sourceTree = "<group>";
@@ -97,6 +95,84 @@
 				B9E30F4C1FBF3DC400E8F51B /* ThirstySoftRegular.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B97FBEDF20120DB90008FCC0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B9E09A461FD44EAB00C8D2C9 /* DataExchangeDelegate.swift */,
+				B9D229011FC389C700F334EC /* Logic.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B97FBEE020120DC20008FCC0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B9E30F3C1FBF3B4200E8F51B /* Main.storyboard */,
+				B93260941FC20BC400439530 /* CollageView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B97FBEE120120DCD0008FCC0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B9E30F3A1FBF3B4200E8F51B /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B97FBEE220120DE20008FCC0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B97D759A1FCD774300EEDC79 /* WebImage.swift */,
+				B97D759E1FCDFA2A00EEDC79 /* APIClient.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B97FBEE320120DED0008FCC0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B99EF3EB1FCCD747005F41D3 /* CollectionViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B97FBEE420120DFA0008FCC0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B9977BDF1FD403350096CBC4 /* CollectionViewCell.swift */,
+				B99EF3EC1FCCD747005F41D3 /* CollectionViewController.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B97FBEE520120E060008FCC0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B9604B631FDE863800C5BA7D /* EmojiData.swift */,
+				B91306561FD1C69E002D8D11 /* FxEditor.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B97FBEE620120E0F0008FCC0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B91306521FD15B86002D8D11 /* EditImageController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B97FBEE720120E1F0008FCC0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B97D75981FCD692700EEDC79 /* ImageViewCell.swift */,
+				B91306531FD15B86002D8D11 /* EditImageController.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B9E30F2C1FBF3B4200E8F51B = {
@@ -135,7 +211,6 @@
 				B9E30F3F1FBF3B4200E8F51B /* Assets.xcassets */,
 				B9604B831FDEC17E00C5BA7D /* Fonts */,
 				B9E30F381FBF3B4200E8F51B /* AppDelegate.swift */,
-				B9E09A461FD44EAB00C8D2C9 /* DataExchangeDelegate.swift */,
 			);
 			path = Supporting_files;
 			sourceTree = "<group>";
@@ -143,11 +218,9 @@
 		B9E30F4F1FBF40B900E8F51B /* FxEditor */ = {
 			isa = PBXGroup;
 			children = (
-				B9604B631FDE863800C5BA7D /* EmojiData.swift */,
-				B99EF3EB1FCCD747005F41D3 /* CollectionViewController.swift */,
-				B91306521FD15B86002D8D11 /* EditImageController.swift */,
-				B91306561FD1C69E002D8D11 /* FxEditor.swift */,
-				B91306531FD15B86002D8D11 /* EditImageController.xib */,
+				B97FBEE720120E1F0008FCC0 /* Views */,
+				B97FBEE620120E0F0008FCC0 /* Controller */,
+				B97FBEE520120E060008FCC0 /* Model */,
 			);
 			path = FxEditor;
 			sourceTree = "<group>";
@@ -155,10 +228,9 @@
 		B9E30F501FBF40C400E8F51B /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				B93260941FC20BC400439530 /* CollageView.swift */,
-				B9D229011FC389C700F334EC /* Logic.swift */,
-				B9E30F3A1FBF3B4200E8F51B /* ViewController.swift */,
-				B9E30F3C1FBF3B4200E8F51B /* Main.storyboard */,
+				B97FBEE120120DCD0008FCC0 /* Controller */,
+				B97FBEE020120DC20008FCC0 /* Views */,
+				B97FBEDF20120DB90008FCC0 /* Model */,
 			);
 			path = Home;
 			sourceTree = "<group>";
